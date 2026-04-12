@@ -1,0 +1,238 @@
+/**
+ * main.css
+ * ─────────────────────────────────────────────────────────
+ * Base styles: Reset, Typography, Layout utilities,
+ * scrollbar, global body rules, and reusable section
+ * structure helpers.
+ *
+ * Import order (in index.html):
+ *   1. variables.css  ← tokens
+ *   2. main.css       ← this file
+ *   3. components.css ← UI components
+ *   4. responsive.css ← media queries
+ * ─────────────────────────────────────────────────────────
+ */
+
+
+/* ═══════════════════════════════════════════════
+   RESET
+   ═══════════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+
+/* ═══════════════════════════════════════════════
+   BODY & GLOBAL
+   ═══════════════════════════════════════════════ */
+
+body {
+  font-family: var(--font-arabic);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+  transition: var(--transition-slow);
+}
+
+/* English mode — switch body font to DM Sans */
+[lang="en"] body {
+  font-family: var(--font-body);
+}
+
+/* English mode — switch headings to Syne display font */
+[lang="en"] h1,
+[lang="en"] h2,
+[lang="en"] h3,
+[lang="en"] .nav__logo-text {
+  font-family: var(--font-display);
+}
+
+
+/* ═══════════════════════════════════════════════
+   CUSTOM SCROLLBAR
+   ═══════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary-mid);
+  border-radius: 3px;
+}
+
+
+/* ═══════════════════════════════════════════════
+   TYPOGRAPHY UTILITIES
+   ═══════════════════════════════════════════════ */
+
+/**
+ * .text-gradient
+ * Renders text with the brand gradient (primary → light).
+ * Used on hero name, stat numbers, logo text, etc.
+ */
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 50%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+/* ═══════════════════════════════════════════════
+   SECTION LAYOUT
+   ═══════════════════════════════════════════════ */
+
+section {
+  padding: var(--spacing-3xl) var(--container-padding);
+  position: relative;
+}
+
+/* Alternate background for visual rhythm */
+.section--alt-bg {
+  background-color: var(--color-bg-alt);
+}
+
+/* Centered section header variant */
+.section__header--center {
+  text-align: center;
+}
+
+.section__header--center .section__tag {
+  justify-content: center;
+}
+
+.section__header--center .section__tag::before {
+  display: none;
+}
+
+.section__header--center .section__subtitle {
+  margin-inline: auto;
+}
+
+/* Section tag — small label above heading (e.g. "MY WORK") */
+.section__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-primary-mid);
+  font-size: 0.80rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  margin-bottom: 14px;
+}
+
+.section__tag::before {
+  content: '';
+  width: 20px;
+  height: 2px;
+  background: var(--color-primary-mid);
+}
+
+/* Section heading */
+.section__title {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 14px;
+
+
+
+
+  
+}
+
+[lang="en"] .section__title {
+  font-family: var(--font-display);
+  letter-spacing: -1.5px;
+}
+
+/* Section subtitle / description */
+.section__subtitle {
+  font-size: 0.98rem;
+  color: var(--color-text-secondary);
+  max-width: 500px;
+  line-height: 1.85;
+  margin-bottom: var(--spacing-2xl);
+}
+
+
+/* ═══════════════════════════════════════════════
+   REVEAL ANIMATION
+   ═══════════════════════════════════════════════
+   Elements start invisible and slide up.
+   The JS IntersectionObserver adds .is-visible
+   when the element enters the viewport.
+   ═══════════════════════════════════════════════ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity  0.65s var(--ease-smooth),
+    transform 0.65s var(--ease-smooth);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays for child cards */
+.reveal--delay-1 { transition-delay: 0.08s; }
+.reveal--delay-2 { transition-delay: 0.16s; }
+.reveal--delay-3 { transition-delay: 0.24s; }
+.reveal--delay-4 { transition-delay: 0.32s; }
+
+
+/* ═══════════════════════════════════════════════
+   GRID UTILITIES
+   ═══════════════════════════════════════════════ */
+
+/** Two-column equal grid */
+.grid--two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+}
