@@ -382,7 +382,7 @@ function handleOpenProjectModal(projectId) {
   if (project.isHrDashboard) {
     const isAr = lang === 'ar';
 
- /* const bodyHTML = `
+  const bodyHTML = `
 
       <!-- ── Dashboard preview image area ── -->
       <div class="hr-modal__preview">

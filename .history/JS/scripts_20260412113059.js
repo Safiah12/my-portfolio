@@ -382,7 +382,7 @@ function handleOpenProjectModal(projectId) {
   if (project.isHrDashboard) {
     const isAr = lang === 'ar';
 
- /* const bodyHTML = `
+   /* const bodyHTML = `
 
       <!-- ── Dashboard preview image area ── -->
       <div class="hr-modal__preview">
@@ -551,7 +551,7 @@ function handleOpenProjectModal(projectId) {
       </div>
 
     `;
-*/
+
     openModal(project[lang].title, isAr ? 'تحليل الموارد البشرية · 3 صفحات تفاعلية' : 'HR Analytics · 3 Interactive Pages', bodyHTML);
     return;
   }

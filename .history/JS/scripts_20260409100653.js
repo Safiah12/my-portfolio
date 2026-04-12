@@ -67,16 +67,15 @@ const PROJECTS = [
     cat: 'data',
     icon: '📊',
     thumbClass: 'project-card__thumbnail--3',
-    isHrDashboard: true,   // flag → triggers special rich modal
     ar: {
-      title: 'لوحة HR التحليلية – Power BI',
-      desc: 'لوحة تحليل موارد بشرية متكاملة تغطي 15 موظفاً عبر 6 دول، تعرض الرواتب والحضور والتوزيع الجغرافي والجندري عبر 3 صفحات تفاعلية مبنية بـ Power BI.',
-      tags: ['Power BI', 'DAX', 'Data Modeling', 'HR Analytics'],
+      title: 'لوحة تحليل البيانات',
+      desc: 'تحليل وتمثيل بيانات تنظيمية باستخدام Power BI وExcel مع تقارير تفاعلية ورؤى قابلة للتنفيذ.',
+      tags: ['Power BI', 'Excel', 'SQL', 'Data Analysis'],
     },
     en: {
-      title: 'HR Analytics Dashboard – Power BI',
-      desc: 'A comprehensive HR analytics dashboard covering 15 employees across 6 countries, visualizing salaries, attendance, and geographic/gender distribution across 3 interactive pages built with Power BI.',
-      tags: ['Power BI', 'DAX', 'Data Modeling', 'HR Analytics'],
+      title: 'Data Analytics Dashboard',
+      desc: 'Analyzing and visualizing organizational data using Power BI and Excel with interactive reports and actionable insights.',
+      tags: ['Power BI', 'Excel', 'SQL', 'Data Analysis'],
     },
   },
   {
@@ -222,7 +221,7 @@ function observeRevealElements() {
 /**
  * Render the projects grid.
  * @param {string} filter - category key or 'all'
- */
+ 
 function renderProjects(filter = 'all') {
   const lang   = getLang();
   const list   = filter === 'all' ? PROJECTS : PROJECTS.filter((p) => p.cat === filter);
@@ -258,31 +257,141 @@ function renderProjects(filter = 'all') {
 
   observeRevealElements();
 }
+*/
+/**
+ * renderProjects()
+ * ─────────────────────────────────────────────
+ * Renders the projects grid in section #projects.
+ *
+ * Logic:
+ *  - Filters PROJECTS array by category key or shows all.
+ *  - Data/dashboard projects get a special card variant
+ *    (.project-card--data) with a "View Dashboard" button.
+ *  - Click on card body → opens modal.
+ *  - Click on action buttons (Demo / GitHub / Dashboard) →
+ *    handled separately, does NOT bubble to card modal.
+ * ─────────────────────────────────────────────
+ * @param {string} filter — 'all' | 'mobile' | 'uiux' | 'data' | 'web'
+ */
+function renderProjects(filter = 'all') {
+  const lang = getLang();
+  const list = filter === 'all'
+    ? PROJECTS
+    : PROJECTS.filter((p) => p.cat === filter);
 
+  const grid = document.getElementById('projects-grid');
+  if (!grid) return;
+
+  const isAr = lang === 'ar';
+
+  grid.innerHTML = list.map((project) => {
+
+    /* ── Decide card variant ─────────────────── */
+    const isDataDashboard = project.isHrDashboard === true;
+    const cardClass       = isDataDashboard ? 'project-card project-card--data reveal' : 'project-card reveal';
+
+    /* ── Build tags HTML ─────────────────────── */
+    const tagsHTML = buildTagsHTML(project[lang].tags, 'project-card__tag');
+
+    /* ── Build thumbnail ─────────────────────── */
+    const thumbnailHTML = isDataDashboard
+      ? `<div class="project-card__thumbnail ${project.thumbClass}" aria-hidden="true">
+           <span class="project-card__thumb-icon--pulse">${project.icon}</span>
+           <span class="project-card__dashboard-badge">📊 Power BI</span>
+         </div>`
+      : `<div class="project-card__thumbnail ${project.thumbClass}" aria-hidden="true">
+           ${project.icon}
+         </div>`;
+
+    /* ── Build action buttons ────────────────── */
+    const linksHTML = isDataDashboard
+      ? `<div class="project-card__links">
+           <button class="project-card__link project-card__link--dashboard js-open-dashboard"
+                   data-project-id="${project.id}"
+                   aria-label="${isAr ? 'عرض لوحة التحليل' : 'View Dashboard'}">
+             📊 ${isAr ? 'عرض اللوحة' : 'View Dashboard'}
+           </button>
+         </div>`
+      : `<div class="project-card__links">
+           <a class="project-card__link project-card__link--primary"
+              href="#"
+              onclick="return false;"
+              aria-label="Demo">🚀 Demo</a>
+           <a class="project-card__link"
+              href="#"
+              onclick="return false;"
+              aria-label="GitHub">🐙 GitHub</a>
+         </div>`;
+
+    return `
+      <article class="${cardClass}" data-project-id="${project.id}">
+        ${thumbnailHTML}
+        <div class="project-card__body">
+          <div class="project-card__tags">${tagsHTML}</div>
+          <h3 class="project-card__title">${project[lang].title}</h3>
+          <p class="project-card__description">${project[lang].desc}</p>
+          ${linksHTML}
+        </div>
+      </article>`;
+
+  }).join('');
+
+  /* ── Event delegation ────────────────────────
+     One listener on the grid handles all clicks.
+     Buttons with .js-open-dashboard open the rich modal.
+     Clicks on the card body (not buttons) open generic modal. */
+  grid.addEventListener('click', (event) => {
+
+    /* "View Dashboard" button */
+    const dashBtn = event.target.closest('.js-open-dashboard');
+    if (dashBtn) {
+      event.stopPropagation();
+      const projectId = parseInt(dashBtn.dataset.projectId, 10);
+      handleOpenProjectModal(projectId);
+      return;
+    }
+
+    /* Regular link buttons — do nothing (href="#") */
+    if (event.target.closest('.project-card__link')) return;
+
+    /* Card body click → generic modal */
+    const card = event.target.closest('.project-card');
+    if (card) {
+      const projectId = parseInt(card.dataset.projectId, 10);
+      handleOpenProjectModal(projectId);
+    }
+  }, { once: false });  // keep listener alive for re-renders
+
+  observeRevealElements();
+}
 /**
  * Render technical skill bars and soft skill cards.
  */
+/**
+ * renderSkills()
+ * ─────────────────────────────────────────────
+ * تُنشئ قسم المهارات في صفحة #skills
+ *
+ * التغيير: المهارات التقنية الآن تُعرض كـ cards
+ * مثل المهارات الناعمة تماماً — بدون bar أو نسبة
+ * ─────────────────────────────────────────────
+ */
 function renderSkills() {
-  const lang       = getLang();
-  const techList   = document.getElementById('tech-skills-list');
-  const softGrid   = document.getElementById('soft-skills-grid');
+  const lang     = getLang();
+  const techList = document.getElementById('tech-skills-list');
+  const softGrid = document.getElementById('soft-skills-grid');
+
   if (!techList || !softGrid) return;
 
+  // ── المهارات التقنية → cards مثل المهارات الناعمة ──
   techList.innerHTML = TECH_SKILLS.map((skill) => `
-    <div class="skill-item">
-      <div class="skill-item__header">
-        <span class="skill-item__name">
-          <span class="skill-item__icon" aria-hidden="true">${skill.icon}</span>
-          ${skill[lang]}
-        </span>
-        <span class="skill-item__percentage">${skill.pct}%</span>
-      </div>
-      <div class="skill-item__bar" role="progressbar" aria-valuenow="${skill.pct}" aria-valuemin="0" aria-valuemax="100">
-        <div class="skill-item__fill" data-pct="${skill.pct}"></div>
-      </div>
+    <div class="soft-skill-card">
+      <span class="soft-skill-card__icon" aria-hidden="true">${skill.icon}</span>
+      <span class="soft-skill-card__name">${skill[lang]}</span>
     </div>
   `).join('');
 
+  // ── المهارات الناعمة → بدون تغيير ──
   softGrid.innerHTML = SOFT_SKILLS.map((skill) => `
     <div class="soft-skill-card">
       <span class="soft-skill-card__icon" aria-hidden="true">${skill.icon}</span>
@@ -369,194 +478,58 @@ window.renderAll = renderAll;
 
 /**
  * Open the project modal for a given project id.
- * Projects flagged with isHrDashboard:true get a rich
- * stats modal instead of the generic template.
  * @param {number} projectId
- */
+ *//* ── Image viewer (tabs) ─────────────────────
+       Allows switching between 3 dashboard pages.
+       Images live in assets/images/dashboard/.
+       If images are missing, a placeholder is shown. ── */
+    const dashboardViewerHTML = `
+      <div class="dashboard-image-viewer">
+
+        <!-- Tab bar: one tab per dashboard page -->
+        <div class="dashboard-image-viewer__tabs" role="tablist">
+          <button class="dashboard-image-viewer__tab is-active"
+                  role="tab"
+                  data-tab="0"
+                  aria-selected="true">
+            📋 ${isAr ? 'نظرة عامة' : 'Overview'}
+          </button>
+          <button class="dashboard-image-viewer__tab"
+                  role="tab"
+                  data-tab="1"
+                  aria-selected="false">
+            💰 ${isAr ? 'الرواتب' : 'Finance'}
+          </button>
+          <button class="dashboard-image-viewer__tab"
+                  role="tab"
+                  data-tab="2"
+                  aria-selected="false">
+            📅 ${isAr ? 'الحضور' : 'Attendance'}
+          </button>
+        </div>
+
+        <!-- Image frame: shows active tab's screenshot -->
+        <div class="dashboard-image-viewer__frame" id="dashboard-frame">
+          <div class="dashboard-image-viewer__placeholder">
+            <div class="dashboard-image-viewer__placeholder-icon">📊</div>
+            <p class="dashboard-image-viewer__placeholder-text">
+              ${isAr
+                ? 'ضع صور لقطات الشاشة في:<br><code>assets/images/dashboard/page-1.png</code>'
+                : 'Place screenshot images at:<br><code>assets/images/dashboard/page-1.png</code>'}
+            </p>
+          </div>
+        </div>
+
+      </div>
+    `;
+
+    /* Prepend the image viewer to the body HTML */
+    const bodyHTMLWithViewer = dashboardViewerHTML + bodyHTML;
 function handleOpenProjectModal(projectId) {
   const lang    = getLang();
   const project = PROJECTS.find((p) => p.id === projectId);
   if (!project) return;
 
-  // ── Rich HR Dashboard modal ────────────────────────────
-  if (project.isHrDashboard) {
-    const isAr = lang === 'ar';
-
- /* const bodyHTML = `
-
-      <!-- ── Dashboard preview image area ── -->
-      <div class="hr-modal__preview">
-        <div class="hr-modal__preview-grid">
-
-          <!-- Overview page card -->
-          <div class="hr-modal__page-card hr-modal__page-card--active">
-            <div class="hr-modal__page-icon">📋</div>
-            <span>${isAr ? 'نظرة عامة' : 'Overview'}</span>
-          </div>
-          <!-- Finance page card -->
-          <div class="hr-modal__page-card">
-            <div class="hr-modal__page-icon">💰</div>
-            <span>${isAr ? 'الرواتب' : 'Finance'}</span>
-          </div>
-          <!-- Attendance page card -->
-          <div class="hr-modal__page-card">
-            <div class="hr-modal__page-icon">📅</div>
-            <span>${isAr ? 'الحضور' : 'Attendance'}</span>
-          </div>
-
-        </div>
-        <p class="hr-modal__tool-badge">
-          <span class="hr-modal__tool-dot"></span>
-          Power BI Desktop
-        </p>
-      </div>
-
-      <!-- ── KPI Cards row ── -->
-      <div class="hr-modal__kpis">
-        <div class="hr-modal__kpi">
-          <span class="hr-modal__kpi-value">15</span>
-          <span class="hr-modal__kpi-label">${isAr ? 'إجمالي الموظفين' : 'Total Employees'}</span>
-        </div>
-        <div class="hr-modal__kpi">
-          <span class="hr-modal__kpi-value">34</span>
-          <span class="hr-modal__kpi-label">${isAr ? 'متوسط العمر' : 'Average Age'}</span>
-        </div>
-        <div class="hr-modal__kpi">
-          <span class="hr-modal__kpi-value">$2.59K</span>
-          <span class="hr-modal__kpi-label">${isAr ? 'متوسط الراتب' : 'Average Salary'}</span>
-        </div>
-        <div class="hr-modal__kpi">
-          <span class="hr-modal__kpi-value">$191.5K</span>
-          <span class="hr-modal__kpi-label">${isAr ? 'إجمالي المدفوعات' : 'Total Payments'}</span>
-        </div>
-      </div>
-
-      <!-- ── Section: Overview insights ── -->
-      <h4 class="hr-modal__section-title">
-        ${isAr ? '📋 صفحة نظرة عامة (Overview)' : '📋 Overview Page'}
-      </h4>
-      <div class="hr-modal__insight-grid">
-        <div class="hr-modal__insight">
-          <div class="hr-modal__insight-header">
-            <span class="hr-modal__insight-icon">👥</span>
-            <span>${isAr ? 'توزيع الجنس' : 'Gender Distribution'}</span>
-          </div>
-          <div class="hr-modal__bar-row">
-            <span>${isAr ? 'ذكور' : 'Male'}</span>
-            <div class="hr-modal__bar-track">
-              <div class="hr-modal__bar-fill hr-modal__bar-fill--male" style="width:53%"></div>
-            </div>
-            <span>8</span>
-          </div>
-          <div class="hr-modal__bar-row">
-            <span>${isAr ? 'إناث' : 'Female'}</span>
-            <div class="hr-modal__bar-track">
-              <div class="hr-modal__bar-fill hr-modal__bar-fill--female" style="width:47%"></div>
-            </div>
-            <span>7</span>
-          </div>
-        </div>
-        <div class="hr-modal__insight">
-          <div class="hr-modal__insight-header">
-            <span class="hr-modal__insight-icon">📄</span>
-            <span>${isAr ? 'حالة العقد' : 'Contract Status'}</span>
-          </div>
-          <div class="hr-modal__bar-row">
-            <span>${isAr ? 'نشط' : 'Active'}</span>
-            <div class="hr-modal__bar-track">
-              <div class="hr-modal__bar-fill hr-modal__bar-fill--active" style="width:67%"></div>
-            </div>
-            <span>10</span>
-          </div>
-          <div class="hr-modal__bar-row">
-            <span>${isAr ? 'منتهي' : 'Inactive'}</span>
-            <div class="hr-modal__bar-track">
-              <div class="hr-modal__bar-fill hr-modal__bar-fill--inactive" style="width:33%"></div>
-            </div>
-            <span>5</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Country distribution -->
-      <div class="hr-modal__country-grid">
-        ${[
-          { flag:'🇯🇴', name: isAr ? 'الأردن'  : 'Jordan',  n: 4 },
-          { flag:'🇱🇧', name: isAr ? 'لبنان'   : 'Lebanon', n: 3 },
-          { flag:'🇸🇾', name: isAr ? 'سوريا'   : 'Syria',   n: 3 },
-          { flag:'🇪🇬', name: isAr ? 'مصر'     : 'Egypt',   n: 2 },
-          { flag:'🇮🇶', name: isAr ? 'العراق'  : 'Iraq',    n: 2 },
-          { flag:'🇦🇪', name: isAr ? 'الإمارات': 'UAE',     n: 1 },
-        ].map(c => `
-          <div class="hr-modal__country">
-            <span class="hr-modal__country-flag">${c.flag}</span>
-            <span class="hr-modal__country-name">${c.name}</span>
-            <div class="hr-modal__country-bar-track">
-              <div class="hr-modal__country-bar" style="width:${c.n * 25}%"></div>
-            </div>
-            <span class="hr-modal__country-n">${c.n}</span>
-          </div>
-        `).join('')}
-      </div>
-
-      <!-- ── Section: Finance insights ── -->
-      <h4 class="hr-modal__section-title">
-        ${isAr ? '💰 صفحة الرواتب (Finance)' : '💰 Finance Page'}
-      </h4>
-      <div class="hr-modal__finance-row">
-        <div class="hr-modal__finance-kpi hr-modal__finance-kpi--male">
-          <span class="hr-modal__finance-kpi-val">$101.9K</span>
-          <span class="hr-modal__finance-kpi-lbl">${isAr ? 'مجموع رواتب الذكور' : 'Male Payments Total'}</span>
-        </div>
-        <div class="hr-modal__finance-kpi hr-modal__finance-kpi--female">
-          <span class="hr-modal__finance-kpi-val">$89.6K</span>
-          <span class="hr-modal__finance-kpi-lbl">${isAr ? 'مجموع رواتب الإناث' : 'Female Payments Total'}</span>
-        </div>
-      </div>
-      <p class="hr-modal__note">
-        ${isAr
-          ? '🏆 أعلى راتب: لينا فارس (الأردن) — $26,600 · أدنى راتب: دانا خالد (مصر) — $1,800'
-          : '🏆 Highest earner: Lina Fares (Jordan) — $26,600 · Lowest: Dana Khaled (Egypt) — $1,800'
-        }
-      </p>
-
-      <!-- ── Section: Attendance insights ── -->
-      <h4 class="hr-modal__section-title">
-        ${isAr ? '📅 صفحة الحضور (Attendance)' : '📅 Attendance Page'}
-      </h4>
-      <div class="hr-modal__attendance-kpis">
-        <div class="hr-modal__att-kpi">
-          <span class="hr-modal__att-val">77.65%</span>
-          <span class="hr-modal__att-lbl">${isAr ? 'الحضور الإجمالي' : 'Overall Rate'}</span>
-        </div>
-        <div class="hr-modal__att-kpi hr-modal__att-kpi--female">
-          <span class="hr-modal__att-val">80.84%</span>
-          <span class="hr-modal__att-lbl">${isAr ? 'حضور الإناث' : 'Female Rate'}</span>
-        </div>
-        <div class="hr-modal__att-kpi hr-modal__att-kpi--male">
-          <span class="hr-modal__att-val">75.19%</span>
-          <span class="hr-modal__att-lbl">${isAr ? 'حضور الذكور' : 'Male Rate'}</span>
-        </div>
-      </div>
-      <p class="hr-modal__note">
-        ${isAr
-          ? '⭐ أعلى حضور: لينا فارس — 94.70% (125 يوم) · أدنى حضور: سارة حسن — 22.73% (5 أيام)'
-          : '⭐ Top attendance: Lina Fares — 94.70% (125 days) · Lowest: Sara Hassan — 22.73% (5 days)'
-        }
-      </p>
-
-      <!-- ── Tags ── -->
-      <div class="modal__tags" style="margin-top:20px;">
-        ${buildTagsHTML(project[lang].tags, 'tag')}
-      </div>
-
-    `;
-*/
-    openModal(project[lang].title, isAr ? 'تحليل الموارد البشرية · 3 صفحات تفاعلية' : 'HR Analytics · 3 Interactive Pages', bodyHTML);
-    return;
-  }
-
-  // ── Generic project modal (default) ───────────────────
   const bodyHTML = `
     <div class="modal__thumbnail" aria-hidden="true">${project.icon}</div>
     <p class="modal__description">${project[lang].desc}</p>
@@ -569,13 +542,22 @@ function handleOpenProjectModal(projectId) {
     </div>
   `;
 
-  openModal(project[lang].title, project[lang].tags.join(' · '), bodyHTML);
-}
+openModal(
+      project[lang].title,
+      isAr ? 'تحليل الموارد البشرية · 3 صفحات تفاعلية' : 'HR Analytics · 3 Interactive Pages',
+      bodyHTMLWithViewer
+    );
+
+    /* ── Wire tab buttons after modal renders ──
+       Small delay ensures modal DOM is inserted before we query it. */
+    setTimeout(() => initDashboardTabs(isAr), 60);
+    return;}
 
 /**
  * Open the certificate modal for a given certificate index.
  * @param {number} index
  */
+
 function handleOpenCertModal(index) {
   const lang = getLang();
   const cert = CERTIFICATES[index];
@@ -595,7 +577,105 @@ function handleOpenCertModal(index) {
 
   openModal(cert[lang].name, `${cert[lang].issuer} · ${cert[lang].year}`, bodyHTML);
 }
+/**
+ * initDashboardTabs()
+ * ─────────────────────────────────────────────
+ * Wires the three tab buttons inside the HR Dashboard modal.
+ * Each tab corresponds to one Power BI page and shows its screenshot.
+ *
+ * Image path convention:
+ *   assets/images/dashboard/page-1.png  ← Overview
+ *   assets/images/dashboard/page-2.png  ← Finance
+ *   assets/images/dashboard/page-3.png  ← Attendance
+ *
+ * If an image fails to load, a styled placeholder is shown instead.
+ *
+ * @param {boolean} isAr — true when current language is Arabic
+ */
+function initDashboardTabs(isAr) {
 
+  const tabButtons = document.querySelectorAll('.dashboard-image-viewer__tab');
+  const frame      = document.getElementById('dashboard-frame');
+  if (!tabButtons.length || !frame) return;
+
+  /* Image paths indexed by tab number (0, 1, 2) */
+  const pageImages = [
+    'assets/images/dashboard/page-1.png',
+    'assets/images/dashboard/page-2.png',
+    'assets/images/dashboard/page-3.png',
+  ];
+
+  /* Page titles for alt text */
+  const pageTitles = isAr
+    ? ['نظرة عامة', 'الرواتب والمدفوعات', 'الحضور والأداء']
+    : ['Overview', 'Finance & Payments', 'Attendance & Performance'];
+
+  /**
+   * showPage()
+   * Renders the image for a given tab index inside #dashboard-frame.
+   * Falls back to a placeholder div if the image path is unavailable.
+   * @param {number} index
+   */
+  function showPage(index) {
+    const src   = pageImages[index];
+    const title = pageTitles[index];
+
+    /* Build an <img> and handle load errors gracefully */
+    const img = new Image();
+    img.src   = src;
+    img.alt   = title;
+    img.className = 'dashboard-image-viewer__img';
+    img.loading   = 'lazy';
+
+    img.onload = () => {
+      /* Image loaded — inject it */
+      frame.innerHTML = '';
+      frame.appendChild(img);
+    };
+
+    img.onerror = () => {
+      /* Image missing — show placeholder with instructions */
+      frame.innerHTML = `
+        <div class="dashboard-image-viewer__placeholder">
+          <div class="dashboard-image-viewer__placeholder-icon">🖼️</div>
+          <p class="dashboard-image-viewer__placeholder-text">
+            ${isAr
+              ? `ضع لقطة الشاشة في:<br><code>${src}</code>`
+              : `Place screenshot at:<br><code>${src}</code>`}
+          </p>
+        </div>`;
+    };
+
+    /* Trigger the image load (onerror fires if path is wrong) */
+    img.dispatchEvent(new Event('load'));  // won't fire twice — rely on img.complete
+    if (img.complete && img.naturalWidth > 0) {
+      frame.innerHTML = '';
+      frame.appendChild(img);
+    } else if (img.complete && img.naturalWidth === 0) {
+      /* Already failed before onerror wired — call manually */
+      img.onerror();
+    }
+  }
+
+  /* Show first page by default */
+  showPage(0);
+
+  /* Tab click handler */
+  tabButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      /* Update active state */
+      tabButtons.forEach((b) => {
+        b.classList.remove('is-active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('is-active');
+      btn.setAttribute('aria-selected', 'true');
+
+      /* Show corresponding page */
+      showPage(parseInt(btn.dataset.tab, 10));
+    });
+  });
+}/****** */
 
 /* ══════════════════════════════════════════════════════════
    ANIMATIONS
