@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sales Performance Dashboard </title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root{
+      --bg:#070E1F;
+      --card:#0F1E3A;
+      --card2:#112952;
+      --blue:#1E73E8;
+      --blue2:#5AB0FF;
+      --cyan:#5EDDC2;
+      --orange:#D97706;
+      --orange2:#F59E0B;
+      --text:#F7FAFF;
+      --muted:#9FB5D6;
+      --line:rgba(255,255,255,.10);
+      --shadow:0 24px 70px rgba(0,0,0,.42);
+      --radius:24px;
+    }
+
+    body.light{
+      --bg:#F4F8FF;
+      --card:#FFFFFF;
+      --card2:#EAF3FF;
+      --text:#06122B;
+      --muted:#52677F;
+      --line:rgba(10,79,191,.12);
+      --shadow:0 24px 70px rgba(10,79,191,.14);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Almarai","DM Sans",sans-serif;
+      background:
+        radial-gradient(circle at 20% 5%, rgba(30,115,232,.24), transparent 32%),
+        radial-gradient(circle at 90% 35%, rgba(245,158,11,.14), transparent 34%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.8;
+      transition:.35s ease;
+    }
+    body.en{font-family:"DM Sans","Almarai",sans-serif;direction:ltr}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    .topbar{
+      width:min(1120px,92%);
+      margin:22px auto 0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .back,.toggle button{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      border-radius:999px;
+      padding:9px 14px;
+      cursor:pointer;
+      backdrop-filter:blur(14px);
+      transition:.25s ease;
+    }
+    .toggle{display:flex;gap:8px;align-items:center}
+    .toggle button:hover,.back:hover{border-color:rgba(245,158,11,.55);transform:translateY(-1px)}
+
+    .page{
+      width:min(980px,92%);
+      margin:35px auto 80px;
+      border:1px solid var(--line);
+      border-radius:30px;
+      overflow:hidden;
+      background:rgba(15,30,58,.72);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(18px);
+    }
+    body.light .page{background:rgba(255,255,255,.78)}
+
+    .hero{
+      position:relative;
+      min-height:460px;
+      padding:54px 48px 40px;
+      background:
+        linear-gradient(135deg, rgba(10,79,191,.96), rgba(30,115,232,.88)),
+        linear-gradient(90deg, transparent 49%, rgba(255,255,255,.08) 50%);
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;inset:0;
+      background-image:linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size:34px 34px;
+      opacity:.4;
+    }
+    .hero-content{position:relative;z-index:2;display:grid;grid-template-columns:1.04fr .96fr;gap:35px;align-items:center}
+    .badge{
+      display:inline-flex;gap:8px;align-items:center;
+      background:rgba(217,119,6,.94);
+      border:1px solid rgba(255,255,255,.20);
+      color:#fff;
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:800;
+      margin-bottom:18px;
+      box-shadow:0 12px 26px rgba(217,119,6,.25);
+    }
+    h1{font-size:clamp(34px,5vw,58px);line-height:1.08;font-weight:900;letter-spacing:-1px;color:#fff}
+    .subtitle{margin:16px 0 24px;color:#EAF5FF;font-size:16px;max-width:560px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:9px;
+      padding:12px 18px;border-radius:999px;font-weight:800;font-size:14px;
+      border:1px solid rgba(255,255,255,.2);
+      transition:.25s;
+    }
+    .btn.primary{background:#fff;color:#0A4FBF}
+    .btn.secondary{background:rgba(255,255,255,.12);color:#fff}
+    .btn:hover{transform:translateY(-3px)}
+
+    .dashboard-showcase{position:relative;min-height:330px;display:flex;align-items:center;justify-content:center}
+    .dashboard-frame{
+      width:100%;max-width:420px;
+      background:#081225;
+      border:1px solid rgba(255,255,255,.20);
+      border-radius:24px;
+      padding:12px;
+      box-shadow:0 30px 80px rgba(0,0,0,.38);
+      transform:rotate(1.5deg);
+    }
+    .dashboard-preview{
+    width:100%;
+    max-width:520px;
+    background:#fff;
+    border-radius:24px;
+    padding:12px;
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.dashboard-preview img{
+    width:100%;
+    height:auto;
+    border-radius:16px;
+    display:block;
+}
+    .dashboard-frame img{height:260px;width:100%;object-fit:cover;object-position:top;border-radius:16px;background:#0F1E3A}
+    .float-card{
+      position:absolute;background:rgba(255,255,255,.92);color:#123;
+      border-radius:18px;padding:12px 14px;box-shadow:0 20px 45px rgba(0,0,0,.2);font-weight:900;font-size:13px;
+      animation:float 4s ease-in-out infinite;
+    }
+    .float-card.one{top:32px;inset-inline-start:8px}.float-card.two{bottom:26px;inset-inline-end:2px;animation-delay:1.2s}
+    @keyframes float{50%{transform:translateY(-12px)}}
+
+    .content{padding:38px 34px 48px;background:var(--bg)}
+    body.light .content{background:#F4F8FF}
+    .section{margin-top:34px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
+    .section-title{color:var(--blue2);font-size:21px;font-weight:900;display:flex;align-items:center;gap:10px}
+    .section-title i{color:var(--orange2)}
+    .grid{display:grid;gap:14px}
+    .grid.two{grid-template-columns:repeat(2,1fr)}
+    .grid.three{grid-template-columns:repeat(3,1fr)}
+    .grid.four{grid-template-columns:repeat(4,1fr)}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02)),var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:0 16px 44px rgba(0,0,0,.16);
+      transition:.25s;
+    }
+    .card:hover{transform:translateY(-5px);border-color:rgba(245,158,11,.35)}
+    .text-card p{color:var(--muted);font-size:15px;margin-top:8px}
+    .icon-bubble{
+      width:46px;height:46px;border-radius:16px;
+      display:grid;place-items:center;margin-bottom:12px;
+      background:linear-gradient(135deg,var(--blue),var(--orange2));color:#fff;font-size:20px;
+    }
+    .stat strong{font-size:28px;color:var(--text);display:block;line-height:1.1}.stat span{color:var(--muted);font-size:13px}
+
+    .award{
+      background:linear-gradient(135deg, rgba(217,119,6,.90), rgba(180,83,9,.82));
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:24px;
+      padding:22px;
+      color:#fff;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:center;
+      box-shadow:0 18px 45px rgba(217,119,6,.18);
+    }
+    .award strong{font-size:18px}.award p{opacity:.92;font-size:14px}.award i{font-size:34px;color:#FFE7B5}
+
+    .highlight{
+      background:linear-gradient(135deg, rgba(30,115,232,.20), rgba(245,158,11,.09));
+      border:1px solid rgba(90,176,255,.24);
+      border-radius:26px;padding:24px;
+    }
+    .list{display:grid;gap:10px;color:var(--muted);font-size:15px}.list div{display:flex;gap:10px;align-items:flex-start}.list i{color:var(--orange2);margin-top:6px}
+
+    .features .card{text-align:center}.features h3{font-size:16px;margin-bottom:6px}.features p{font-size:13px;color:var(--muted);line-height:1.7}
+    .process{display:grid;gap:14px}.step{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:center}.step-no{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:rgba(30,115,232,.16);border:1px solid rgba(245,158,11,.35);color:var(--orange2);font-weight:900}.step h3{font-size:15px}.step p{font-size:13px;color:var(--muted)}
+
+    .insights{display:grid;gap:12px}.insight{display:flex;gap:12px;align-items:flex-start}.dot{width:10px;height:10px;border-radius:50%;background:var(--orange2);margin-top:10px;box-shadow:0 0 0 5px rgba(245,158,11,.12)}.insight p{color:var(--muted);font-size:14px}
+
+    .tech-wrap{display:flex;flex-wrap:wrap;gap:12px}.tech{
+      display:flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:10px 14px;color:var(--text);font-weight:800;font-size:13px
+    }.tech i{color:var(--orange2);font-size:16px}
+
+    .preview{border-radius:26px;overflow:hidden;border:1px solid var(--line);background:var(--card);padding:14px}.preview img{width:100%;max-height:520px;object-fit:contain;border-radius:18px;background:#081225;cursor:pointer}
+
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center;z-index:99;padding:25px}.modal.active{display:flex}.modal img{max-height:90vh;border-radius:18px}.close{position:fixed;top:24px;inset-inline-end:28px;background:#fff;color:#111;border:0;border-radius:50%;width:42px;height:42px;cursor:pointer;font-size:20px}
+
+    [data-lang="en"]{display:none}body.en [data-lang="ar"]{display:none}body.en [data-lang="en"]{display:initial}body.en div[data-lang="en"],body.en section[data-lang="en"],body.en p[data-lang="en"],body.en h2[data-lang="en"],body.en span[data-lang="en"]{display:block}
+    body.en .section-title span[data-lang="en"], body.en .btn span[data-lang="en"], body.en .back span[data-lang="en"]{display:inline}
+
+    @media(max-width:820px){
+      .hero{padding:36px 22px}.hero-content{grid-template-columns:1fr}.dashboard-showcase{min-height:280px}.dashboard-frame img{height:220px}
+      .grid.two,.grid.three,.grid.four{grid-template-columns:1fr 1fr}.content{padding:28px 18px}.page{width:94%}
+    }
+    @media(max-width:520px){.grid.two,.grid.three,.grid.four{grid-template-columns:1fr}.hero-actions{display:grid}.float-card{display:none}.topbar{width:94%}.award{align-items:flex-start}.dashboard-frame{transform:none}}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <a href="index.html#projects" class="back"><i class="fa-solid fa-arrow-right"></i> <span data-lang="ar">المشاريع</span><span data-lang="en">Projects</span></a>
+    <div class="toggle">
+      <button onclick="toggleLang()" id="langBtn">EN</button>
+      <button onclick="toggleTheme()" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <div class="hero-content">
+        <div>
+          <div class="badge"><i class="fa-solid fa-trophy"></i> Power BI </div>
+          <h1 data-lang="ar">لوحة تحليل أداء المبيعات<br><span style="font-size:.55em">Sales Performance Dashboard</span></h1>
+          <h1 data-lang="en">Sales Performance Dashboard<br><span style="font-size:.55em">Power BI Case Study</span></h1>
+          <p class="subtitle" data-lang="ar">لوحة معلومات تفاعلية لتحليل بيانات المبيعات وتحويلها إلى مؤشرات ورسوم واضحة تساعد على فهم الأداء واتخاذ القرار بسرعة.</p>
+          <p class="subtitle" data-lang="en">An interactive Power BI dashboard that transforms sales data into clear KPIs and visuals to support faster performance understanding and data-driven decisions.</p>
+          <div class="hero-actions">
+            <a href="#overview" class="btn primary"><i class="fa-solid fa-layer-group"></i><span data-lang="ar">عرض المشروع</span><span data-lang="en">View Case Study</span></a>
+            <a href="#preview" class="btn secondary"><i class="fa-solid fa-chart-column"></i><span data-lang="ar">عرض اللوحة</span><span data-lang="en">Dashboard Preview</span></a>
+          </div>
+        </div>
+
+        <div class="dashboard-showcase">
+        <div class="float-card one">🥇 Winner</div>
+          <div class="dashboard-frame">
+            <img src="../assets/images/1P.jpeg" alt="Sales Performance Dashboard Preview">
+          </div>
+          <div class="float-card one">🏆 1st Place</div>
+          <div class="float-card one">🏆 Dashboard Challenge</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="content" id="overview">
+      <section class="section award">
+        <div>
+          <strong data-lang="ar">المركز الأول · أفضل تحدي Dashboard</strong>
+          <strong data-lang="en">1st Place · Best Dashboard Challenge</strong>
+          <p data-lang="ar">ضمن معسكر تحليل البيانات باستخدام Power BI — نادي الذكاء الاصطناعي، جامعة نجران.</p>
+          <p data-lang="en">Achieved during the Power BI Data Analysis Bootcamp by the AI Club at Najran University.</p>
+        </div>
+        <i class="fa-solid fa-trophy"></i>
+      </section>
+
+      <section class="section grid four">
+        <div class="card stat"><strong>10h</strong><span data-lang="ar">مدة المعسكر</span><span data-lang="en">Bootcamp Duration</span></div>
+        <div class="card stat"><strong>4</strong><span data-lang="ar">محاور تحليلية</span><span data-lang="en">Analysis Areas</span></div>
+        <div class="card stat"><strong>6</strong><span data-lang="ar">تصورات بصرية</span><span data-lang="en">Visualizations</span></div>
+        <div class="card stat"><strong>1st</strong><span data-lang="ar">أفضل Dashboard</span><span data-lang="en">Best Dashboard</span></div>
+      </section>
+
+      <section class="section grid two">
+        <div class="card text-card">
+          <div class="icon-bubble"><i class="fa-solid fa-chart-line"></i></div>
+          <h2 data-lang="ar">نبذة عن المشروع</h2><h2 data-lang="en">Project Overview</h2>
+          <p data-lang="ar">تم تطوير لوحة معلومات تفاعلية باستخدام Power BI لتحليل بيانات المبيعات وعرض المؤشرات الرئيسية بطريقة بصرية تساعد على فهم الأداء بشكل أسرع وأكثر وضوحًا.</p>
+          <p data-lang="en">An interactive dashboard was developed using Power BI to analyze sales data and present key indicators visually for faster and clearer performance understanding.</p>
+        </div>
+        <div class="card text-card">
+          <div class="icon-bubble"><i class="fa-solid fa-bullseye"></i></div>
+          <h2 data-lang="ar">الهدف من المشروع</h2><h2 data-lang="en">Business Objective</h2>
+          <p data-lang="ar">تحويل بيانات المبيعات الخام إلى مؤشرات ورسوم تفاعلية تساعد في متابعة الأداء، مقارنة المنتجات والفئات، وتحليل الفروع والاتجاهات الزمنية.</p>
+          <p data-lang="en">To transform raw sales data into interactive KPIs and visuals that support performance tracking, product comparison, branch analysis, and time-based trend exploration.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-compass-drafting"></i><span data-lang="ar">منهجية التحليل</span><span data-lang="en">Analysis Approach</span></h2></div>
+        <div class="process">
+          <div class="card step"><div class="step-no">01</div><div><h3 data-lang="ar">تحديد المؤشرات الرئيسية</h3><h3 data-lang="en">Defining Key Indicators</h3><p data-lang="ar">التركيز على مؤشرات المبيعات حسب العلامة التجارية، الفئة، الفئة الفرعية، الفروع، وتغير الأسعار زمنيًا.</p><p data-lang="en">Focused on sales indicators by brand, category, sub-category, branches, and price changes over time.</p></div></div>
+          <div class="card step"><div class="step-no">02</div><div><h3 data-lang="ar">تحليل البيانات بصريًا</h3><h3 data-lang="en">Visual Data Analysis</h3><p data-lang="ar">استخدام الرسوم التفاعلية لتحويل البيانات إلى معلومات سهلة القراءة والمقارنة.</p><p data-lang="en">Used interactive visuals to turn data into clear and comparable information.</p></div></div>
+          <div class="card step"><div class="step-no">03</div><div><h3 data-lang="ar">استكشاف الأنماط والاتجاهات</h3><h3 data-lang="en">Exploring Patterns & Trends</h3><p data-lang="ar">إبراز العلامات التجارية والفئات الأكثر نشاطًا والفروقات بين الفروع والتغيرات الزمنية.</p><p data-lang="en">Highlighted active brands, top categories, branch differences, and time-based changes.</p></div></div>
+          <div class="card step"><div class="step-no">04</div><div><h3 data-lang="ar">دعم اتخاذ القرار</h3><h3 data-lang="en">Decision Support</h3><p data-lang="ar">توفير رؤية شاملة تساعد على متابعة المؤشرات واستكشاف البيانات عبر المرشحات التفاعلية.</p><p data-lang="en">Provided a comprehensive view to monitor KPIs and explore data through interactive filters.</p></div></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-star"></i><span data-lang="ar">3 مميزات رئيسية</span><span data-lang="en">3 Main Features</span></h2></div>
+        <div class="grid three features">
+          <div class="card"><div class="icon-bubble"><i class="fa-solid fa-gauge-high"></i></div><h3>KPIs Overview</h3><p data-lang="ar">عرض سريع للمؤشرات الأساسية لفهم الأداء.</p><p data-lang="en">Quick overview of key indicators to understand performance.</p></div>
+          <div class="card"><div class="icon-bubble"><i class="fa-solid fa-filter"></i></div><h3>Interactive Filters</h3><p data-lang="ar">تصفية البيانات حسب السنة والربع والفروع.</p><p data-lang="en">Filter data by year, quarter, and branches.</p></div>
+          <div class="card"><div class="icon-bubble"><i class="fa-solid fa-chart-pie"></i></div><h3>Visual Comparison</h3><p data-lang="ar">مقارنة المنتجات والفئات والفروع بصريًا.</p><p data-lang="en">Visual comparison across products, categories, and branches.</p></div>
+        </div>
+      </section>
+
+      <section class="section highlight">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-lightbulb"></i><span data-lang="ar">أبرز النتائج</span><span data-lang="en">Key Insights</span></h2></div>
+        <div class="insights">
+          <div class="insight"><span class="dot"></span><p data-lang="ar">تحديد العلامات التجارية الأكثر مساهمة في النشاط البيعي.</p><p data-lang="en">Identified the brands with the highest contribution to sales activity.</p></div>
+          <div class="insight"><span class="dot"></span><p data-lang="ar">تحليل الفئات والمنتجات الأعلى من حيث حجم المبيعات والكميات.</p><p data-lang="en">Analyzed top categories and products by sales volume and quantities.</p></div>
+          <div class="insight"><span class="dot"></span><p data-lang="ar">مقارنة أداء الفروع المختلفة من خلال عرض بصري واضح.</p><p data-lang="en">Compared branch performance through clear visual representations.</p></div>
+          <div class="insight"><span class="dot"></span><p data-lang="ar">متابعة التغيرات الزمنية في الأسعار بين السنوات والفترات المختلفة.</p><p data-lang="en">Tracked price changes across available years and periods.</p></div>
+        </div>
+      </section>
+
+      <section class="section grid two">
+        <div class="card text-card">
+          <div class="icon-bubble"><i class="fa-solid fa-list-check"></i></div>
+          <h2 data-lang="ar">مميزات اللوحة</h2><h2 data-lang="en">Dashboard Features</h2>
+          <div class="list">
+            <div><i class="fa-solid fa-check"></i><span data-lang="ar">مؤشرات أداء رئيسية KPIs.</span><span data-lang="en">Key Performance Indicators.</span></div>
+            <div><i class="fa-solid fa-check"></i><span data-lang="ar">رسوم بيانية تفاعلية.</span><span data-lang="en">Interactive visuals.</span></div>
+            <div><i class="fa-solid fa-check"></i><span data-lang="ar">تحليل حسب المنتجات والفروع.</span><span data-lang="en">Product and branch analysis.</span></div>
+            <div><i class="fa-solid fa-check"></i><span data-lang="ar">تصفية حسب السنة والربع السنوي.</span><span data-lang="en">Filtering by year and quarter.</span></div>
+          </div>
+        </div>
+        <div class="card text-card">
+          <div class="icon-bubble"><i class="fa-solid fa-user-gear"></i></div>
+          <h2 data-lang="ar">دوري في المشروع</h2><h2 data-lang="en">My Contribution</h2>
+          <p data-lang="ar">تحليل البيانات، بناء النموذج، تصميم اللوحة، تطوير المقاييس، وتحويل البيانات إلى عرض بصري واضح يدعم فهم الأداء.</p>
+          <p data-lang="en">Data analysis, data modeling, dashboard design, measure development, and transforming data into clear visuals that support performance understanding.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-code"></i><span data-lang="ar">التقنيات المستخدمة</span><span data-lang="en">Technologies Used</span></h2></div>
+        <div class="tech-wrap">
+          <div class="tech"><i class="fa-solid fa-chart-simple"></i>Power BI</div>
+          <div class="tech"><i class="fa-solid fa-calculator"></i>DAX</div>
+          <div class="tech"><i class="fa-solid fa-database"></i>Data Modeling</div>
+          <div class="tech"><i class="fa-solid fa-chart-column"></i>Data Visualization</div>
+        
+        </div>
+      </section>
+
+      <section class="section" id="preview">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-desktop"></i><span data-lang="ar">لقطة من اللوحة</span><span data-lang="en">Dashboard Preview</span></h2></div>
+        <div class="preview">
+          <img src="../assets/images/SalesReport.png" alt="Sales Dashboard Preview" onclick="openModal(this.src)">
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-chart-line"></i><span data-lang="ar">الأثر النهائي</span><span data-lang="en">Outcome</span></h2></div>
+        <div class="card text-card">
+          <p data-lang="ar">وفرت اللوحة عرضًا تفاعليًا للمؤشرات الرئيسية، مما سهّل مقارنة أداء المنتجات والفئات والفروع واستكشاف اتجاهات البيانات خلال الفترات الزمنية المختلفة.</p>
+          <p data-lang="en">The dashboard transformed raw sales data into interactive visual insights, enabling users to monitor key metrics, compare performance across products and branches, and explore trends over time more efficiently.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="modal" id="modal" onclick="closeModal()">
+    <button class="close">×</button>
+    <img id="modalImg" src="" alt="Preview">
+  </div>
+
+  <script>
+    function toggleTheme(){document.body.classList.toggle('light')}
+    function toggleLang(){
+      document.body.classList.toggle('en');
+      const isEn=document.body.classList.contains('en');
+      document.documentElement.lang=isEn?'en':'ar';
+      document.documentElement.dir=isEn?'ltr':'rtl';
+      document.getElementById('langBtn').textContent=isEn?'AR':'EN';
+    }
+    function openModal(src){document.getElementById('modalImg').src=src;document.getElementById('modal').classList.add('active')}
+    function closeModal(){document.getElementById('modal').classList.remove('active')}
+  </script>
+</body>
+</html>

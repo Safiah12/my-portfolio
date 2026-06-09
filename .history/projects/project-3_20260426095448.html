@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>تحليل بيانات المبيعات | Power BI Dashboard — صفية المهيوي</title>
+  <meta name="description"
+    content="مشروع تحليل بيانات المبيعات باستخدام Power BI — حائز المركز الأول في معسكر نادي الذكاء الاصطناعي بجامعة نجران. يغطي ETL ونمذجة البيانات وDAX وتصميم Dashboard تفاعلي.">
+  <meta name="keywords"
+    content="Power BI, Data Analysis, Dashboard, DAX, Sales Analytics, صفية المهيوي, Portfolio">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+        rel="stylesheet">
+
+  <!-- Shared CSS (from root project) -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+  <!-- theme.js FIRST → prevents flash of wrong theme -->
+  <script src="../js/theme.js"></script>
+
+  <style>
+    /* ══════════════════════════════════════════════
+       PAGE-LEVEL STYLES
+       Scoped entirely to this project detail page.
+       No globals overridden.
+    ══════════════════════════════════════════════ */
+
+    /* ── Body base ── */
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+    }
+
+    /* ─────────────────────────────────────────────
+       TOP NAV BAR
+    ───────────────────────────────────────────── */
+    .pnav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(247, 250, 255, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--color-border);
+      padding: 12px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    [data-theme="dark"] .pnav {
+      background: rgba(7, 14, 31, 0.92);
+    }
+
+    .pnav__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 7px 16px;
+      border-radius: 50px;
+      border: 1.5px solid var(--color-border);
+      transition: all 0.22s;
+      white-space: nowrap;
+    }
+
+    .pnav__back:hover {
+      border-color: var(--color-primary-mid);
+      color: var(--color-primary);
+    }
+
+    .pnav__title {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--color-text-primary);
+      text-align: center;
+    }
+
+    .pnav__right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pnav__theme {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--color-surface);
+      border: 1.5px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.22s;
+    }
+
+    .pnav__theme:hover {
+      border-color: var(--color-primary-mid);
+    }
+
+    /* ─────────────────────────────────────────────
+       MAIN CONTENT WRAPPER
+    ───────────────────────────────────────────── */
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 52px 5% 100px;
+    }
+
+    /* ─────────────────────────────────────────────
+       HERO CARD
+    ───────────────────────────────────────────── */
+    .hero-card {
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 52px;
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Gradient thumbnail — replace emoji with <img> when screenshot is ready */
+    .hero-card__thumb {
+      height: 260px;
+      background: linear-gradient(135deg, #0c1f5e 0%, #1a4ca8 45%, #3b88e8 80%, #60a5fa 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle grid overlay on thumbnail */
+    .hero-card__thumb::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .hero-card__thumb-icon {
+      font-size: 4.5rem;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 4px 16px rgba(0,0,0,.35));
+    }
+
+    /* "🏆 المركز الأول" award ribbon */
+    .hero-card__award {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: linear-gradient(135deg, #92400e, #f59e0b);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 5px 16px;
+      border-radius: 50px;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.45);
+      letter-spacing: 0.3px;
+    }
+
+    /* Screenshot placeholder — swap with <img> later */
+    .hero-card__img-placeholder {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      background: rgba(0,0,0,.45);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,.2);
+      color: rgba(255,255,255,.7);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+
+    .hero-card__meta {
+      background: var(--color-surface);
+      padding: 28px 32px 32px;
+    }
+
+    .hero-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .hero-card__tag {
+      background: var(--color-glow);
+      color: var(--color-primary-mid);
+      font-size: 0.73rem;
+      font-weight: 800;
+      padding: 4px 13px;
+      border-radius: 50px;
+      border: 1px solid rgba(30,115,232,.18);
+    }
+
+    .hero-card__tag--award {
+      background: rgba(245, 158, 11, .12);
+      color: #d97706;
+      border-color: rgba(245, 158, 11, .3);
+    }
+
+    .hero-card__title {
+      font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .hero-card__subtitle {
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+      line-height: 1.85;
+      margin-bottom: 22px;
+    }
+
+    .hero-card__actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ─────────────────────────────────────────────
+       KPI METRICS ROW
+    ───────────────────────────────────────────── */
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 52px;
+    }
+
+    .metric-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 22px 20px;
+      text-align: center;
+      transition: all 0.25s;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--color-border-hover);
+    }
+
+    .metric-card__icon { font-size: 1.6rem; margin-bottom: 8px; }
+
+    .metric-card__value {
+      font-size: 1.55rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .metric-card__label {
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+      font-weight: 600;
+    }
+
+    /* ─────────────────────────────────────────────
+       CONTENT SECTION
+    ───────────────────────────────────────────── */
+    .section {
+      margin-bottom: 44px;
+    }
+
+    .section__header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .section__icon { font-size: 1.2rem; }
+
+    .section__title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--color-primary-mid);
+    }
+
+    /* Generic text block inside a section */
+    .section__text {
+      font-size: 0.96rem;
+      color: var(--color-text-secondary);
+      line-height: 1.95;
+    }
+
+    /* ─────────────────────────────────────────────
+       INFO CARD (white card inside a section)
+    ───────────────────────────────────────────── */
+    .info-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 24px 28px;
+    }
+
+    /* Two-column grid for Problem / Objective */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 44px;
+    }
+
+    .info-grid .info-card {
+      margin-bottom: 0;
+    }
+
+    .info-card__icon  { font-size: 1.5rem; margin-bottom: 10px; }
+    .info-card__title { font-size: 0.9rem; font-weight: 800; margin-bottom: 8px; color: var(--color-text-primary); }
+    .info-card__text  { font-size: 0.88rem; color: var(--color-text-secondary); line-height: 1.85; }
+
+    /* ─────────────────────────────────────────────
+       PROCESS STEPS (ETL → Model → DAX → Dashboard)
+    ───────────────────────────────────────────── */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--color-primary), var(--color-primary-light), transparent);
+      inset-inline-start: 22px;
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      padding-inline-start: 56px;
+      position: relative;
+      padding-bottom: 28px;
+    }
+
+    .step:last-child { padding-bottom: 0; }
+
+    .step__dot {
+      position: absolute;
+      inset-inline-start: 14px;
+      top: 4px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+      border: 3px solid var(--color-bg);
+      box-shadow: 0 0 0 3px rgba(30,115,232,.22);
+      flex-shrink: 0;
+    }
+
+    .step__body {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      padding: 18px 22px;
+      flex: 1;
+      transition: all 0.25s;
+    }
+
+    .step__body:hover {
+      box-shadow: var(--shadow-sm);
+      border-color: var(--color-border-hover);
+    }
+
+    .step__label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--color-primary-mid);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 5px;
+    }
+
+    .step__title { font-size: 0.95rem; font-weight: 800; margin-bottom: 5px; }
+    .step__text  { font-size: 0.86rem; color: var(--color-text-secondary); line-height: 1.8; }
+
+    /* ─────────────────────────────────────────────
+       DASHBOARD FEATURES LIST
+    ───────────────────────────────────────────── */
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .feature-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      transition: all 0.25s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+      border-color: var(--color-border-hover);
+    }
+
+    .feature-card__icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .feature-card__title { font-size: 0.88rem; font-weight: 800; margin-bottom: 4px; }
+    .feature-card__text  { font-size: 0.81rem; color: var(--color-text-secondary); line-height: 1.7; }
+
+    /* ─────────────────────────────────────────────
+       INSIGHTS LIST
+    ───────────────────────────────────────────── */
+    .insights {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .insight-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      transition: all 0.22s;
+    }
+
+    .insight-item:hover {
+      border-color: var(--color-border-hover);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .insight-item__bullet {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-primary-mid);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    .insight-item__text {
+      font-size: 0.92rem;
+      color: var(--color-text-secondary);
+      line-height: 1.8;
+    }
+
+    .insight-item__text strong {
+      color: var(--color-text-primary);
+      font-weight: 800;
+    }
+
+    /* ─────────────────────────────────────────────
+       TOOLS / TECH TAGS ROW
+    ───────────────────────────────────────────── */
+    .tools-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tool-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--color-surface);
+      border: 1.5px solid var(--color-border);
+      color: var(--color-text-secondary);
+      font-size: 0.83rem;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 50px;
+      transition: all 0.22s;
+    }
+
+    .tool-tag:hover {
+      border-color: var(--color-primary-mid);
+      color: var(--color-primary);
+    }
+
+    .tool-tag__icon { font-size: 1rem; }
+
+    /* ─────────────────────────────────────────────
+       CHALLENGE CARD
+    ───────────────────────────────────────────── */
+    .challenge-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .challenge-card__header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .challenge-card__col {
+      padding: 20px 22px;
+    }
+
+    .challenge-card__col:first-child {
+      border-inline-end: 1px solid var(--color-border);
+      background: rgba(239, 68, 68, .04);
+    }
+
+    .challenge-card__col:last-child {
+      background: rgba(16, 185, 129, .04);
+    }
+
+    .challenge-card__label {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 7px;
+    }
+
+    .challenge-card__label--problem { color: #ef4444; }
+    .challenge-card__label--solution { color: #10b981; }
+
+    .challenge-card__text {
+      font-size: 0.88rem;
+      color: var(--color-text-secondary);
+      line-height: 1.8;
+    }
+
+    /* ─────────────────────────────────────────────
+       AWARD BANNER
+    ───────────────────────────────────────────── */
+    .award-banner {
+      background: linear-gradient(135deg, #78350f, #b45309, #d97706);
+      border-radius: 18px;
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 44px;
+      box-shadow: 0 8px 32px rgba(180, 83, 9, .3);
+    }
+
+    .award-banner__icon { font-size: 3rem; flex-shrink: 0; }
+
+    .award-banner__title {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .award-banner__text {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,.8);
+      line-height: 1.7;
+    }
+
+    /* ─────────────────────────────────────────────
+       SCREENSHOT SLIDER
+    ───────────────────────────────────────────── */
+    .slider {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface-alt);
+    }
+
+    .slider__tabs {
+      display: flex;
+      gap: 2px;
+      background: var(--color-bg-alt);
+      padding: 10px 10px 0;
+    }
+
+    .slider__tab {
+      padding: 8px 18px;
+      border-radius: 8px 8px 0 0;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      font-family: 'Cairo', sans-serif;
+      transition: all 0.2s;
+    }
+
+    .slider__tab.is-active {
+      background: var(--color-surface);
+      color: var(--color-text-primary);
+      border-bottom: 2px solid var(--color-primary-mid);
+    }
+
+    .slider__frame {
+      background: var(--color-surface);
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Placeholder shown when no real screenshot exists */
+    .slider__placeholder {
+      text-align: center;
+      padding: 48px 32px;
+      color: var(--color-text-muted);
+    }
+
+    .slider__placeholder-icon { font-size: 2.8rem; margin-bottom: 12px; }
+
+    .slider__placeholder-text {
+      font-size: 0.85rem;
+      line-height: 1.8;
+    }
+
+    .slider__placeholder-text code {
+      font-size: 0.78rem;
+      background: var(--color-bg-alt);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    /* Real screenshot (add when ready) */
+    .slider__img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────────
+       CTA FOOTER
+    ───────────────────────────────────────────── */
+    .page-cta {
+      border-top: 1px solid var(--color-border);
+      margin-top: 60px;
+      padding-top: 40px;
+      text-align: center;
+    }
+
+    .page-cta__title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .page-cta__text {
+      font-size: 0.95rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .page-cta__actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .metrics           { grid-template-columns: 1fr 1fr; }
+      .info-grid         { grid-template-columns: 1fr; }
+      .features          { grid-template-columns: 1fr; }
+      .challenge-card__header { grid-template-columns: 1fr; }
+      .challenge-card__col:first-child { border-inline-end: none; border-bottom: 1px solid var(--color-border); }
+      .award-banner      { flex-direction: column; text-align: center; }
+      .hero-card__meta   { padding: 20px; }
+    }
+
+    @media (max-width: 400px) {
+      .metrics { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════
+       TOP NAV BAR
+  ══════════════════════════════════════════════ -->
+  <nav class="pnav" aria-label="Project navigation">
+    <a href="../index.html#projects" class="pnav__back">← المشاريع</a>
+    <span class="pnav__title">تحليل بيانات المبيعات</span>
+    <div class="pnav__right">
+      <button class="pnav__theme" id="btn-theme" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </nav>
+
+  <main class="page">
+
+    <!-- ══════════════════════════════════════════════
+         HERO CARD
+    ══════════════════════════════════════════════ -->
+    <div class="hero-card">
+
+      <!-- Thumbnail gradient — replace inner content with <img> when screenshot is ready -->
+      <div class="hero-card__thumb">
+        <div class="hero-card__thumb-icon">📊</div>
+        <div class="hero-card__award">🏆 المركز الأول · تحدي Dashboard</div>
+        <div class="hero-card__img-placeholder">
+          <!-- ضعي هنا: <img src="../assets/images/dashboard/sales-overview.png" class="hero-card__full-img"> -->
+          🖼️ ضعي لقطة الشاشة هنا
+        </div>
+      </div>
+
+      <div class="hero-card__meta">
+        <div class="hero-card__tags">
+          <span class="hero-card__tag">📊 Power BI</span>
+          <span class="hero-card__tag">DAX</span>
+          <span class="hero-card__tag">Power Query</span>
+          <span class="hero-card__tag">Data Modeling</span>
+          <span class="hero-card__tag">ETL</span>
+          <span class="hero-card__tag--award hero-card__tag">🏆 المركز الأول</span>
+        </div>
+        <h1 class="hero-card__title">تحليل بيانات المبيعات<br>Sales Data Analysis Dashboard</h1>
+        <p class="hero-card__subtitle">
+          لوحة تحليلية تفاعلية متكاملة تحوّل بيانات المبيعات الخام إلى رؤى استراتيجية قابلة للتنفيذ —
+          بُنيت بـ Power BI ضمن معسكر نادي الذكاء الاصطناعي بجامعة نجران، وفازت بجائزة أفضل Dashboard.
+        </p>
+        <div class="hero-card__actions">
+          <a href="#dashboard-preview" class="btn--primary">📊 عرض اللوحة</a>
+          <a href="../index.html#contact" class="btn--outline">✉️ تواصل معي</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         AWARD BANNER
+    ══════════════════════════════════════════════ -->
+    <div class="award-banner" role="note" aria-label="Project award">
+      <div class="award-banner__icon">🏆</div>
+      <div>
+        <p class="award-banner__title">المركز الأول · أفضل تحدي Dashboard</p>
+        <p class="award-banner__text">
+          معسكر "تحليل البيانات باستخدام Power BI" — نادي الذكاء الاصطناعي، جامعة نجران
+          (5 أيام · 10 ساعات)
+        </p>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         KPI METRICS
+    ══════════════════════════════════════════════ -->
+    <div class="metrics" aria-label="Project key numbers">
+      <div class="metric-card">
+        <div class="metric-card__icon">💰</div>
+        <div class="metric-card__value">1.03B</div>
+        <div class="metric-card__label">إجمالي التكاليف المحلّلة</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-card__icon">📈</div>
+        <div class="metric-card__value">4</div>
+        <div class="metric-card__label">محاور تحليل رئيسية</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-card__icon">⚡</div>
+        <div class="metric-card__value">10h</div>
+        <div class="metric-card__label">مدة المعسكر التدريبي</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         PROBLEM & OBJECTIVE
+    ══════════════════════════════════════════════ -->
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card__icon">🔍</div>
+        <h2 class="info-card__title">المشكلة</h2>
+        <p class="info-card__text">
+          بيانات المبيعات مبعثرة في ملفات خام بلا ترتيب — لا رؤية واضحة للأنماط الموسمية،
+          ولا مقارنة بين الفئات والفروع، مما يجعل اتخاذ القرار مبنياً على التخمين لا البيانات.
+        </p>
+      </div>
+      <div class="info-card">
+        <div class="info-card__icon">🎯</div>
+        <h2 class="info-card__title">الهدف</h2>
+        <p class="info-card__text">
+          بناء لوحة تحليلية تفاعلية تحوّل البيانات الخام إلى مؤشرات أداء واضحة (KPIs) تُمكّن
+          المديرين من اتخاذ قرارات مدروسة بسرعة وثقة.
+        </p>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         THE PROCESS (METHODOLOGY)
+    ══════════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section__header">
+        <span class="section__icon">⚙️</span>
+        <h2 class="section__title">منهجية العمل — The Process</h2>
+      </div>
+      <div class="steps">
+
+        <div class="step">
+          <div class="step__dot" aria-hidden="true"></div>
+          <div class="step__body">
+            <p class="step__label">الخطوة 1 · ETL</p>
+            <h3 class="step__title">معالجة البيانات بـ Power Query</h3>
+            <p class="step__text">
+              تنظيف البيانات الخام، التحقق من تنسيق الأنواع (Data Types)، وإزالة التكرارات —
+              حتى يصبح النموذج جاهزاً وموثوقاً للتحليل.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__dot" aria-hidden="true"></div>
+          <div class="step__body">
+            <p class="step__label">الخطوة 2 · Data Modeling</p>
+            <h3 class="step__title">بناء نموذج العلاقات</h3>
+            <p class="step__text">
+              تصميم علاقات فعّالة بين الجداول (Relationships) لضمان تدفق البيانات بسلاسة
+              وصحة النتائج عند التصفية والتقطيع.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__dot" aria-hidden="true"></div>
+          <div class="step__body">
+            <p class="step__label">الخطوة 3 · DAX</p>
+            <h3 class="step__title">بناء المقاييس المتقدمة</h3>
+            <p class="step__text">
+              كتابة Measures دقيقة باستخدام DAX مثل <code>Total Sales</code>، <code>Sum of Qty</code>،
+              ومقاييس نسبية لقياس النمو والتغيّر الدوري.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__dot" aria-hidden="true"></div>
+          <div class="step__body">
+            <p class="step__label">الخطوة 4 · Dashboard Design</p>
+            <h3 class="step__title">تصميم اللوحة التفاعلية</h3>
+            <p class="step__text">
+              تصميم واجهة بصرية واضحة مع Slicers تفاعلية، مراعاةً لتجربة المستخدم
+              وسهولة التنقل بين محاور التحليل.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         DASHBOARD FEATURES
+    ══════════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section__header">
+        <span class="section__icon">✨</span>
+        <h2 class="section__title">مميزات اللوحة التفاعلية</h2>
+      </div>
+      <div class="features">
+
+        <div class="feature-card">
+          <div class="feature-card__icon">🏢</div>
+          <div>
+            <h3 class="feature-card__title">تحليل التوزيع</h3>
+            <p class="feature-card__text">
+              عرض المبيعات حسب الشركات والعلامات التجارية لمعرفة الأكثر مساهمةً في الإيراد.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">📂</div>
+          <div>
+            <h3 class="feature-card__title">المقارنة الهيكلية</h3>
+            <p class="feature-card__text">
+              مقارنة الأداء بين الفئات الرئيسية والفرعية للمنتجات لتحديد الأولويات.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">📅</div>
+          <div>
+            <h3 class="feature-card__title">تحليل الاتجاه الشهري</h3>
+            <p class="feature-card__text">
+              رصد تذبذب الأسعار والمبيعات شهرياً لاكتشاف الأنماط الموسمية وتوقع الطلب.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">💸</div>
+          <div>
+            <h3 class="feature-card__title">مؤشرات التكاليف</h3>
+            <p class="feature-card__text">
+              مراقبة إجمالي التكاليف (1.03 مليار) مع توزيعها الجغرافي حسب الفروع.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         DASHBOARD SCREENSHOT SLIDER
+    ══════════════════════════════════════════════ -->
+    <div class="section" id="dashboard-preview">
+      <div class="section__header">
+        <span class="section__icon">🖥️</span>
+        <h2 class="section__title">لقطات الشاشة — Dashboard Preview</h2>
+      </div>
+
+      <div class="slider">
+        <!-- Tab buttons — one per dashboard page/view -->
+        <div class="slider__tabs" role="tablist" id="slider-tabs">
+          <button class="slider__tab is-active" role="tab" data-slide="0"
+                  aria-selected="true">📋 النظرة العامة</button>
+          <button class="slider__tab" role="tab" data-slide="1"
+                  aria-selected="false">📦 الفئات</button>
+          <button class="slider__tab" role="tab" data-slide="2"
+                  aria-selected="false">📈 الاتجاه الزمني</button>
+        </div>
+
+        <!-- Image frame — replace placeholder with <img> tags when ready -->
+        <div class="slider__frame" id="slider-frame">
+          <!--
+            HOW TO ADD YOUR SCREENSHOTS:
+            1. Put images in:  ../assets/images/sales-dashboard/
+               - slide-0.png  ← Overview page
+               - slide-1.png  ← Category breakdown page
+               - slide-2.png  ← Monthly trend page
+            2. Replace the placeholder div below with:
+               <img class="slider__img"
+                    src="../assets/images/sales-dashboard/slide-0.png"
+                    alt="Sales Dashboard Overview"
+                    loading="lazy">
+          -->
+          <div class="slider__placeholder">
+            <div class="slider__placeholder-icon">📊</div>
+            <p class="slider__placeholder-text">
+              ضعي لقطة الشاشة في:<br>
+              <code>C:\Users\SAFYA\Desktop\me\my-portfolio\assets\images\SalesReport.png</code>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         KEY INSIGHTS
+    ══════════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section__header">
+        <span class="section__icon">💡</span>
+        <h2 class="section__title">النتائج والرؤى — Key Insights</h2>
+      </div>
+      <div class="insights">
+
+        <div class="insight-item">
+          <div class="insight-item__bullet" aria-hidden="true"></div>
+          <p class="insight-item__text">
+            <strong>المنتجات الأعلى مساهمةً</strong> — تحديد المنتجات التي تقود نمو المبيعات
+            ومنحها الأولوية في قرارات التخزين والتسويق.
+          </p>
+        </div>
+
+        <div class="insight-item">
+          <div class="insight-item__bullet" aria-hidden="true"></div>
+          <p class="insight-item__text">
+            <strong>التقلبات الموسمية</strong> — كشف الأرباع السنوية التي شهدت قفزات أو تراجعاً
+            في الأداء، مع تحليل الأسباب المحتملة.
+          </p>
+        </div>
+
+        <div class="insight-item">
+          <div class="insight-item__bullet" aria-hidden="true"></div>
+          <p class="insight-item__text">
+            <strong>توزيع التكاليف جغرافياً</strong> — فهم أين تتمركز أعباء التكلفة عبر الفروع
+            لدعم قرارات إعادة الهيكلة أو التوسع.
+          </p>
+        </div>
+
+        <div class="insight-item">
+          <div class="insight-item__bullet" aria-hidden="true"></div>
+          <p class="insight-item__text">
+            <strong>من بيانات إلى قرارات</strong> — الهدف النهائي هو تحويل الأرقام إلى
+            توصيات استراتيجية واضحة تُعزز كفاءة العمل.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         CHALLENGES & SOLUTIONS
+    ══════════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section__header">
+        <span class="section__icon">⚔️</span>
+        <h2 class="section__title">التحديات والحلول</h2>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-card__header">
+          <div class="challenge-card__col">
+            <p class="challenge-card__label challenge-card__label--problem">🔴 التحدي</p>
+            <p class="challenge-card__text">
+              البيانات الخام تحتوي على أنواع متعارضة وقيم مفقودة تُعطي نتائج خاطئة عند بناء العلاقات.
+            </p>
+          </div>
+          <div class="challenge-card__col">
+            <p class="challenge-card__label challenge-card__label--solution">🟢 الحل</p>
+            <p class="challenge-card__text">
+              استخدام Power Query بشكل منهجي لتنظيف كل جدول قبل الربط، مع التوثيق المستمر لكل خطوة.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="challenge-card">
+        <div class="challenge-card__header">
+          <div class="challenge-card__col">
+            <p class="challenge-card__label challenge-card__label--problem">🔴 التحدي</p>
+            <p class="challenge-card__text">
+              بناء Measures بـ DAX تُقدّم مقارنات دورية دقيقة (شهر بشهر، ربع بربع) بدون أخطاء في السياق.
+            </p>
+          </div>
+          <div class="challenge-card__col">
+            <p class="challenge-card__label challenge-card__label--solution">🟢 الحل</p>
+            <p class="challenge-card__text">
+              فهم مفهوم Filter Context في DAX واختبار كل Measure بشكل منفرد قبل دمجها في اللوحة.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         TOOLS & TECHNOLOGIES
+    ══════════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section__header">
+        <span class="section__icon">🛠️</span>
+        <h2 class="section__title">الأدوات والتقنيات المستخدمة</h2>
+      </div>
+      <div class="tools-row">
+        <span class="tool-tag"><span class="tool-tag__icon">📊</span> Power BI Desktop</span>
+        <span class="tool-tag"><span class="tool-tag__icon">🔄</span> Power Query (ETL)</span>
+        <span class="tool-tag"><span class="tool-tag__icon">🧮</span> DAX</span>
+        <span class="tool-tag"><span class="tool-tag__icon">🗄️</span> Data Modeling</span>
+        <span class="tool-tag"><span class="tool-tag__icon">📗</span> Microsoft Excel</span>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         MY ROLE
+    ══════════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section__header">
+        <span class="section__icon">👩‍💻</span>
+        <h2 class="section__title">دوري في المشروع</h2>
+      </div>
+      <div class="info-card">
+        <p class="info-card__text">
+          نفّذت المشروع بشكل فردي كامل خلال معسكر تدريبي مكثّف بدءاً من استلام البيانات الخام،
+          مروراً بمراحل ETL والنمذجة وكتابة DAX، وصولاً إلى تصميم اللوحة النهائية وعرضها أمام لجنة التحكيم.
+          حصلت على المركز الأول من بين جميع المشاركين في تحدي تصميم Dashboard.
+        </p>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         CTA FOOTER
+  
+    <div class="page-cta">
+      <h2 class="page-cta__title">أعجبك هذا المشروع؟</h2>
+      <p class="page-cta__text">
+        يسعدني التحدث عن تفاصيل المنهجية أو مناقشة مشاريع تحليل بيانات مستقبلية.
+      </p>
+      <div class="page-cta__actions">
+        <a href="../index.html#contact" class="btn--primary">✉️ تواصل معي</a>
+        <a href="../index.html#projects" class="btn--outline">← باقي المشاريع</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════
+       JAVASCRIPT — Slider tabs + Theme toggle
+  ══════════════════════════════════════════════ -->
+  <script>
+    /* ─── Slider tab logic ───────────────────────────
+       Switches the placeholder text (or image) when
+       the user clicks a tab button.
+       When real screenshots are added, swap the
+       placeholder div with <img> elements instead.
+    ─────────────────────────────────────────────── */
+
+    (function initSlider() {
+      const tabs  = document.querySelectorAll('#slider-tabs .slider__tab');
+      const frame = document.getElementById('slider-frame');
+      if (!tabs.length || !frame) return;
+
+      /* Data for each slide — update src paths when images are ready */
+      const slides = [
+        {
+          label : 'النظرة العامة',
+          src   : '../assets/images/sales-dashboard/slide-0.png',
+          alt   : 'Sales Dashboard Overview',
+          hint  : 'assets/images/sales-dashboard/slide-0.png',
+        },
+        {
+          label : 'الفئات',
+          src   : '../assets/images/sales-dashboard/slide-1.png',
+          alt   : 'Category Breakdown',
+          hint  : 'assets/images/sales-dashboard/slide-1.png',
+        },
+        {
+          label : 'الاتجاه الزمني',
+          src   : '../assets/images/sales-dashboard/slide-2.png',
+          alt   : 'Monthly Trend Analysis',
+          hint  : 'assets/images/sales-dashboard/slide-2.png',
+        },
+      ];
+
+      /**
+       * showSlide()
+       * Tries to load the image for a given index.
+       * Falls back to a styled placeholder if the file is missing.
+       * @param {number} index
+       */
+      function showSlide(index) {
+        const slide = slides[index];
+        const img   = new Image();
+        img.src     = slide.src;
+        img.alt     = slide.alt;
+        img.className   = 'slider__img';
+        img.loading     = 'lazy';
+
+        img.onload = () => {
+          frame.innerHTML = '';
+          frame.appendChild(img);
+        };
+
+        img.onerror = () => {
+          frame.innerHTML = `
+            <div class="slider__placeholder">
+              <div class="slider__placeholder-icon">📊</div>
+              <p class="slider__placeholder-text">
+                ضعي لقطة الشاشة في:<br>
+                <code>${slide.hint}</code>
+              </p>
+            </div>`;
+        };
+
+        /* Trigger detection for already-cached images */
+        if (img.complete) {
+          img.naturalWidth > 0 ? img.onload() : img.onerror();
+        }
+      }
+
+      /* Show first slide on load */
+      showSlide(0);
+
+      /* Wire tab clicks */
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          tabs.forEach((t) => { t.classList.remove('is-active'); t.setAttribute('aria-selected', 'false'); });
+          tab.classList.add('is-active');
+          tab.setAttribute('aria-selected', 'true');
+          showSlide(parseInt(tab.dataset.slide, 10));
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

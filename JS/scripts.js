@@ -35,8 +35,9 @@ const PROJECTS = [
     cat: 'mobile',
     icon: '🛵',
     thumbClass: 'project-card__thumbnail--1',
+    githubUrl: '#',
     ar: {
-      title: 'تطبيق فزّاع',
+      title: 'تطبيق فزعه',
       desc: 'تطبيق جوال يربط المستخدمين بمزودي الخدمات القريبين لتأجير المنتجات وطلب الخدمات الفورية. صمّمت النماذج الأولية في Figma وطوّرت مكونات Flutter الأساسية.',
       tags: ['Flutter', 'Dart', 'Firebase', 'Figma'],
     },
@@ -46,53 +47,41 @@ const PROJECTS = [
       tags: ['Flutter', 'Dart', 'Firebase', 'Figma'],
     },
   },
+  
   {
-    id: 2,
-    cat: 'uiux',
-    icon: '🎨',
-    thumbClass: 'project-card__thumbnail--2',
+  id: 3,
+  cat: 'data',
+  icon: '📊',
+  thumbClass: 'project-card__thumbnail--3',
+  githubUrl: '#',
     ar: {
-      title: 'تصميم UI/UX – فزّاع',
-      desc: 'نماذج أولية تفاعلية احترافية لتطبيق فزّاع مع تدفقات المستخدم الكاملة وتطبيق مبادئ تجربة المستخدم وDesign System متكامل.',
-      tags: ['Figma', 'Prototyping', 'User Flows', 'Design System'],
-    },
-    en: {
-      title: 'FAZAA UI/UX Design',
-      desc: 'Professional interactive prototypes for FAZAA app with complete user flows, UX principles, and integrated design system.',
-      tags: ['Figma', 'Prototyping', 'User Flows', 'Design System'],
-    },
+    title: 'لوحة أداء المبيعات – Power BI',
+    desc:' لوحة تحليل مبيعات تفاعلية تعرض مؤشرات الأداء الرئيسية واتجاهات البيانات لمقارنة المنتجات والفروع واستكشاف الأنماط بوضوح. ',
+    tags: ['Power BI', 'Data Visualization ', '🏆 المركز الأول'],
   },
-  {
-    id: 3,
-    cat: 'data',
-    icon: '📊',
-    thumbClass: 'project-card__thumbnail--3',
-    isHrDashboard: true,   // flag → triggers special rich modal
-    ar: {
-      title: 'لوحة HR التحليلية – Power BI',
-      desc: 'لوحة تحليل موارد بشرية متكاملة تغطي 15 موظفاً عبر 6 دول، تعرض الرواتب والحضور والتوزيع الجغرافي والجندري عبر 3 صفحات تفاعلية مبنية بـ Power BI.',
-      tags: ['Power BI', 'DAX', 'Data Modeling', 'HR Analytics'],
-    },
-    en: {
-      title: 'HR Analytics Dashboard – Power BI',
-      desc: 'A comprehensive HR analytics dashboard covering 15 employees across 6 countries, visualizing salaries, attendance, and geographic/gender distribution across 3 interactive pages built with Power BI.',
-      tags: ['Power BI', 'DAX', 'Data Modeling', 'HR Analytics'],
-    },
+  en: {
+    title: 'Sales Performance Dashboard – Power BI',
+    desc: 'An interactive sales analytics dashboard showcasing key performance indicators, product comparisons, branch performance, and sales trends.',
+    tags: ['Power BI', 'Data Visualization ', '🏆 1st Place Award'],
   },
+ 
+},
   {
     id: 4,
     cat: 'data',
-    icon: '🔄',
+    icon: '🏪',
     thumbClass: 'project-card__thumbnail--4',
+    githubUrl: '#',
     ar: {
-      title: 'نمذجة عمليات BPMN',
-      desc: 'توثيق وتحليل عمليات تقنية المعلومات المؤسسية باستخدام Visual Paradigm ومنهجية BPMN في إطار التحول الرقمي.',
-      tags: ['BPMN', 'Visual Paradigm', 'TOGAF', 'Documentation'],
+      title: 'لوحة تحليل أداء المبيعات',
+      desc: 'لوحة معلومات تفاعلية باستخدام Power BI لتحليل مبيعات عام 2019، تعرض مؤشرات رئيسية مثل إجمالي المبيعات، عدد المنتجات، الفئات، متوسط قيمة الطلب، والاتجاه الشهري للمبيعات مع توزيع جغرافي حسب الولاية.',
+      tags: ['Power BI', 'DAX', 'Data Visualization', 'Data Modeling'],
+    
     },
     en: {
-      title: 'BPMN Process Modeling',
-      desc: 'Documenting and analyzing institutional IT processes using Visual Paradigm and BPMN methodology for digital transformation.',
-      tags: ['BPMN', 'Visual Paradigm', 'TOGAF', 'Documentation'],
+      title: 'Sales Performance Dashboard',
+      desc:'An interactive Power BI dashboard designed to analyze 2019 sales performance, showcasing key metrics such as total sales, product count, categories, average order value, monthly trends, and geographic sales distribution by state.',
+     tags: ['Power BI', 'DAX', 'Data Visualization', 'Data Modeling'],
     },
   },
   {
@@ -100,17 +89,52 @@ const PROJECTS = [
     cat: 'web',
     icon: '🌐',
     thumbClass: 'project-card__thumbnail--5',
+    githubUrl: '#',
     ar: {
-      title: 'تحسين موقع راتل',
-      desc: 'تحسين استجابة الموقع على الجوال والتابلت وتطبيق تحسينات UI/UX لتعزيز تجربة المستخدم وأهداف المنصة الرقمية.',
+      title: 'دعم WordPress والواجهة الأمامية – جمعية رتل الرقمية',
+      desc: 'تجربة تطوعية تقنية ساهمت من خلالها في تحسين موقع جمعية رتل الرقمية باستخدام WordPress وCSS مخصص. ركز عملي على تحسين استجابة الصفحات، وتناسق الواجهة البصرية، وتعزيز تجربة المستخدم عبر الأجهزة المختلفة.',
+      tags: ['WordPress', 'CSS', 'Responsive', 'UI/UX'],
+    },
+    en: {
+      title: 'WordPress & Front-End Support – Ratel Digital Association',
+      desc: 'A volunteer technical experience where I contributed to improving the Ratel Digital Association website using WordPress and custom CSS. My work focused on enhancing page responsiveness, visual consistency, and user experience across different devices.',
+      tags: ['WordPress', 'CSS', 'Responsive', 'UI/UX'],
+    },
+  },
+ {
+  id: 6,
+  cat: 'data',
+  icon: '📈',
+  thumbClass: 'project-card__thumbnail--2',
+  githubUrl: '#',
+ar: {
+    title: 'HR – لوحة الموارد البشرية',
+    desc: 'لوحة معلومات تفاعلية تم تطويرها باستخدام Power BI لتحليل بيانات الموارد البشرية والمدفوعات والحضور. توفر رؤية موحدة لمؤشرات القوى العاملة مع إمكانية مقارنة البيانات حسب الدولة والجنس وحالة العقد عبر ثلاث صفحات تحليلية مترابطة.',
+    tags: ['Power BI', 'DAX', 'HR Analytics', 'Data Modeling', 'DAX'],
+  },
+  en: {
+    title: ' –  HR Analytics Dashboard',
+    desc: 'An interactive Power BI dashboard designed to analyze workforce, payroll, and attendance data. It provides a unified view of key HR metrics with comparisons across countries, gender, and contract status through three interconnected analytical pages.',
+    tags: ['Power BI', 'DAX', 'HR Analytics', 'Data Modeling', 'DAX'],
+  },},
+{
+    id: 7,
+    cat: 'web',
+    icon: '🌐',
+    thumbClass: 'project-card__thumbnail--5',
+    githubUrl: '#',
+    ar: {
+      title: ' يدوي (Yadwi)',
+      desc: 'يدوي منصة رقمية تهدف إلى دعم الحرفيين والفنانين المستقلين من خلال توفير متاجر إلكترونية لعرض المنتجات اليدوية، بالإضافة إلى نظام لإدارة وحجز ورش العمل الحرفية. شاركت في تصميم تجربة المستخدم والواجهات باستخدام Figma ضمن مشروع تم تطويره خلال برنامج تطوير المواقع باستخدام Laravel',
       tags: ['HTML', 'CSS', 'Responsive', 'UI/UX'],
     },
     en: {
-      title: 'Ratel Website Enhancement',
-      desc: 'Improved website responsiveness on mobile and tablet and applied UI/UX improvements to enhance UX and platform goals.',
-      tags: ['HTML', 'CSS', 'Responsive', 'UI/UX'],
+      title: 'Yadwi Website ',
+      desc: 'Yadwi is a digital platform designed to support artisans and independent creators through online stores for handmade products and a craft workshop booking system. I contributed to the UI/UX design process using Figma as part of a team project developed during a Laravel web development program. ',
+      tags: ['HTML', 'CSS', 'PHP-LARVEAL', 'UI/UX'],
     },
   },
+
 ];
 
 /** Technical skill bars */
@@ -142,8 +166,8 @@ const COURSES = [
   { icon: '📗', ar: { title: 'تحليل البيانات وتمثيلها بـ Excel',           provider: 'أكاديمية تواق',                  date: '2023' }, en: { title: 'Data Analysis & Representation using Excel',   provider: 'Tuwaiq Academy',                 date: '2023' } },
   { icon: '📊', ar: { title: 'تحليل البيانات وتمثيلها بـ Power BI',        provider: 'وزارة الاتصالات وتقنية المعلومات', date: '2023' }, en: { title: 'Power BI Data Analysis & Visualization',       provider: 'Ministry of Communications & IT',date: '2023' } },
   { icon: '📈', ar: { title: 'تحليل البيانات – المستوى الأول والثاني',     provider: 'الأكاديمية السعودية الرقمية',    date: '2024' }, en: { title: 'Data Analytics (Level 1 & 2)',                  provider: 'Saudi Digital Academy / Coursera',date: '2024' } },
-  { icon: '🔄', ar: { title: 'التحول الرقمي',                              provider: 'درب',                            date: '2023' }, en: { title: 'Digital Transformation',                       provider: 'Droob',                          date: '2023' } },
-  { icon: '🏛️', ar: { title: 'الهيكل المؤسسي الوطني والأثر الرقمي',      provider: 'درب',                            date: '2023' }, en: { title: 'National Institutional Structure & Digital Impact', provider: 'Droob',                       date: '2023' } },
+  { icon: '🔄', ar: { title: 'التحول الرقمي',                              provider: 'دروب',                            date: '2023' }, en: { title: 'Digital Transformation',                       provider: 'Droob',                          date: '2023' } },
+  { icon: '🏛️', ar: { title: 'الهيكل المؤسسي الوطني والأثر الرقمي',      provider: 'دروب',                            date: '2023' }, en: { title: 'National Institutional Structure & Digital Impact', provider: 'Droob',                       date: '2023' } },
   { icon: '🤖', ar: { title: 'أساسيات الذكاء الاصطناعي',                  provider: 'SDAIA',                          date: '2023' }, en: { title: 'Fundamentals of Artificial Intelligence',      provider: 'SDAIA',                          date: '2023' } },
   { icon: '🌐', ar: { title: 'التحول الرقمي والهوية الرقمية',              provider: 'منصة سطر',                       date: '2023' }, en: { title: 'Digital Transformation & Digital Identity',    provider: 'Satr Platform',                  date: '2023' } },
 ];
@@ -224,37 +248,64 @@ function observeRevealElements() {
  * @param {string} filter - category key or 'all'
  */
 function renderProjects(filter = 'all') {
-  const lang   = getLang();
-  const list   = filter === 'all' ? PROJECTS : PROJECTS.filter((p) => p.cat === filter);
-  const grid   = document.getElementById('projects-grid');
+  const lang = getLang();
+  const list = filter === 'all'
+    ? PROJECTS
+    : PROJECTS.filter((p) => p.cat === filter);
+
+  const grid = document.getElementById('projects-grid');
   if (!grid) return;
 
-  grid.innerHTML = list.map((project) => `
-    <article class="project-card reveal" data-project-id="${project.id}">
-      <div class="project-card__thumbnail ${project.thumbClass}" aria-hidden="true">
-        ${project.icon}
-      </div>
-      <div class="project-card__body">
-        <div class="project-card__tags">
-          ${buildTagsHTML(project[lang].tags, 'project-card__tag')}
-        </div>
-        <h3 class="project-card__title">${project[lang].title}</h3>
-        <p class="project-card__description">${project[lang].desc}</p>
-        <div class="project-card__links">
-          <a class="project-card__link project-card__link--primary" href="#">Demo</a>
-          <a class="project-card__link" href="#">GitHub</a>
-        </div>
-      </div>
-    </article>
-  `).join('');
+  const isAr = lang === 'ar';
 
-  // Re-attach click handlers for project modals
-  grid.querySelectorAll('.project-card').forEach((card) => {
-    card.addEventListener('click', () => {
-      const projectId = parseInt(card.dataset.projectId, 10);
-      handleOpenProjectModal(projectId);
-    });
-  });
+  const detailsLabel = isAr ? '📄 التفاصيل' : '📄 Details';
+  const githubLabel  = '🐙 GitHub';
+
+  grid.innerHTML = list.map((project) => {
+
+    const detailsUrl = `projects/project-${project.id}.html`;
+    const githubUrl  = project.githubUrl || '#';
+
+    return `
+      <article class="project-card reveal" data-project-id="${project.id}">
+
+        <div class="project-card__thumbnail ${project.thumbClass}" aria-hidden="true">
+          ${project.icon}
+        </div>
+
+        <div class="project-card__body">
+
+          <div class="project-card__tags">
+            ${buildTagsHTML(project[lang].tags, 'project-card__tag')}
+          </div>
+
+          <h3 class="project-card__title">${project[lang].title}</h3>
+
+          <p class="project-card__description">${project[lang].desc}</p>
+
+          <div class="project-card__links">
+
+            <!-- زر التفاصيل — يفتح صفحة projects/project-{id}.html -->
+            <a  class="project-card__link project-card__link--primary"
+                href="${detailsUrl}"
+                aria-label="${isAr ? 'تفاصيل المشروع' : 'Project details'}">
+              ${detailsLabel}
+            </a>
+
+            <!-- زر GitHub -->
+            <a  class="project-card__link"
+                href="${githubUrl}"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub repository">
+              ${githubLabel}
+            </a>
+
+          </div>
+        </div>
+      </article>`;
+
+  }).join('');
 
   observeRevealElements();
 }
@@ -263,26 +314,20 @@ function renderProjects(filter = 'all') {
  * Render technical skill bars and soft skill cards.
  */
 function renderSkills() {
-  const lang       = getLang();
-  const techList   = document.getElementById('tech-skills-list');
-  const softGrid   = document.getElementById('soft-skills-grid');
+  const lang     = getLang();
+  const techList = document.getElementById('tech-skills-list');
+  const softGrid = document.getElementById('soft-skills-grid');
   if (!techList || !softGrid) return;
 
+  // ── المهارات التقنية — نفس تنسيق المهارات الشخصية (cards بدون bar) ──
   techList.innerHTML = TECH_SKILLS.map((skill) => `
-    <div class="skill-item">
-      <div class="skill-item__header">
-        <span class="skill-item__name">
-          <span class="skill-item__icon" aria-hidden="true">${skill.icon}</span>
-          ${skill[lang]}
-        </span>
-        <span class="skill-item__percentage">${skill.pct}%</span>
-      </div>
-      <div class="skill-item__bar" role="progressbar" aria-valuenow="${skill.pct}" aria-valuemin="0" aria-valuemax="100">
-        <div class="skill-item__fill" data-pct="${skill.pct}"></div>
-      </div>
+    <div class="soft-skill-card">
+      <span class="soft-skill-card__icon" aria-hidden="true">${skill.icon}</span>
+      <span class="soft-skill-card__name">${skill[lang]}</span>
     </div>
   `).join('');
 
+  // ── المهارات الشخصية — بدون تغيير ──
   softGrid.innerHTML = SOFT_SKILLS.map((skill) => `
     <div class="soft-skill-card">
       <span class="soft-skill-card__icon" aria-hidden="true">${skill.icon}</span>
@@ -380,181 +425,11 @@ function handleOpenProjectModal(projectId) {
 
   // ── Rich HR Dashboard modal ────────────────────────────
   if (project.isHrDashboard) {
-    const isAr = lang === 'ar';
-
- /* const bodyHTML = `
-
-      <!-- ── Dashboard preview image area ── -->
-      <div class="hr-modal__preview">
-        <div class="hr-modal__preview-grid">
-
-          <!-- Overview page card -->
-          <div class="hr-modal__page-card hr-modal__page-card--active">
-            <div class="hr-modal__page-icon">📋</div>
-            <span>${isAr ? 'نظرة عامة' : 'Overview'}</span>
-          </div>
-          <!-- Finance page card -->
-          <div class="hr-modal__page-card">
-            <div class="hr-modal__page-icon">💰</div>
-            <span>${isAr ? 'الرواتب' : 'Finance'}</span>
-          </div>
-          <!-- Attendance page card -->
-          <div class="hr-modal__page-card">
-            <div class="hr-modal__page-icon">📅</div>
-            <span>${isAr ? 'الحضور' : 'Attendance'}</span>
-          </div>
-
-        </div>
-        <p class="hr-modal__tool-badge">
-          <span class="hr-modal__tool-dot"></span>
-          Power BI Desktop
-        </p>
-      </div>
-
-      <!-- ── KPI Cards row ── -->
-      <div class="hr-modal__kpis">
-        <div class="hr-modal__kpi">
-          <span class="hr-modal__kpi-value">15</span>
-          <span class="hr-modal__kpi-label">${isAr ? 'إجمالي الموظفين' : 'Total Employees'}</span>
-        </div>
-        <div class="hr-modal__kpi">
-          <span class="hr-modal__kpi-value">34</span>
-          <span class="hr-modal__kpi-label">${isAr ? 'متوسط العمر' : 'Average Age'}</span>
-        </div>
-        <div class="hr-modal__kpi">
-          <span class="hr-modal__kpi-value">$2.59K</span>
-          <span class="hr-modal__kpi-label">${isAr ? 'متوسط الراتب' : 'Average Salary'}</span>
-        </div>
-        <div class="hr-modal__kpi">
-          <span class="hr-modal__kpi-value">$191.5K</span>
-          <span class="hr-modal__kpi-label">${isAr ? 'إجمالي المدفوعات' : 'Total Payments'}</span>
-        </div>
-      </div>
-
-      <!-- ── Section: Overview insights ── -->
-      <h4 class="hr-modal__section-title">
-        ${isAr ? '📋 صفحة نظرة عامة (Overview)' : '📋 Overview Page'}
-      </h4>
-      <div class="hr-modal__insight-grid">
-        <div class="hr-modal__insight">
-          <div class="hr-modal__insight-header">
-            <span class="hr-modal__insight-icon">👥</span>
-            <span>${isAr ? 'توزيع الجنس' : 'Gender Distribution'}</span>
-          </div>
-          <div class="hr-modal__bar-row">
-            <span>${isAr ? 'ذكور' : 'Male'}</span>
-            <div class="hr-modal__bar-track">
-              <div class="hr-modal__bar-fill hr-modal__bar-fill--male" style="width:53%"></div>
-            </div>
-            <span>8</span>
-          </div>
-          <div class="hr-modal__bar-row">
-            <span>${isAr ? 'إناث' : 'Female'}</span>
-            <div class="hr-modal__bar-track">
-              <div class="hr-modal__bar-fill hr-modal__bar-fill--female" style="width:47%"></div>
-            </div>
-            <span>7</span>
-          </div>
-        </div>
-        <div class="hr-modal__insight">
-          <div class="hr-modal__insight-header">
-            <span class="hr-modal__insight-icon">📄</span>
-            <span>${isAr ? 'حالة العقد' : 'Contract Status'}</span>
-          </div>
-          <div class="hr-modal__bar-row">
-            <span>${isAr ? 'نشط' : 'Active'}</span>
-            <div class="hr-modal__bar-track">
-              <div class="hr-modal__bar-fill hr-modal__bar-fill--active" style="width:67%"></div>
-            </div>
-            <span>10</span>
-          </div>
-          <div class="hr-modal__bar-row">
-            <span>${isAr ? 'منتهي' : 'Inactive'}</span>
-            <div class="hr-modal__bar-track">
-              <div class="hr-modal__bar-fill hr-modal__bar-fill--inactive" style="width:33%"></div>
-            </div>
-            <span>5</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Country distribution -->
-      <div class="hr-modal__country-grid">
-        ${[
-          { flag:'🇯🇴', name: isAr ? 'الأردن'  : 'Jordan',  n: 4 },
-          { flag:'🇱🇧', name: isAr ? 'لبنان'   : 'Lebanon', n: 3 },
-          { flag:'🇸🇾', name: isAr ? 'سوريا'   : 'Syria',   n: 3 },
-          { flag:'🇪🇬', name: isAr ? 'مصر'     : 'Egypt',   n: 2 },
-          { flag:'🇮🇶', name: isAr ? 'العراق'  : 'Iraq',    n: 2 },
-          { flag:'🇦🇪', name: isAr ? 'الإمارات': 'UAE',     n: 1 },
-        ].map(c => `
-          <div class="hr-modal__country">
-            <span class="hr-modal__country-flag">${c.flag}</span>
-            <span class="hr-modal__country-name">${c.name}</span>
-            <div class="hr-modal__country-bar-track">
-              <div class="hr-modal__country-bar" style="width:${c.n * 25}%"></div>
-            </div>
-            <span class="hr-modal__country-n">${c.n}</span>
-          </div>
-        `).join('')}
-      </div>
-
-      <!-- ── Section: Finance insights ── -->
-      <h4 class="hr-modal__section-title">
-        ${isAr ? '💰 صفحة الرواتب (Finance)' : '💰 Finance Page'}
-      </h4>
-      <div class="hr-modal__finance-row">
-        <div class="hr-modal__finance-kpi hr-modal__finance-kpi--male">
-          <span class="hr-modal__finance-kpi-val">$101.9K</span>
-          <span class="hr-modal__finance-kpi-lbl">${isAr ? 'مجموع رواتب الذكور' : 'Male Payments Total'}</span>
-        </div>
-        <div class="hr-modal__finance-kpi hr-modal__finance-kpi--female">
-          <span class="hr-modal__finance-kpi-val">$89.6K</span>
-          <span class="hr-modal__finance-kpi-lbl">${isAr ? 'مجموع رواتب الإناث' : 'Female Payments Total'}</span>
-        </div>
-      </div>
-      <p class="hr-modal__note">
-        ${isAr
-          ? '🏆 أعلى راتب: لينا فارس (الأردن) — $26,600 · أدنى راتب: دانا خالد (مصر) — $1,800'
-          : '🏆 Highest earner: Lina Fares (Jordan) — $26,600 · Lowest: Dana Khaled (Egypt) — $1,800'
-        }
-      </p>
-
-      <!-- ── Section: Attendance insights ── -->
-      <h4 class="hr-modal__section-title">
-        ${isAr ? '📅 صفحة الحضور (Attendance)' : '📅 Attendance Page'}
-      </h4>
-      <div class="hr-modal__attendance-kpis">
-        <div class="hr-modal__att-kpi">
-          <span class="hr-modal__att-val">77.65%</span>
-          <span class="hr-modal__att-lbl">${isAr ? 'الحضور الإجمالي' : 'Overall Rate'}</span>
-        </div>
-        <div class="hr-modal__att-kpi hr-modal__att-kpi--female">
-          <span class="hr-modal__att-val">80.84%</span>
-          <span class="hr-modal__att-lbl">${isAr ? 'حضور الإناث' : 'Female Rate'}</span>
-        </div>
-        <div class="hr-modal__att-kpi hr-modal__att-kpi--male">
-          <span class="hr-modal__att-val">75.19%</span>
-          <span class="hr-modal__att-lbl">${isAr ? 'حضور الذكور' : 'Male Rate'}</span>
-        </div>
-      </div>
-      <p class="hr-modal__note">
-        ${isAr
-          ? '⭐ أعلى حضور: لينا فارس — 94.70% (125 يوم) · أدنى حضور: سارة حسن — 22.73% (5 أيام)'
-          : '⭐ Top attendance: Lina Fares — 94.70% (125 days) · Lowest: Sara Hassan — 22.73% (5 days)'
-        }
-      </p>
-
-      <!-- ── Tags ── -->
-      <div class="modal__tags" style="margin-top:20px;">
-        ${buildTagsHTML(project[lang].tags, 'tag')}
-      </div>
-
-    `;
-*/
-    openModal(project[lang].title, isAr ? 'تحليل الموارد البشرية · 3 صفحات تفاعلية' : 'HR Analytics · 3 Interactive Pages', bodyHTML);
+    // مشروع HR يفتح صفحة التفاصيل المستقلة مباشرة
+    window.location.href = `projects/project-3.html`;
     return;
   }
+
 
   // ── Generic project modal (default) ───────────────────
   const bodyHTML = `

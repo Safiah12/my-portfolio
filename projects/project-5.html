@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ratel Digital Association | Project Case Study</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root{
+      --bg:#070E1F;
+      --card:#0F1E3A;
+      --card2:#132B55;
+      --primary:#A98363;
+      --secondary:#C9A16F;
+      --accent:#E7C58F;
+      --text:#F7FAFF;
+      --muted:#A8B8D6;
+      --line:rgba(255,255,255,.11);
+      --shadow:0 28px 80px rgba(0,0,0,.42);
+      --radius:26px;
+    }
+
+    body.light{
+      --bg:#F8FAFF;
+      --card:#FFFFFF;
+      --card2:#FFF7EA;
+      --text:#111827;
+      --muted:#526174;
+      --line:rgba(169,131,99,.18);
+      --shadow:0 28px 80px rgba(169,131,99,.16);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Almarai","DM Sans",sans-serif;
+      background:
+        radial-gradient(circle at 18% 5%, rgba(169,131,99,.24), transparent 34%),
+        radial-gradient(circle at 88% 35%, rgba(201,161,111,.16), transparent 32%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.8;
+      transition:.35s ease;
+    }
+    body.en{font-family:"DM Sans","Almarai",sans-serif;direction:ltr}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    .topbar{
+      width:min(1120px,92%);
+      margin:22px auto 0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .back,.toggle button{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      border-radius:999px;
+      padding:9px 14px;
+      cursor:pointer;
+      backdrop-filter:blur(14px);
+      transition:.25s;
+      font-weight:800;
+    }
+    .toggle{display:flex;gap:8px;align-items:center}
+    .back:hover,.toggle button:hover{transform:translateY(-2px);border-color:rgba(231,197,143,.55)}
+
+    .page{
+      width:min(1040px,92%);
+      margin:35px auto 80px;
+      border:1px solid var(--line);
+      border-radius:32px;
+      overflow:hidden;
+      background:rgba(15,30,58,.72);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(18px);
+    }
+    body.light .page{background:rgba(255,255,255,.84)}
+
+    .hero{
+      position:relative;
+      min-height:520px;
+      padding:54px 48px 46px;
+      background:
+        linear-gradient(135deg, rgba(71,55,47,.98), rgba(169,131,99,.92)),
+        linear-gradient(90deg, transparent 49%, rgba(255,255,255,.08) 50%);
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size:34px 34px;
+      opacity:.28;
+    }
+    .hero-content{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:.92fr 1.08fr;
+      gap:40px;
+      align-items:center;
+    }
+    .badge{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      background:rgba(7,14,31,.34);
+      border:1px solid rgba(255,255,255,.24);
+      color:#fff;
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:900;
+      margin-bottom:18px;
+    }
+    h1{
+      font-size:clamp(34px,5.6vw,68px);
+      line-height:1.08;
+      font-weight:900;
+      letter-spacing:-1px;
+      color:#fff;
+    }
+    .subtitle{
+      margin:16px 0 24px;
+      color:#FFF6EA;
+      font-size:17px;
+      max-width:600px;
+    }
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      padding:12px 18px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:14px;
+      border:1px solid rgba(255,255,255,.22);
+      transition:.25s;
+    }
+    .btn.primary{background:#fff;color:#6F4E37}
+    .btn.secondary{background:rgba(255,255,255,.14);color:#fff}
+    .btn:hover{transform:translateY(-3px)}
+
+    .browser-preview{
+      position:relative;
+      background:#0B1328;
+      border:10px solid #0B1328;
+      border-radius:30px;
+      transform:rotate(-1.5deg);
+      box-shadow:0 32px 85px rgba(0,0,0,.38);
+      overflow:hidden;
+    }
+    .browser-bar{
+      height:34px;
+      background:#111B34;
+      display:flex;
+      align-items:center;
+      gap:7px;
+      padding:0 14px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .dot{width:10px;height:10px;border-radius:50%;background:#E7C58F;opacity:.85}
+    .dot:nth-child(2){background:#C9A16F}.dot:nth-child(3){background:#A98363}
+    .browser-preview img{
+      width:100%;
+      height:auto;
+      max-height:360px;
+      object-fit:contain;
+      object-position:center;
+      background:#201B18;
+      border-radius:0 0 20px 20px;
+    }
+    .float-card{
+      position:absolute;
+      z-index:5;
+      background:rgba(255,255,255,.94);
+      color:#1F2937;
+      border-radius:20px;
+      padding:12px 16px;
+      box-shadow:0 20px 48px rgba(0,0,0,.20);
+      font-weight:900;
+      font-size:14px;
+      animation:float 4s ease-in-out infinite;
+    }
+    .float-card.one{top:32px;inset-inline-end:-10px}
+    .float-card.two{bottom:30px;inset-inline-start:-12px;animation-delay:1.2s}
+    @keyframes float{50%{transform:translateY(-12px)}}
+
+    .content{padding:38px 34px 52px;background:var(--bg)}
+    body.light .content{background:#F8FAFF}
+    .section{margin-top:34px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
+    .section-title{
+      background:linear-gradient(135deg,#A98363,#C9A16F,#E7C58F);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      color:#C9A16F;
+      font-size:21px;
+      font-weight:900;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .grid{display:grid;gap:14px}
+    .grid.two{grid-template-columns:repeat(2,1fr)}
+    .grid.three{grid-template-columns:repeat(3,1fr)}
+    .grid.four{grid-template-columns:repeat(4,1fr)}
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02)),var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:0 16px 44px rgba(0,0,0,.16);
+      transition:.25s;
+    }
+    .card:hover{transform:translateY(-5px);border-color:rgba(231,197,143,.42)}
+    .text-card p{color:var(--muted);font-size:15px;margin-top:8px}
+    .icon-bubble{
+      width:48px;height:48px;border-radius:17px;
+      display:grid;place-items:center;margin-bottom:12px;
+      background:linear-gradient(135deg,var(--primary),var(--secondary));
+      color:#fff;font-size:20px;
+    }
+    .stat strong{font-size:27px;color:var(--text);display:block;line-height:1.15}
+    .stat span{color:var(--muted);font-size:13px}
+
+    .features .card{text-align:center}
+    .features h3{font-size:15px;margin-bottom:6px}
+    .features p{font-size:13px;color:var(--muted);line-height:1.7}
+
+    .highlight{
+      background:linear-gradient(135deg, rgba(169,131,99,.18), rgba(201,161,111,.09));
+      border:1px solid rgba(231,197,143,.26);
+      border-radius:28px;
+      padding:24px;
+    }
+    .list{display:grid;gap:10px;color:var(--muted);font-size:15px}
+    .list div{display:flex;gap:10px;align-items:flex-start}
+    .list i{color:#E7C58F;margin-top:6px}
+
+    .process{display:grid;gap:14px}
+    .step{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:center}
+    .step-no{
+      width:48px;height:48px;border-radius:50%;display:grid;place-items:center;
+      background:rgba(169,131,99,.17);border:1px solid rgba(231,197,143,.36);color:#E7C58F;font-weight:900;
+    }
+    .step h3{font-size:15px}.step p{font-size:13px;color:var(--muted)}
+
+    .tech-wrap{display:flex;flex-wrap:wrap;gap:12px}
+    .tech{
+      display:flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);
+      border-radius:999px;padding:10px 14px;color:var(--text);font-weight:900;font-size:13px
+    }
+    .tech i{color:#E7C58F;font-size:16px}
+
+    .showcase{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:16px;
+      overflow:hidden;
+      cursor:pointer;
+    }
+    .showcase img{
+      width:100%;
+      height:auto;
+      max-height:560px;
+      object-fit:contain;
+      object-position:center;
+      border-radius:20px;
+      background:#201B18;
+      transition:.35s;
+    }
+    .showcase:hover img{transform:scale(1.015)}
+    .caption{padding:12px 4px 2px;color:var(--muted);font-size:13px;font-weight:800;text-align:center}
+
+    .outcome-card{
+      background:linear-gradient(135deg, rgba(169,131,99,.18), rgba(15,30,58,.85)),var(--card);
+      border:1px solid rgba(231,197,143,.25);
+      border-radius:26px;
+      padding:24px;
+    }
+
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.84);display:none;align-items:center;justify-content:center;z-index:99;padding:25px}
+    .modal.active{display:flex}
+    .modal img{max-height:90vh;max-width:92vw;border-radius:18px;background:#fff}
+    .close{position:fixed;top:24px;inset-inline-end:28px;background:#fff;color:#111;border:0;border-radius:50%;width:42px;height:42px;cursor:pointer;font-size:20px}
+
+    [data-lang="en"]{display:none}
+    body.en [data-lang="ar"]{display:none}
+    body.en [data-lang="en"]{display:initial}
+    body.en div[data-lang="en"],body.en section[data-lang="en"],body.en p[data-lang="en"],body.en h1[data-lang="en"],body.en h2[data-lang="en"],body.en span[data-lang="en"]{display:block}
+    body.en span[data-lang="en"]{display:inline}
+
+    @media(max-width:900px){
+      .hero{padding:38px 24px}.hero-content{grid-template-columns:1fr}.browser-preview{transform:none}.browser-preview img{max-height:320px}
+      .grid.four{grid-template-columns:repeat(2,1fr)}.grid.three{grid-template-columns:1fr 1fr}.content{padding:30px 20px}.page{width:94%}
+    }
+    @media(max-width:620px){
+      .grid.two,.grid.three,.grid.four{grid-template-columns:1fr}
+      .hero-actions{display:grid}.float-card{display:none}.topbar{width:94%}.browser-preview img{max-height:240px}
+      h1{font-size:36px}.content{padding:24px 16px}.card{padding:18px}.hero{min-height:auto}
+      .showcase img{max-height:360px}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <a href="index.html#projects" class="back"><i class="fa-solid fa-arrow-right"></i> <span data-lang="ar">المشاريع</span><span data-lang="en">Projects</span></a>
+    <div class="toggle">
+      <button onclick="toggleLang()" id="langBtn">EN</button>
+      <button onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <div class="hero-content">
+        <div>
+          <div class="badge"><i class="fa-brands fa-wordpress"></i> WordPress · Front-End Support</div>
+          <h1 data-lang="ar">جمعية رتل الرقمية<br><span style="font-size:.48em">Digital Ratel</span></h1>
+          <h1 data-lang="en">Digital Ratel<br><span style="font-size:.48em">Website Support</span></h1>
+          <p class="subtitle" data-lang="ar">تجربة تطوعية تقنية لتحسين موقع جمعية رتل الرقمية باستخدام WordPress و Custom CSS، مع التركيز على الاستجابة وتجربة المستخدم.</p>
+          <p class="subtitle" data-lang="en">A technical volunteer experience focused on improving the Digital Ratel website using WordPress and Custom CSS, with attention to responsiveness and user experience.</p>
+          <div class="hero-actions">
+            <a href="#overview" class="btn primary"><i class="fa-solid fa-layer-group"></i><span data-lang="ar">عرض المشروع</span><span data-lang="en">View Project</span></a>
+            <a href="#showcase" class="btn secondary"><i class="fa-solid fa-display"></i><span data-lang="ar">معاينة الموقع</span><span data-lang="en">Website Preview</span></a>
+          </div>
+        </div>
+
+        <div style="position:relative">
+          <div class="float-card one">🖥️ WordPress</div>
+          <div class="browser-preview">
+            <div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <img src="../assets/images/جمعية رتل الرقمية .png" alt="Digital Ratel Website Preview">
+          </div>
+          <div class="float-card two">✨ UI Review</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="content" id="overview">
+      <section class="section grid four">
+        <div class="card stat"><strong>2024</strong><span data-lang="ar">سنة التجربة</span><span data-lang="en">Experience Year</span></div>
+        <div class="card stat"><strong>140 h</strong><span data-lang="ar">ساعات تطوعية</span><span data-lang="en">Volunteer Hours</span></div>
+        <div class="card stat"><strong>WordPress</strong><span data-lang="ar">بيئة العمل</span><span data-lang="en">Platform</span></div>
+        <div class="card stat"><strong>CSS</strong><span data-lang="ar">تنسيقات مخصصة</span><span data-lang="en">Custom Styling</span></div>
+      </section>
+
+      <section class="section grid two">
+        <div class="card text-card">
+          <div class="icon-bubble"><i class="fa-solid fa-circle-info"></i></div>
+          <h2 data-lang="ar">نظرة عامة</h2><h2 data-lang="en">Overview</h2>
+          <p data-lang="ar">ساهمت في تحسين موقع جمعية رتل الرقمية من خلال ضبط واجهات الصفحات، تحسين الترتيب البصري، وتنفيذ تعديلات CSS داخل WordPress عند الحاجة.</p>
+          <p data-lang="en">I contributed to improving the Digital Ratel website by refining page layouts, enhancing visual structure, and applying custom CSS adjustments inside WordPress when needed.</p>
+        </div>
+        <div class="card text-card">
+          <div class="icon-bubble"><i class="fa-solid fa-bullseye"></i></div>
+          <h2 data-lang="ar">هدف التجربة</h2><h2 data-lang="en">Objective</h2>
+          <p data-lang="ar">دعم تحسين قابلية التصفح، تنظيم العناصر، وضبط استجابة الصفحات لتظهر بشكل أفضل على الجوال والأجهزة اللوحية.</p>
+          <p data-lang="en">To support better browsing, organize visual elements, and improve page responsiveness across mobile and tablet devices.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-star"></i><span data-lang="ar">3 محاور رئيسية</span><span data-lang="en">3 Main Focus Areas</span></h2></div>
+        <div class="grid three features">
+          <div class="card"><div class="icon-bubble"><i class="fa-solid fa-mobile-screen"></i></div><h3>Responsive Design</h3><p data-lang="ar">تحسين ظهور الصفحات على أحجام شاشات مختلفة.</p><p data-lang="en">Improving page display across different screen sizes.</p></div>
+          <div class="card"><div class="icon-bubble"><i class="fa-solid fa-wand-magic-sparkles"></i></div><h3>Visual Styling</h3><p data-lang="ar">ضبط التنسيقات والتفاصيل البصرية باستخدام CSS.</p><p data-lang="en">Refining layout and visual details with CSS.</p></div>
+          <div class="card"><div class="icon-bubble"><i class="fa-solid fa-user-check"></i></div><h3>UI/UX Review</h3><p data-lang="ar">مراجعة وضوح المحتوى وسهولة التصفح.</p><p data-lang="en">Reviewing content clarity and ease of navigation.</p></div>
+        </div>
+      </section>
+
+      <section class="section highlight">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-user-gear"></i><span data-lang="ar">دوري في المشروع</span><span data-lang="en">My Role</span></h2></div>
+        <div class="list">
+          <div><i class="fa-solid fa-check"></i><span data-lang="ar">تحسين صفحات الموقع باستخدام WordPress.</span><span data-lang="en">Improved website pages using WordPress.</span></div>
+          <div><i class="fa-solid fa-check"></i><span data-lang="ar">تنفيذ تعديلات تنسيقية باستخدام Custom CSS.</span><span data-lang="en">Applied custom CSS styling adjustments.</span></div>
+          <div><i class="fa-solid fa-check"></i><span data-lang="ar">تحسين استجابة الموقع للأجهزة المختلفة.</span><span data-lang="en">Enhanced website responsiveness across devices.</span></div>
+          <div><i class="fa-solid fa-check"></i><span data-lang="ar">مراجعة ترتيب العناصر ووضوح المحتوى وتجربة المستخدم.</span><span data-lang="en">Reviewed layout structure, content clarity, and user experience.</span></div>
+          <div><i class="fa-solid fa-check"></i><span data-lang="ar">اختبار ظهور الصفحات على أحجام شاشات متعددة.</span><span data-lang="en">Tested page appearance on multiple screen sizes.</span></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-route"></i><span data-lang="ar">منهجية العمل</span><span data-lang="en">Work Process</span></h2></div>
+        <div class="process">
+          <div class="card step"><div class="step-no">01</div><div><h3>Review</h3><p data-lang="ar">مراجعة الصفحات الحالية وتحديد مواضع التحسين.</p><p data-lang="en">Reviewed existing pages and identified improvement areas.</p></div></div>
+          <div class="card step"><div class="step-no">02</div><div><h3>Styling</h3><p data-lang="ar">تعديل التنسيقات والتفاصيل البصرية باستخدام WordPress و CSS.</p><p data-lang="en">Adjusted layouts and visual details using WordPress and CSS.</p></div></div>
+          <div class="card step"><div class="step-no">03</div><div><h3>Responsiveness</h3><p data-lang="ar">تحسين توافق الصفحات مع الجوال والأجهزة اللوحية.</p><p data-lang="en">Improved compatibility for mobile and tablet views.</p></div></div>
+          <div class="card step"><div class="step-no">04</div><div><h3>Testing</h3><p data-lang="ar">اختبار الواجهة ومراجعة وضوح المحتوى قبل الاعتماد.</p><p data-lang="en">Tested the interface and reviewed content clarity before final review.</p></div></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-code"></i><span data-lang="ar">الأدوات والمهارات المستخدمة</span><span data-lang="en">Tools & Skills</span></h2></div>
+        <div class="tech-wrap">
+          <div class="tech"><i class="fa-brands fa-wordpress"></i>WordPress</div>
+          <div class="tech"><i class="fa-brands fa-css3-alt"></i>Custom CSS</div>
+          <div class="tech"><i class="fa-solid fa-mobile-screen"></i>Responsive Design</div>
+          <div class="tech"><i class="fa-solid fa-object-group"></i>UI/UX Review</div>
+          <div class="tech"><i class="fa-solid fa-paintbrush"></i>Front-End Styling</div>
+          <div class="tech"><i class="fa-solid fa-vial-circle-check"></i>Website Testing</div>
+        </div>
+      </section>
+
+      <section class="section" id="showcase">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-display"></i><span data-lang="ar">معاينة الموقع</span><span data-lang="en">Website Preview</span></h2></div>
+        <div class="showcase">
+          <img src="../assets/images/جمعية رتل الرقمية .png" alt="Digital Ratel website screenshot" onclick="openModal(this.src)">
+          <div class="caption" data-lang="ar">https://rattel.org.sa/</div>
+          <div class="caption" data-lang="en">https://rattel.org.sa/.</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-chart-line"></i><span data-lang="ar">الأثر النهائي</span><span data-lang="en">Final Impact</span></h2></div>
+        <div class="outcome-card text-card">
+          <p data-lang="ar">ساهمت هذه التجربة في تطوير مهاراتي في تحسين مواقع WordPress والتعامل مع التنسيقات المخصصة، كما عززت فهمي لأهمية تجربة المستخدم في المواقع التعليمية والخدمية، خاصة عند تحسين الواجهات لتكون أوضح وأكثر توافقًا مع الأجهزة المختلفة.</p>
+          <p data-lang="en">This experience strengthened my skills in improving WordPress websites and applying custom styling, while deepening my understanding of user experience in educational and service-oriented websites, especially when making interfaces clearer and more responsive across devices.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="modal" id="modal" onclick="closeModal()">
+    <button class="close">×</button>
+    <img id="modalImg" src="" alt="Preview">
+  </div>
+
+  <script>
+    function toggleTheme(){document.body.classList.toggle('light')}
+    function toggleLang(){
+      document.body.classList.toggle('en');
+      const isEn=document.body.classList.contains('en');
+      document.documentElement.lang=isEn?'en':'ar';
+      document.documentElement.dir=isEn?'ltr':'rtl';
+      document.getElementById('langBtn').textContent=isEn?'AR':'EN';
+    }
+    function openModal(src){document.getElementById('modalImg').src=src;document.getElementById('modal').classList.add('active')}
+    function closeModal(){document.getElementById('modal').classList.remove('active')}
+  </script>
+</body>
+</html>

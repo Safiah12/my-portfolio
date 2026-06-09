@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yadwi | Project Case Study</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root{
+      --bg:#070E1F;
+      --card:#0F1E3A;
+      --card2:#132B55;
+      --primary:#B8860B;
+      --secondary:#D4A15A;
+      --accent:#E9C46A;
+      --text:#F7FAFF;
+      --muted:#A8B8D6;
+      --line:rgba(255,255,255,.11);
+      --shadow:0 28px 80px rgba(0,0,0,.42);
+      --radius:26px;
+    }
+
+    body.light{
+      --bg:#F8FAFF;
+      --card:#FFFFFF;
+      --card2:#FFF8EC;
+      --text:#111827;
+      --muted:#526174;
+      --line:rgba(184,134,11,.16);
+      --shadow:0 28px 80px rgba(184,134,11,.16);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Almarai","DM Sans",sans-serif;
+      background:
+        radial-gradient(circle at 15% 5%, rgba(184,134,11,.22), transparent 34%),
+        radial-gradient(circle at 90% 30%, rgba(94,221,194,.12), transparent 34%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.8;
+      transition:.35s ease;
+    }
+    body.en{font-family:"DM Sans","Almarai",sans-serif;direction:ltr}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    .topbar{
+      width:min(1120px,92%);
+      margin:22px auto 0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .back,.toggle button{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      border-radius:999px;
+      padding:9px 14px;
+      cursor:pointer;
+      backdrop-filter:blur(14px);
+      transition:.25s;
+      font-weight:800;
+    }
+    .toggle{display:flex;gap:8px;align-items:center}
+    .back:hover,.toggle button:hover{transform:translateY(-2px);border-color:rgba(212,161,90,.55)}
+
+    .page{
+      width:min(980px,92%);
+      margin:35px auto 80px;
+      border:1px solid var(--line);
+      border-radius:32px;
+      overflow:hidden;
+      background:rgba(15,30,58,.72);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(18px);
+    }
+    body.light .page{background:rgba(255,255,255,.82)}
+
+    .hero{
+      position:relative;
+      min-height:500px;
+      padding:54px 48px 44px;
+      background:
+        linear-gradient(135deg, rgba(122,82,48,.96), rgba(196,138,69,.92)),
+        linear-gradient(90deg, transparent 49%, rgba(255,255,255,.08) 50%);
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;inset:0;
+      background-image:linear-gradient(rgba(255,255,255,.09) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.09) 1px, transparent 1px);
+      background-size:34px 34px;
+      opacity:.35;
+    }
+    .hero-content{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:38px;
+      align-items:center;
+    }
+    .badge{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      background:rgba(7,14,31,.32);
+      border:1px solid rgba(255,255,255,.24);
+      color:#fff;
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:900;
+      margin-bottom:18px;
+    }
+    h1{
+      font-size:clamp(36px,6vw,70px);
+      line-height:1.08;
+      font-weight:900;
+      letter-spacing:-1px;
+      color:#fff;
+    }
+    .subtitle{
+      margin:16px 0 24px;
+      color:#FFF7EA;
+      font-size:17px;
+      max-width:560px;
+    }
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      padding:12px 18px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:14px;
+      border:1px solid rgba(255,255,255,.22);
+      transition:.25s;
+    }
+    .btn.primary{background:#fff;color:#7A5230}
+    .btn.secondary{background:rgba(255,255,255,.14);color:#fff}
+    .btn:hover{transform:translateY(-3px)}
+
+    .project-preview{
+      position:relative;
+      background:linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.06));
+      border:1px solid rgba(255,255,255,.26);
+      border-radius:32px;
+      padding:14px;
+      transform:rotate(-1.3deg);
+      box-shadow:0 30px 80px rgba(0,0,0,.36);
+      overflow:hidden;
+      backdrop-filter:blur(14px);
+    }
+    .preview-browser{
+      background:#0B1328;
+      border-radius:24px;
+      overflow:hidden;
+      border:8px solid #0B1328;
+    }
+    .browser-dots{
+      height:28px;
+      display:flex;
+      align-items:center;
+      gap:7px;
+      padding:0 12px;
+      background:#0B1328;
+    }
+    .browser-dots span{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:rgba(255,255,255,.35);
+    }
+    .project-preview img{
+      width:100%;
+      height:300px;
+      object-fit:contain;
+      object-position:center;
+      border-radius:0 0 16px 16px;
+      background:#F6EFE5;
+      padding:8px;
+    }
+    .float-card{
+      position:absolute;
+      z-index:4;
+      background:rgba(255,255,255,.94);
+      color:#1F2937;
+      border-radius:20px;
+      padding:12px 16px;
+      box-shadow:0 20px 48px rgba(0,0,0,.20);
+      font-weight:900;
+      font-size:14px;
+      animation:float 4s ease-in-out infinite;
+    }
+    .float-card.one{top:30px;inset-inline-end:-8px}
+    .float-card.two{bottom:28px;inset-inline-start:-8px;animation-delay:1.2s}
+    @keyframes float{50%{transform:translateY(-12px)}}
+
+    .content{padding:38px 34px 50px;background:var(--bg)}
+    body.light .content{background:#F8FAFF}
+    .section{margin-top:34px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
+    .section-title{color:#E9C46A;font-size:21px;font-weight:900;display:flex;align-items:center;gap:10px}
+    body.light .section-title{color:#7A5230}
+
+    .grid{display:grid;gap:14px}
+    .grid.two{grid-template-columns:repeat(2,1fr)}
+    .grid.three{grid-template-columns:repeat(3,1fr)}
+    .grid.four{grid-template-columns:repeat(4,1fr)}
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02)),var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:0 16px 44px rgba(0,0,0,.16);
+      transition:.25s;
+    }
+    .card:hover{transform:translateY(-5px);border-color:rgba(212,161,90,.44)}
+    .text-card p{color:var(--muted);font-size:15px;margin-top:8px}
+    .icon-bubble{
+      width:48px;height:48px;border-radius:17px;
+      display:grid;place-items:center;margin-bottom:12px;
+      background:linear-gradient(135deg,var(--primary),var(--secondary));
+      color:#fff;font-size:20px;
+    }
+    .stat strong{font-size:30px;color:var(--text);display:block;line-height:1.1}
+    .stat span{color:var(--muted);font-size:13px}
+
+    .highlight{
+      background:linear-gradient(135deg, rgba(184,134,11,.16), rgba(94,221,194,.08));
+      border:1px solid rgba(212,161,90,.28);
+      border-radius:28px;
+      padding:24px;
+    }
+    .list{display:grid;gap:10px;color:var(--muted);font-size:15px}
+    .list div{display:flex;gap:10px;align-items:flex-start}
+    .list i{color:#E9C46A;margin-top:6px}
+
+    .features .card{text-align:center}
+    .features h3{font-size:16px;margin-bottom:6px}
+    .features p{font-size:13px;color:var(--muted);line-height:1.7}
+
+    .process{display:grid;gap:14px}
+    .step{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:center}
+    .step-no{
+      width:48px;height:48px;border-radius:50%;display:grid;place-items:center;
+      background:rgba(184,134,11,.15);border:1px solid rgba(212,161,90,.35);color:#E9C46A;font-weight:900;
+    }
+    .step h3{font-size:15px}.step p{font-size:13px;color:var(--muted)}
+
+    .tech-wrap{display:flex;flex-wrap:wrap;gap:12px}
+    .tech{
+      display:flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);
+      border-radius:999px;padding:10px 14px;color:var(--text);font-weight:900;font-size:13px
+    }
+    .tech i{color:#E9C46A;font-size:16px}
+
+    .showcase-grid{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    .showcase-card{
+      position:relative;
+      background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018)),var(--card);
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:14px;
+      overflow:hidden;
+      cursor:pointer;
+      transition:.28s ease;
+      min-height:100%;
+    }
+    .showcase-card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(212,161,90,.44);
+      box-shadow:0 22px 55px rgba(0,0,0,.22);
+    }
+    .showcase-card.featured{
+      grid-row:span 2;
+      background:linear-gradient(135deg, rgba(184,134,11,.13), rgba(15,30,58,.92));
+    }
+    .screen-frame{
+      background:#F6EFE5;
+      border-radius:20px;
+      padding:10px;
+      height:250px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .showcase-card.featured .screen-frame{height:430px}
+    .screen-frame img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:center;
+      border-radius:14px;
+      transition:.35s ease;
+    }
+    .showcase-card:hover img{transform:scale(1.025)}
+    .showcase-meta{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 4px 2px;
+    }
+    .showcase-meta h3{font-size:14px;color:var(--text)}
+    .showcase-meta span{font-size:12px;color:var(--muted);font-weight:800}
+    .mini-showcase{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+    .modal img{object-fit:contain}
+
+    .status-card{
+      background:linear-gradient(135deg, rgba(245,158,11,.16), rgba(212,161,90,.10)),var(--card);
+      border:1px solid rgba(245,158,11,.26);
+      border-radius:26px;
+      padding:24px;
+    }
+
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.84);display:none;align-items:center;justify-content:center;z-index:99;padding:25px}
+    .modal.active{display:flex}
+    .modal img{max-height:90vh;max-width:92vw;border-radius:18px;background:#fff}
+    .close{position:fixed;top:24px;inset-inline-end:28px;background:#fff;color:#111;border:0;border-radius:50%;width:42px;height:42px;cursor:pointer;font-size:20px}
+
+    [data-lang="en"]{display:none}
+    body.en [data-lang="ar"]{display:none}
+    body.en [data-lang="en"]{display:initial}
+    body.en div[data-lang="en"],body.en section[data-lang="en"],body.en p[data-lang="en"],body.en h1[data-lang="en"],body.en h2[data-lang="en"],body.en span[data-lang="en"]{display:block}
+    body.en span[data-lang="en"]{display:inline}
+
+    @media(max-width:900px){
+      .hero{padding:38px 24px}.hero-content{grid-template-columns:1fr}.project-preview img{height:300px}
+      .grid.four{grid-template-columns:repeat(2,1fr)}.showcase-grid{grid-template-columns:1fr}.showcase-card.featured{grid-row:auto}.showcase-card.featured .screen-frame{height:340px}
+      .content{padding:30px 20px}.page{width:94%}
+    }
+    @media(max-width:620px){
+      .grid.two,.grid.three,.grid.four,.showcase-grid,.mini-showcase{grid-template-columns:1fr}
+      .hero-actions{display:grid}.float-card{display:none}.topbar{width:94%}.project-preview{transform:none}.project-preview img{height:230px}
+      .showcase-card.featured{grid-row:auto}.showcase-card.featured .screen-frame,.screen-frame{height:240px}
+      h1{font-size:38px}.content{padding:24px 16px}.card{padding:18px}.hero{min-height:auto}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <a href="index.html#projects" class="back"><i class="fa-solid fa-arrow-right"></i> <span data-lang="ar">المشاريع</span><span data-lang="en">Projects</span></a>
+    <div class="toggle">
+      <button onclick="toggleLang()" id="langBtn">EN</button>
+      <button onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <div class="hero-content">
+        <div>
+          <div class="badge"><i class="fa-solid fa-palette"></i> UI/UX · Laravel Web Project</div>
+          <h1 data-lang="ar">يدوي<br><span style="font-size:.55em">Yadwi</span></h1>
+          <h1 data-lang="en">Yadwi<br><span style="font-size:.55em">Handmade Platform</span></h1>
+          <p class="subtitle" data-lang="ar">منصة رقمية لدعم الحرفيين والفنانين المستقلين من خلال عرض وبيع المنتجات اليدوية وإدارة ورش العمل.</p>
+          <p class="subtitle" data-lang="en">A digital platform that supports artisans and independent creators by showcasing handmade products and managing workshops.</p>
+          <div class="hero-actions">
+            <a href="#overview" class="btn primary"><i class="fa-solid fa-layer-group"></i><span data-lang="ar">عرض المشروع</span><span data-lang="en">View Project</span></a>
+            <a href="#gallery" class="btn secondary"><i class="fa-solid fa-images"></i><span data-lang="ar">الواجهات</span><span data-lang="en">Screens</span></a>
+          </div>
+        </div>
+
+        <div style="position:relative">
+          <div class="float-card one">🧵 Handmade</div>
+          <div class="project-preview">
+            <div class="preview-browser">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
+              <img src="../assets/images/Home.png" alt="Yadwi Home Page">
+            </div>
+          </div>
+          <div class="float-card two">🛍️ Products</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="content" id="overview">
+      <section class="section grid four">
+        <div class="card stat"><strong>2024</strong><span data-lang="ar">سنة البرنامج</span><span data-lang="en">Program Year</span></div>
+        <div class="card stat"><strong>60 h</strong><span data-lang="ar">عدد ساعات البرنامج</span><span data-lang="en">Program Hours</span></div>
+        <div class="card stat"><strong>Laravel</strong><span data-lang="ar">بيئة البرنامج</span><span data-lang="en">Program Stack</span></div>
+        <div class="card stat"><strong>Figma</strong><span data-lang="ar">برنامج التصميم</span><span data-lang="en">Design Tool</span></div>
+      </section>
+
+      <section class="section grid two">
+        <div class="card text-card">
+          <div class="icon-bubble"><i class="fa-solid fa-lightbulb"></i></div>
+          <h2 data-lang="ar">فكرة المشروع</h2><h2 data-lang="en">Project Idea</h2>
+          <p data-lang="ar">تهدف منصة يدوي إلى دعم الحرفيين والفنانين المستقلين من خلال توفير متاجر إلكترونية لعرض وبيع المنتجات اليدوية، بالإضافة إلى نظام لحجز وإدارة ورش العمل الحرفية.</p>
+          <p data-lang="en">Yadwi supports artisans and independent artists by providing online stores for handmade products, along with a system for booking and managing craft workshops.</p>
+        </div>
+        <div class="card text-card">
+          <div class="icon-bubble"><i class="fa-solid fa-bullseye"></i></div>
+          <h2 data-lang="ar">الهدف</h2><h2 data-lang="en">Objective</h2>
+          <p data-lang="ar">إنشاء تجربة بسيطة وواضحة تساعد المستخدمين على تصفح المنتجات، معرفة التفاصيل، وإنشاء ورش عمل بطريقة سهلة ومنظمة.</p>
+          <p data-lang="en">To create a simple and clear experience that helps users browse products, view details, and create workshops in an organized way.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-star"></i><span data-lang="ar">3 مميزات رئيسية</span><span data-lang="en">3 Main Features</span></h2></div>
+        <div class="grid three features">
+          <div class="card"><div class="icon-bubble"><i class="fa-solid fa-store"></i></div><h3>Product Showcase</h3><p data-lang="ar">عرض المنتجات اليدوية بطريقة جذابة ومنظمة.</p><p data-lang="en">A clean showcase for handmade products.</p></div>
+          <div class="card"><div class="icon-bubble"><i class="fa-solid fa-calendar-check"></i></div><h3>Workshop Booking</h3><p data-lang="ar">إنشاء وإدارة ورش العمل الحرفية.</p><p data-lang="en">Create and manage craft workshops.</p></div>
+          <div class="card"><div class="icon-bubble"><i class="fa-solid fa-user-group"></i></div><h3>Artisan Support</h3><p data-lang="ar">دعم الحرفيين في الوصول إلى العملاء.</p><p data-lang="en">Helping artisans reach customers.</p></div>
+        </div>
+      </section>
+
+      <section class="section highlight">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-user-gear"></i><span data-lang="ar">دوري في المشروع</span><span data-lang="en">My Contribution</span></h2></div>
+        <div class="list">
+          <div><i class="fa-solid fa-check"></i><span data-lang="ar">تصميم واجهات المستخدم وتجربة الاستخدام.</span><span data-lang="en">Designed the user interface and user experience.</span></div>
+          <div><i class="fa-solid fa-check"></i><span data-lang="ar">إنشاء النماذج الأولية باستخدام Figma.</span><span data-lang="en">Created interactive prototypes using Figma.</span></div>
+          <div><i class="fa-solid fa-check"></i><span data-lang="ar">المشاركة في تحليل متطلبات المنصة.</span><span data-lang="en">Contributed to platform requirements analysis.</span></div>
+          <div><i class="fa-solid fa-check"></i><span data-lang="ar">التعاون مع فريق التطوير لتحويل التصاميم إلى نظام قابل للتنفيذ.</span><span data-lang="en">Collaborated with the development team to translate designs into an implementable system.</span></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-route"></i><span data-lang="ar">منهجية التصميم</span><span data-lang="en">Design Process</span></h2></div>
+        <div class="process">
+          <div class="card step"><div class="step-no">01</div><div><h3>Research</h3><p data-lang="ar">فهم فكرة المنصة واحتياجات المستخدمين.</p><p data-lang="en">Understanding the platform idea and user needs.</p></div></div>
+          <div class="card step"><div class="step-no">02</div><div><h3>Wireframes</h3><p data-lang="ar">تحديد هيكل الصفحات ومسارات الاستخدام.</p><p data-lang="en">Defining page structure and user flows.</p></div></div>
+          <div class="card step"><div class="step-no">03</div><div><h3>UI Design</h3><p data-lang="ar">تصميم الواجهات بأسلوب بسيط ومناسب لطبيعة المنتجات اليدوية.</p><p data-lang="en">Designing simple interfaces aligned with handmade product identity.</p></div></div>
+          <div class="card step"><div class="step-no">04</div><div><h3>Prototype & Review</h3><p data-lang="ar">مراجعة التجربة وتحسينها قبل مرحلة التنفيذ.</p><p data-lang="en">Reviewing and refining the experience before implementation.</p></div></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-code"></i><span data-lang="ar">التقنيات المستخدمة</span><span data-lang="en">Technologies</span></h2></div>
+        <div class="tech-wrap">
+          <div class="tech"><i class="fa-brands fa-figma"></i>Figma</div>
+          <div class="tech"><i class="fa-brands fa-laravel"></i>Laravel</div>
+          <div class="tech"><i class="fa-brands fa-php"></i>PHP</div>
+          <div class="tech"><i class="fa-brands fa-html5"></i>HTML</div>
+          <div class="tech"><i class="fa-brands fa-css3-alt"></i>CSS</div>
+          <div class="tech"><i class="fa-solid fa-database"></i>SQL</div>
+        </div>
+      </section>
+
+      <section class="section" id="gallery">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-images"></i><span data-lang="ar">معرض واجهات المشروع</span><span data-lang="en">Project Screens</span></h2></div>
+        <div class="showcase-grid">
+          <div class="showcase-card featured" onclick="openModal('../assets/images/Home.png')">
+            <div class="screen-frame">
+              <img src="../assets/images/Home.png" alt="Yadwi Home Page">
+            </div>
+            <div class="showcase-meta">
+              <h3 data-lang="ar">الصفحة الرئيسية</h3>
+              <h3 data-lang="en">Home Page</h3>
+              <span>01</span>
+            </div>
+          </div>
+
+          <div class="mini-showcase">
+            <div class="showcase-card" onclick="openModal('../assets/images/تصفح المنتجات.png')">
+              <div class="screen-frame">
+                <img src="../assets/images/تصفح المنتجات.png" alt="Browse Products Page">
+              </div>
+              <div class="showcase-meta">
+                <h3 data-lang="ar">تصفح المنتجات</h3>
+                <h3 data-lang="en">Browse Products</h3>
+                <span>02</span>
+              </div>
+            </div>
+
+            <div class="showcase-card" onclick="openModal('../assets/images/المنتجات.png')">
+              <div class="screen-frame">
+                <img src="../assets/images/المنتجات.png" alt="Product Details Page">
+              </div>
+              <div class="showcase-meta">
+                <h3 data-lang="ar">تفاصيل المنتج</h3>
+                <h3 data-lang="en">Product Details</h3>
+                <span>03</span>
+              </div>
+            </div>
+
+            <div class="showcase-card" onclick="openModal('../assets/images/انشاء ورشة .png')">
+              <div class="screen-frame">
+                <img src="../assets/images/انشاء ورشة .png" alt="Create Workshop Page">
+              </div>
+              <div class="showcase-meta">
+                <h3 data-lang="ar">إنشاء ورشة</h3>
+                <h3 data-lang="en">Create Workshop</h3>
+                <span>04</span>
+              </div>
+            </div>
+
+            <div class="showcase-card" onclick="openModal('../assets/images/حجز ورشة.png')">
+              <div class="screen-frame">
+                <img src="../assets/images/حجز ورشة.png" alt="Workshop Details Page">
+              </div>
+              <div class="showcase-meta">
+                <h3 data-lang="ar">تفاصيل الورشة</h3>
+                <h3 data-lang="en">Workshop Details</h3>
+                <span>05</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-flag-checkered"></i><span data-lang="ar">حالة المشروع</span><span data-lang="en">Project Status</span></h2></div>
+        <div class="status-card text-card">
+          <p data-lang="ar">تم تطوير المشروع كنموذج أولي ضمن برنامج تطوير المواقع باستخدام Laravel في أكاديمية طويق. تم الانتهاء من تصميم واجهات وتجربة المستخدم، بينما لا يزال المشروع في مراحله المبكرة بانتظار استكمال التطوير والتنفيذ.</p>
+          <p data-lang="en">The project was initially developed as part of a Laravel Web Development Program at Tuwaiq Academy. The UI/UX design phase has been completed, while the project remains in its early stages awaiting further development and implementation.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="modal" id="modal" onclick="closeModal()">
+    <button class="close">×</button>
+    <img id="modalImg" src="" alt="Preview">
+  </div>
+
+  <script>
+    function toggleTheme(){document.body.classList.toggle('light')}
+    function toggleLang(){
+      document.body.classList.toggle('en');
+      const isEn=document.body.classList.contains('en');
+      document.documentElement.lang=isEn?'en':'ar';
+      document.documentElement.dir=isEn?'ltr':'rtl';
+      document.getElementById('langBtn').textContent=isEn?'AR':'EN';
+    }
+    function openModal(src){document.getElementById('modalImg').src=src;document.getElementById('modal').classList.add('active')}
+    function closeModal(){document.getElementById('modal').classList.remove('active')}
+  </script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workforce Analytics Dashboard | Project Case Study</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root{
+      --bg:#070E1F;
+      --card:#0F1E3A;
+      --card2:#132B55;
+      --primary:#1E73E8;
+      --secondary:#5AB0FF;
+      --accent:#5EDDC2;
+      --text:#F7FAFF;
+      --muted:#A8B8D6;
+      --line:rgba(255,255,255,.11);
+      --shadow:0 28px 80px rgba(0,0,0,.42);
+      --radius:26px;
+    }
+
+    body.light{
+      --bg:#F6F9FF;
+      --card:#FFFFFF;
+      --card2:#EAF3FF;
+      --text:#111827;
+      --muted:#526174;
+      --line:rgba(30,115,232,.14);
+      --shadow:0 28px 80px rgba(30,115,232,.13);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Almarai","DM Sans",sans-serif;
+      background:
+        radial-gradient(circle at 15% 5%, rgba(30,115,232,.24), transparent 34%),
+        radial-gradient(circle at 90% 30%, rgba(94,221,194,.14), transparent 34%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.8;
+      transition:.35s ease;
+    }
+    body.en{font-family:"DM Sans","Almarai",sans-serif;direction:ltr}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    .topbar{
+      width:min(1120px,92%);
+      margin:22px auto 0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .back,.toggle button{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      border-radius:999px;
+      padding:9px 14px;
+      cursor:pointer;
+      backdrop-filter:blur(14px);
+      transition:.25s;
+      font-weight:800;
+    }
+    .toggle{display:flex;gap:8px;align-items:center}
+    .back:hover,.toggle button:hover{transform:translateY(-2px);border-color:rgba(90,176,255,.55)}
+
+    .page{
+      width:min(980px,92%);
+      margin:35px auto 80px;
+      border:1px solid var(--line);
+      border-radius:32px;
+      overflow:hidden;
+      background:rgba(15,30,58,.72);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(18px);
+    }
+    body.light .page{background:rgba(255,255,255,.86)}
+
+    .hero{
+      position:relative;
+      min-height:540px;
+      padding:52px 46px 42px;
+      background:
+        linear-gradient(135deg, rgba(8,19,42,.98), rgba(30,115,232,.88)),
+        linear-gradient(90deg, transparent 49%, rgba(255,255,255,.08) 50%);
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;inset:0;
+      background-image:linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size:34px 34px;
+      opacity:.34;
+    }
+    .hero-content{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:.88fr 1.12fr;
+      gap:34px;
+      align-items:center;
+    }
+    .badge{
+      display:inline-flex;gap:8px;align-items:center;
+      background:rgba(7,14,31,.34);
+      border:1px solid rgba(255,255,255,.22);
+      color:#fff;
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:900;
+      margin-bottom:18px;
+    }
+    h1{font-size:clamp(34px,5vw,62px);line-height:1.08;font-weight:900;letter-spacing:-1px;color:#fff}
+    .subtitle{margin:16px 0 24px;color:#EAF5FF;font-size:16px;max-width:560px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 18px;border-radius:999px;font-weight:900;font-size:14px;border:1px solid rgba(255,255,255,.22);transition:.25s}
+    .btn.primary{background:#fff;color:#0A4FBF}.btn.secondary{background:rgba(255,255,255,.14);color:#fff}.btn:hover{transform:translateY(-3px)}
+
+    .dashboard-frame{position:relative;background:#0B1328;border:10px solid #0B1328;border-radius:30px;box-shadow:0 30px 80px rgba(0,0,0,.36);overflow:hidden;transform:rotate(-1.5deg)}
+    .dashboard-frame:before{content:"";display:block;height:34px;background:#111A30;border-bottom:1px solid rgba(255,255,255,.08)}
+    .browser-dots{position:absolute;top:13px;inset-inline-start:18px;display:flex;gap:7px;z-index:4}.browser-dots span{width:9px;height:9px;border-radius:50%;background:#5AB0FF;opacity:.8}.browser-dots span:nth-child(2){background:#5EDDC2}.browser-dots span:nth-child(3){background:#fff}
+    .dashboard-frame img{width:100%;height:auto;max-height:370px;object-fit:contain;object-position:center;background:#fff;border-radius:0 0 18px 18px}
+    .float-card{position:absolute;z-index:5;background:rgba(255,255,255,.94);color:#1F2937;border-radius:20px;padding:12px 16px;box-shadow:0 20px 48px rgba(0,0,0,.20);font-weight:900;font-size:14px;animation:float 4s ease-in-out infinite}.float-card.one{top:25px;inset-inline-end:-10px}.float-card.two{bottom:34px;inset-inline-start:-12px;animation-delay:1.2s}@keyframes float{50%{transform:translateY(-12px)}}
+
+    .content{padding:38px 34px 50px;background:var(--bg)}body.light .content{background:#F6F9FF}.section{margin-top:34px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}.section-title{color:var(--secondary);font-size:21px;font-weight:900;display:flex;align-items:center;gap:10px}
+    .grid{display:grid;gap:14px}.grid.two{grid-template-columns:repeat(2,1fr)}.grid.three{grid-template-columns:repeat(3,1fr)}.grid.four{grid-template-columns:repeat(4,1fr)}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02)),var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 16px 44px rgba(0,0,0,.16);transition:.25s}.card:hover{transform:translateY(-5px);border-color:rgba(90,176,255,.40)}.text-card p{color:var(--muted);font-size:15px;margin-top:8px}.icon-bubble{width:48px;height:48px;border-radius:17px;display:grid;place-items:center;margin-bottom:12px;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;font-size:20px}.stat strong{font-size:29px;color:var(--text);display:block;line-height:1.1}.stat span{color:var(--muted);font-size:13px}
+    .features .card{text-align:center}.features h3{font-size:15px;margin-bottom:6px}.features p{font-size:13px;color:var(--muted);line-height:1.7}
+    .process{display:grid;gap:14px}.step{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:center}.step-no{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:rgba(30,115,232,.16);border:1px solid rgba(90,176,255,.35);color:var(--secondary);font-weight:900}.step h3{font-size:15px}.step p{font-size:13px;color:var(--muted)}
+    .highlight{background:linear-gradient(135deg, rgba(30,115,232,.16), rgba(94,221,194,.08));border:1px solid rgba(90,176,255,.26);border-radius:28px;padding:24px}.list{display:grid;gap:10px;color:var(--muted);font-size:15px}.list div{display:flex;gap:10px;align-items:flex-start}.list i{color:var(--accent);margin-top:6px}
+    .tech-wrap{display:flex;flex-wrap:wrap;gap:12px}.tech{display:flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:10px 14px;color:var(--text);font-weight:900;font-size:13px}.tech i{color:var(--secondary);font-size:16px}
+
+    .analysis-showcase{display:grid;gap:22px}.analysis-card{display:grid;grid-template-columns:1fr .85fr;gap:22px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:28px;padding:18px;overflow:hidden}.analysis-card:nth-child(even){grid-template-columns:.85fr 1fr}.analysis-card:nth-child(even) .analysis-image{order:2}.analysis-image{background:#fff;border-radius:22px;overflow:hidden;border:1px solid var(--line)}.analysis-image img{width:100%;height:auto;object-fit:contain}.analysis-text{padding:10px}.analysis-text h3{font-size:22px;margin-bottom:8px;color:var(--text)}.analysis-text p{color:var(--muted);font-size:15px}.mini-points{margin-top:14px;display:grid;gap:8px;color:var(--muted);font-size:13px}.mini-points span{display:flex;gap:8px;align-items:flex-start}.mini-points i{color:var(--accent);margin-top:5px}
+
+    .status-card{background:linear-gradient(135deg, rgba(30,115,232,.16), rgba(90,176,255,.08)),var(--card);border:1px solid rgba(90,176,255,.26);border-radius:26px;padding:24px}
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.84);display:none;align-items:center;justify-content:center;z-index:99;padding:25px}.modal.active{display:flex}.modal img{max-height:90vh;max-width:94vw;border-radius:18px;background:#fff}.close{position:fixed;top:24px;inset-inline-end:28px;background:#fff;color:#111;border:0;border-radius:50%;width:42px;height:42px;cursor:pointer;font-size:20px}
+    [data-lang="en"]{display:none}body.en [data-lang="ar"]{display:none}body.en [data-lang="en"]{display:initial}body.en div[data-lang="en"],body.en section[data-lang="en"],body.en p[data-lang="en"],body.en h1[data-lang="en"],body.en h2[data-lang="en"],body.en span[data-lang="en"]{display:block}body.en span[data-lang="en"]{display:inline}
+    @media(max-width:900px){.hero{padding:38px 24px}.hero-content{grid-template-columns:1fr}.dashboard-frame img{max-height:330px}.grid.four{grid-template-columns:repeat(2,1fr)}.grid.three{grid-template-columns:repeat(2,1fr)}.content{padding:30px 20px}.page{width:94%}.analysis-card,.analysis-card:nth-child(even){grid-template-columns:1fr}.analysis-card:nth-child(even) .analysis-image{order:0}}
+    @media(max-width:620px){.grid.two,.grid.three,.grid.four{grid-template-columns:1fr}.hero-actions{display:grid}.float-card{display:none}.topbar{width:94%}.dashboard-frame{transform:none}.dashboard-frame img{max-height:260px}h1{font-size:36px}.content{padding:24px 16px}.card{padding:18px}.hero{min-height:auto}.analysis-card{padding:12px}.analysis-text h3{font-size:19px}}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <a href="index.html#projects" class="back"><i class="fa-solid fa-arrow-right"></i> <span data-lang="ar">المشاريع</span><span data-lang="en">Projects</span></a>
+    <div class="toggle"><button onclick="toggleLang()" id="langBtn">EN</button><button onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button></div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <div class="hero-content">
+        <div>
+          <div class="badge"><i class="fa-solid fa-chart-line"></i> Power BI · HR Analytics</div>
+          <h1 data-lang="ar">لوحة تحليلات القوى العاملة<br><span style="font-size:.55em">Workforce Analytics</span></h1>
+          <h1 data-lang="en">Workforce Analytics<br><span style="font-size:.55em">Power BI Dashboard</span></h1>
+          <p class="subtitle" data-lang="ar">لوحة معلومات تفاعلية لتحليل بيانات الموارد البشرية من منظور تشغيلي ومالي، مع متابعة مؤشرات الموظفين والمدفوعات والحضور.</p>
+          <p class="subtitle" data-lang="en">An interactive Power BI dashboard for analyzing HR data from operational and financial perspectives, including workforce, payments, and attendance indicators.</p>
+          <div class="hero-actions">
+            <a href="#overview" class="btn primary"><i class="fa-solid fa-layer-group"></i><span data-lang="ar">عرض المشروع</span><span data-lang="en">View Project</span></a>
+            <a href="#analysis" class="btn secondary"><i class="fa-solid fa-chart-pie"></i><span data-lang="ar">التحليل</span><span data-lang="en">Analysis</span></a>
+          </div>
+        </div>
+        <div style="position:relative">
+          <div class="float-card one">📊 KPI Monitoring</div>
+          <div class="dashboard-frame">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <img src="../assets/images/3.png" alt="Workforce Dashboard Overview" onclick="openModal(this.src)">
+          </div>
+          <div class="float-card two">👥 HR Insights</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="content" id="overview">
+      <section class="section grid four">
+        <div class="card stat"><strong>15</strong><span data-lang="ar">إجمالي الموظفين</span><span data-lang="en">Total Employees</span></div>
+        <div class="card stat"><strong>$130.5K</strong><span data-lang="ar">إجمالي المدفوعات</span><span data-lang="en">Total Payments</span></div>
+        <div class="card stat"><strong>77.65%</strong><span data-lang="ar">معدل الحضور</span><span data-lang="en">Attendance Rate</span></div>
+        <div class="card stat"><strong>3</strong><span data-lang="ar">صفحات تحليلية</span><span data-lang="en">Dashboard Pages</span></div>
+      </section>
+
+      <section class="section grid two">
+        <div class="card text-card"><div class="icon-bubble"><i class="fa-solid fa-eye"></i></div><h2 data-lang="ar">نظرة عامة</h2><h2 data-lang="en">Overview</h2><p data-lang="ar">تم تطوير لوحة تفاعلية باستخدام Power BI لتحليل بيانات الموارد البشرية، ومتابعة توزيع الموظفين والمدفوعات والحضور عبر الدول والفئات المختلفة.</p><p data-lang="en">An interactive Power BI dashboard was developed to analyze HR data, monitor employee distribution, payments, and attendance across countries and categories.</p></div>
+        <div class="card text-card"><div class="icon-bubble"><i class="fa-solid fa-bullseye"></i></div><h2 data-lang="ar">هدف المشروع</h2><h2 data-lang="en">Objective</h2><p data-lang="ar">تحويل بيانات الموارد البشرية إلى مؤشرات مرئية سهلة الفهم تساعد في إعداد التقارير ومقارنة الأداء واتخاذ القرار المبني على البيانات.</p><p data-lang="en">To transform HR data into clear visual indicators that support reporting, performance comparison, and data-driven decision-making.</p></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-star"></i><span data-lang="ar">أبرز المميزات</span><span data-lang="en">Key Features</span></h2></div>
+        <div class="grid three features">
+          <div class="card"><div class="icon-bubble"><i class="fa-solid fa-users"></i></div><h3>Workforce Analysis</h3><p data-lang="ar">تحليل توزيع الموظفين حسب الدولة والجنس وحالة العقد.</p><p data-lang="en">Analyze workforce distribution by country, gender, and contract status.</p></div>
+          <div class="card"><div class="icon-bubble"><i class="fa-solid fa-wallet"></i></div><h3>Financial Tracking</h3><p data-lang="ar">متابعة المدفوعات والرواتب والمقارنات المالية.</p><p data-lang="en">Track payments, salaries, and financial comparisons.</p></div>
+          <div class="card"><div class="icon-bubble"><i class="fa-solid fa-calendar-check"></i></div><h3>Attendance Insights</h3><p data-lang="ar">مراقبة معدلات الحضور وتحليل الأداء الزمني.</p><p data-lang="en">Monitor attendance rates and time-based performance.</p></div>
+        </div>
+      </section>
+
+      <section class="section" id="analysis">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-chart-pie"></i><span data-lang="ar">تحليل اللوحات</span><span data-lang="en">Dashboard Analysis</span></h2></div>
+        <div class="analysis-showcase">
+          <div class="analysis-card">
+            <div class="analysis-image"><img src="../assets/images/3.png" alt="Dashboard Overview" onclick="openModal(this.src)"></div>
+            <div class="analysis-text"><h3 data-lang="ar">Dashboard Overview</h3><h3 data-lang="en">Dashboard Overview</h3><p data-lang="ar">تعرض الصفحة العامة مؤشرات الموظفين والمدفوعات ومتوسط العمر، مع توزيع الموظفين حسب الجنس والدولة وحالة العقد.</p><p data-lang="en">The overview page presents employee, payment, and age KPIs, along with distribution by gender, country, and contract status.</p><div class="mini-points"><span><i class="fa-solid fa-check"></i><span data-lang="ar">الأردن سجلت أعلى عدد موظفين.</span><span data-lang="en">Jordan recorded the highest employee count.</span></span><span><i class="fa-solid fa-check"></i><span data-lang="ar">مقارنة واضحة بين الدول وحالة العقود.</span><span data-lang="en">Clear comparison across countries and contract status.</span></span></div></div>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-image"><img src="../assets/images/4.png" alt="Finance Dashboard" onclick="openModal(this.src)"></div>
+            <div class="analysis-text"><h3 data-lang="ar">Financial Analysis</h3><h3 data-lang="en">Financial Analysis</h3><p data-lang="ar">تركز صفحة المالية على إجمالي المدفوعات، توزيعها حسب الجنس والدولة، واتجاه المدفوعات الشهري.</p><p data-lang="en">The finance page focuses on total payments, payment distribution by gender and country, and monthly payment trends.</p><div class="mini-points"><span><i class="fa-solid fa-check"></i><span data-lang="ar">المدفوعات الأعلى ظهرت في الأردن.</span><span data-lang="en">The highest payments appeared in Jordan.</span></span><span><i class="fa-solid fa-check"></i><span data-lang="ar">الاتجاه الزمني أظهر نموًا تدريجيًا.</span><span data-lang="en">The time trend showed gradual growth.</span></span></div></div>
+          </div>
+          <div class="analysis-card">
+            <div class="analysis-image"><img src="../assets/images/5.png" alt="Attendance Dashboard" onclick="openModal(this.src)"></div>
+            <div class="analysis-text"><h3 data-lang="ar">Attendance Analysis</h3><h3 data-lang="en">Attendance Analysis</h3><p data-lang="ar">تعرض صفحة الحضور معدل الحضور العام ومقارنته حسب الجنس، مع تحليل أيام العمل والحضور الشهري.</p><p data-lang="en">The attendance page shows the overall attendance rate, comparison by gender, working days, and monthly attendance performance.</p><div class="mini-points"><span><i class="fa-solid fa-check"></i><span data-lang="ar">معدل حضور الموظفات أعلى من الموظفين.</span><span data-lang="en">Female attendance rate was higher than male attendance.</span></span><span><i class="fa-solid fa-check"></i><span data-lang="ar">تتبع أداء الحضور على مستوى الموظف والدولة.</span><span data-lang="en">Attendance performance tracked by employee and country.</span></span></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-route"></i><span data-lang="ar">منهجية التحليل</span><span data-lang="en">Analysis Approach</span></h2></div>
+        <div class="process">
+          <div class="card step"><div class="step-no">01</div><div><h3>KPI Definition</h3><p data-lang="ar">تحديد المؤشرات الرئيسية مثل الموظفين والمدفوعات والحضور.</p><p data-lang="en">Defining key indicators such as employees, payments, and attendance.</p></div></div>
+          <div class="card step"><div class="step-no">02</div><div><h3>Data Comparison</h3><p data-lang="ar">مقارنة البيانات حسب الدول والجنس وحالة العقد والفترات الزمنية.</p><p data-lang="en">Comparing data by country, gender, contract status, and time periods.</p></div></div>
+          <div class="card step"><div class="step-no">03</div><div><h3>Pattern Discovery</h3><p data-lang="ar">استكشاف الأنماط والفروقات بين الفئات المختلفة.</p><p data-lang="en">Discovering patterns and differences across categories.</p></div></div>
+          <div class="card step"><div class="step-no">04</div><div><h3>Decision Support</h3><p data-lang="ar">بناء لوحة موحدة تساعد على التقارير واتخاذ القرار.</p><p data-lang="en">Building a unified dashboard that supports reporting and decision-making.</p></div></div>
+        </div>
+      </section>
+
+      <section class="section highlight">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-user-gear"></i><span data-lang="ar">دوري في المشروع</span><span data-lang="en">My Contribution</span></h2></div>
+        <div class="list">
+          <div><i class="fa-solid fa-check"></i><span data-lang="ar">تنظيف البيانات وتجهيزها للتحليل.</span><span data-lang="en">Cleaned and prepared data for analysis.</span></div>
+          <div><i class="fa-solid fa-check"></i><span data-lang="ar">بناء نموذج البيانات والعلاقات بين الجداول.</span><span data-lang="en">Built the data model and relationships between tables.</span></div>
+          <div><i class="fa-solid fa-check"></i><span data-lang="ar">تصميم وتطوير لوحة معلومات متعددة الصفحات.</span><span data-lang="en">Designed and developed a multi-page dashboard.</span></div>
+          <div><i class="fa-solid fa-check"></i><span data-lang="ar">تحويل البيانات إلى مؤشرات ورسوم تفاعلية.</span><span data-lang="en">Translated data into interactive visuals and indicators.</span></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-code"></i><span data-lang="ar">الأدوات المستخدمة</span><span data-lang="en">Tools Used</span></h2></div>
+        <div class="tech-wrap">
+          <div class="tech"><i class="fa-solid fa-chart-simple"></i>Power BI</div><div class="tech"><i class="fa-solid fa-code"></i>DAX</div><div class="tech"><i class="fa-solid fa-filter"></i>Power Query</div><div class="tech"><i class="fa-solid fa-diagram-project"></i>Data Modeling</div><div class="tech"><i class="fa-solid fa-chart-pie"></i>Data Visualization</div><div class="tech"><i class="fa-solid fa-table"></i>Excel</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2 class="section-title"><i class="fa-solid fa-flag-checkered"></i><span data-lang="ar">الأثر النهائي</span><span data-lang="en">Final Impact</span></h2></div>
+        <div class="status-card text-card"><p data-lang="ar">وفرت اللوحة عرضًا تفاعليًا موحدًا لمؤشرات الموارد البشرية والمدفوعات والحضور، مما سهّل مقارنة البيانات بين الدول والفئات واستكشاف الاتجاهات عبر الزمن من خلال واجهة تحليلية واحدة.</p><p data-lang="en">The dashboard provided a unified interactive view of HR, payments, and attendance indicators, making it easier to compare countries and categories and explore trends over time through one analytical interface.</p></div>
+      </section>
+    </div>
+  </main>
+
+  <div class="modal" id="modal" onclick="closeModal()"><button class="close">×</button><img id="modalImg" src="" alt="Preview"></div>
+  <script>
+    function toggleTheme(){document.body.classList.toggle('light')}
+    function toggleLang(){document.body.classList.toggle('en');const isEn=document.body.classList.contains('en');document.documentElement.lang=isEn?'en':'ar';document.documentElement.dir=isEn?'ltr':'rtl';document.getElementById('langBtn').textContent=isEn?'AR':'EN'}
+    function openModal(src){document.getElementById('modalImg').src=src;document.getElementById('modal').classList.add('active')}
+    function closeModal(){document.getElementById('modal').classList.remove('active')}
+  </script>
+</body>
+</html>

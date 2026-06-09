@@ -36,7 +36,7 @@ const PROJECTS = [
     icon: '🛵',
     thumbClass: 'project-card__thumbnail--1',
     ar: {
-      title: 'تطبيق فزّاع',
+      title: 'تطبيق فزعه',
       desc: 'تطبيق جوال يربط المستخدمين بمزودي الخدمات القريبين لتأجير المنتجات وطلب الخدمات الفورية. صمّمت النماذج الأولية في Figma وطوّرت مكونات Flutter الأساسية.',
       tags: ['Flutter', 'Dart', 'Firebase', 'Figma'],
     },
@@ -52,8 +52,8 @@ const PROJECTS = [
     icon: '🎨',
     thumbClass: 'project-card__thumbnail--2',
     ar: {
-      title: 'تصميم UI/UX – فزّاع',
-      desc: 'نماذج أولية تفاعلية احترافية لتطبيق فزّاع مع تدفقات المستخدم الكاملة وتطبيق مبادئ تجربة المستخدم وDesign System متكامل.',
+      title: 'تصميم UI/UX – فزعه',
+      desc: 'نماذج أولية تفاعلية احترافية لتطبيق فزعه مع تدفقات المستخدم الكاملة وتطبيق مبادئ تجربة المستخدم وDesign System متكامل.',
       tags: ['Figma', 'Prototyping', 'User Flows', 'Design System'],
     },
     en: {
