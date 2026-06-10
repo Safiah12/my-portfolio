@@ -161,23 +161,43 @@ const SOFT_SKILLS = [
 
 /** Training courses */
 const COURSES = [
-  { icon: '🐍', ar: { title: 'Python وHTML وCSS وJavaScript',             provider: 'منصة سطر',                       date: '2022' }, en: { title: 'Python, HTML, CSS & JavaScript',               provider: 'Satr Platform',                  date: '2022' } },
-  { icon: '🎨', ar: { title: 'تصميم واجهات وتجارب المستخدم (UI/UX)',      provider: 'Coursera',                       date: '2022' }, en: { title: 'Designing User Interfaces & Experiences',      provider: 'Coursera',                       date: '2022' } },
-  { icon: '📗', ar: { title: 'تحليل البيانات وتمثيلها بـ Excel',           provider: 'أكاديمية تواق',                  date: '2023' }, en: { title: 'Data Analysis & Representation using Excel',   provider: 'Tuwaiq Academy',                 date: '2023' } },
-  { icon: '📊', ar: { title: 'تحليل البيانات وتمثيلها بـ Power BI',        provider: 'وزارة الاتصالات وتقنية المعلومات', date: '2023' }, en: { title: 'Power BI Data Analysis & Visualization',       provider: 'Ministry of Communications & IT',date: '2023' } },
-  { icon: '📈', ar: { title: 'تحليل البيانات – المستوى الأول والثاني',     provider: 'الأكاديمية السعودية الرقمية',    date: '2024' }, en: { title: 'Data Analytics (Level 1 & 2)',                  provider: 'Saudi Digital Academy / Coursera',date: '2024' } },
-  { icon: '🔄', ar: { title: 'التحول الرقمي',                              provider: 'دروب',                            date: '2023' }, en: { title: 'Digital Transformation',                       provider: 'Droob',                          date: '2023' } },
-  { icon: '🏛️', ar: { title: 'الهيكل المؤسسي الوطني والأثر الرقمي',      provider: 'دروب',                            date: '2023' }, en: { title: 'National Institutional Structure & Digital Impact', provider: 'Droob',                       date: '2023' } },
-  { icon: '🤖', ar: { title: 'أساسيات الذكاء الاصطناعي',                  provider: 'SDAIA',                          date: '2023' }, en: { title: 'Fundamentals of Artificial Intelligence',      provider: 'SDAIA',                          date: '2023' } },
-  { icon: '🌐', ar: { title: 'التحول الرقمي والهوية الرقمية',              provider: 'منصة سطر',                       date: '2023' }, en: { title: 'Digital Transformation & Digital Identity',    provider: 'Satr Platform',                  date: '2023' } },
+  { icon: '🐍', ar: { title: 'Python وHTML وCSS وJavaScript', provider: 'منصة سطر', date: '2023-2024' }, en: { title: 'Python, HTML, CSS & JavaScript', provider: 'Satr Platform', date: '2023-2024' } },
+
+  { icon: '🎨', ar: { title: 'تصميم واجهات وتجارب المستخدم (UI/UX)', provider: 'Coursera', date: '2025' }, en: { title: 'Designing User Interfaces & Experiences', provider: 'Coursera', date: '2025' } },
+
+  {
+    icon: '🧪',
+    ar: {
+      title: 'إعداد شهادة اختبار البرمجيات ISTQB Foundation Level',
+      provider: 'Coursera · Board Infinity',
+      date: '2025'
+    },
+    en: {
+      title: 'ISTQB Foundation Level Software Testing Certification Prep',
+      provider: 'Coursera · Board Infinity',
+      date: '2025'
+    }
+  },
+
+  { icon: '📗', ar: { title: 'تحليل البيانات وتمثيلها بـ Excel', provider: 'أكاديمية تواق', date: '2023' }, en: { title: 'Data Analysis & Representation using Excel', provider: 'Tuwaiq Academy', date: '2023' } },
+
+  { icon: '📊', ar: { title: 'تحليل البيانات وتمثيلها بـ Power BI', provider: 'وزارة الاتصالات وتقنية المعلومات', date: '2023' }, en: { title: 'Power BI Data Analysis & Visualization', provider: 'Ministry of Communications & IT', date: '2023' } },
+
+  { icon: '📈', ar: { title: 'تحليل البيانات – المستوى الأول والثاني', provider: 'الأكاديمية السعودية الرقمية', date: '2024' }, en: { title: 'Data Analytics (Level 1 & 2)', provider: 'Saudi Digital Academy / Coursera', date: '2024' } },
+
+  { icon: '🔄', ar: { title: 'التحول الرقمي', provider: 'دروب', date: '2025' }, en: { title: 'Digital Transformation', provider: 'Droob', date: '2023' } },
+
+  { icon: '🏛️', ar: { title: 'الهيكل المؤسسي الوطني والأثر الرقمي', provider: 'دروب', date: '2025' }, en: { title: 'National Institutional Structure & Digital Impact', provider: 'Droob', date: '2025' } },
+
+  { icon: '🤖', ar: { title: 'أساسيات الذكاء الاصطناعي', provider: 'SDAIA', date: '2025' }, en: { title: 'Fundamentals of Artificial Intelligence', provider: 'SDAIA', date: '2023' } },
+
+  { icon: '🌐', ar: { title: 'التحول الرقمي والهوية الرقمية', provider: 'منصة سطر', date: '2025' }, en: { title: 'Digital Transformation & Digital Identity', provider: 'Satr Platform', date: '2025' } },
 ];
 
 /** Professional certificates */
 const CERTIFICATES = [
-  { icon: '🏆', ar: { name: 'Google Data Analytics',                    issuer: 'Google / Coursera',            year: 'فبراير 2024' }, en: { name: 'Google Data Analytics',                    issuer: 'Google / Coursera',            year: 'Feb 2024' } },
-  { icon: '🎨', ar: { name: 'تصميم واجهات وتجارب المستخدم',             issuer: 'Coursera',                     year: '2022'        }, en: { name: 'Designing User Interfaces & Experiences', issuer: 'Coursera',                     year: '2022'     } },
+  { icon: '📊', ar: { name: 'Google Data Analytics',                    issuer: 'Google / Coursera',            year: 'فبراير 2024' }, en: { name: 'Google Data Analytics',                    issuer: 'Google / Coursera',            year: 'Feb 2024' } },
   { icon: '📈', ar: { name: 'تحليل البيانات – المستوى الأول والثاني',   issuer: 'الأكاديمية السعودية الرقمية',  year: '2024'        }, en: { name: 'Data Analytics Level 1 & 2',              issuer: 'Saudi Digital Academy',         year: '2024'     } },
-  { icon: '🤖', ar: { name: 'أساسيات الذكاء الاصطناعي',                 issuer: 'SDAIA',                        year: '2023'        }, en: { name: 'Fundamentals of AI',                      issuer: 'SDAIA',                         year: '2023'     } },
 ];
 
 
