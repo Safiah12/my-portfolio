@@ -23,6 +23,16 @@
     before the first paint — prevents flash of wrong theme.
   -->
   <script src="js/theme.js"></script>
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDG3KPTZGJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MDG3KPTZGJ');
+</script>
 </head>
 
 <body>
@@ -123,11 +133,10 @@
             <span data-ar="تطوير انظمة " data-en="Systems Development">تطوير انظمة</span>
             <span class="hero__role-separator" aria-hidden="true"></span>
             <span data-ar="تحليل بيانات" data-en="Data analysis">تحليل بيانات</span>
-              <span class="hero__role-separator" aria-hidden="true"></span>
-            <span data-ar="التحول الرقمي" data-en="Data analysis">التحول الرقمي</span>
+             
           </p>
 
-          <p
+       <!--  <p
             class="hero__description"
             data-ar="خريجة علوم حاسب مهتمة بتطوير الأنظمة، وتحليل البيانات، وتحسين تجربة المستخدم ضمن بيئات العمل الرقمية، وأسعى إلى تطوير مهاراتي والمساهمة في حلول تقنية عملية تدعم احتياجات العمل."
 
@@ -135,7 +144,7 @@
 
           >
 خريجة علوم حاسب مهتمة بتطوير الأنظمة، وتحليل البيانات، وتحسين تجربة المستخدم ضمن بيئات العمل الرقمية، وأسعى إلى تطوير مهاراتي والمساهمة في حلول تقنية عملية تدعم احتياجات العمل.
-
+        -->
           <div class="hero__actions">
             <a href="assets/files/Safiah-Hamad-Almuhayawi-CV.pdf" class="btn--primary"
                data-ar="📄 تحميل السيرة الذاتية"
@@ -147,8 +156,8 @@
 
           <div class="hero__stats" role="list">
             <div class="stat" role="listitem">
-              <span class="stat__number text-gradient">4.47</span>
-              <span class="stat__label" data-ar="المعدل التراكمي" data-en="GPA">المعدل التراكمي</span>
+            <span style="font-size: 23px;">🏅</span>
+              <span class="stat__label" data-ar="مرتبة الشرف" data-en="Class Honors"></span>
             </div>
             <div class="stat__divider" aria-hidden="true"></div>
             <div class="stat" role="listitem">
@@ -188,88 +197,55 @@
     <!-- ════════════════════════════════════════════
      ABOUT
      ════════════════════════════════════════════ -->
-<section id="about" aria-labelledby="about-heading">
-  <div class="about__layout about__layout--split">
+<!-- ════════════════════════════════════════════
+     ABOUT
+     ════════════════════════════════════════════ -->
+<section id="about" class="about-clean" aria-labelledby="about-heading">
 
-    <!-- Right: About Text -->
-    <div class="about__intro-card reveal">
+  <div class="about-clean__card reveal">
+
+    <div class="about-clean__header">
       <p class="section__tag"
          data-ar="تعرف علي"
-         data-en="Get to Know Me">تعرف علي</p>
+         data-en="Get to Know Me">
+        تعرف علي
+      </p>
 
       <h2 class="section__title"
           id="about-heading"
           data-ar="نبذة عني"
-          data-en="About Me">نبذة عني</h2>
-
-      <p class="about__intro-text"
-         data-ar="خريجة علوم حاسب من جامعة طيبة بمرتبة الشرف الثانية، مهتمة بتطوير الأنظمة، وتحليل البيانات، وتحسين تجربة المستخدم ضمن بيئات العمل الرقمية ومبادرات التحول الرقمي. لدي خبرة تطبيقية من التدريب والمشاريع والعمل التطوعي في تحليل المتطلبات، إعداد التقارير، دعم تطوير التطبيقات، واختبار الأنظمة، وأسعى إلى بناء حلول رقمية عملية تدعم اتخاذ القرار وترفع كفاءة الأعمال."
-         data-en="A Computer Science graduate from Taibah University with Second-Class Honors, interested in systems development, data analysis, and improving user experience within digital work environments and digital transformation initiatives. I have hands-on experience through training, academic projects, and volunteer work in requirements analysis, reporting, application development support, and system testing. I aim to build practical digital solutions that support decision-making and enhance business efficiency.">
-        خريجة علوم حاسب من جامعة طيبة بمرتبة الشرف الثانية، مهتمة بتطوير الأنظمة، وتحليل البيانات، وتحسين تجربة المستخدم ضمن بيئات العمل الرقمية ومبادرات التحول الرقمي. لدي خبرة تطبيقية من التدريب والمشاريع والعمل التطوعي في تحليل المتطلبات، إعداد التقارير، دعم تطوير التطبيقات، واختبار الأنظمة، وأسعى إلى بناء حلول رقمية عملية تدعم اتخاذ القرار وترفع كفاءة الأعمال.
-      </p>
-
-      <div class="about__focus-row">
-        <span data-ar="Data Analysis" data-en="Data Analysis">Data Analysis</span>
-        <span data-ar="Systems Development" data-en="Systems Development">Systems Development</span>
-        <span data-ar="UI/UX" data-en="UI/UX">UI/UX</span>
-        <span data-ar="Requirements Analysis" data-en="Requirements Analysis">Requirements Analysis</span>
-      </div>
+          data-en="About Me">
+        نبذة عني
+      </h2>
     </div>
 
-    <!-- Left: Skills Cards -->
-    <div class="about__cards-grid about__cards-grid--left">
+    <div class="about-clean__statement">
+      <span class="about-clean__quote">“</span>
+      <p data-ar="أجمع بين التحليل والتقنية وتجربة المستخدم لتحويل احتياجات العمل إلى مخرجات واضحة وقابلة للاستخدام."
+         data-en="I connect analysis, technology, and user experience to turn business needs into clear and usable outcomes.">
+        أجمع بين التحليل والتقنية وتجربة المستخدم لتحويل احتياجات العمل إلى مخرجات واضحة وقابلة للاستخدام.
+      </p>
+    </div>
 
-      <article class="about-card reveal reveal--delay-1">
-        <div class="about-card__icon" aria-hidden="true">📊</div>
-        <h3 class="about-card__title"
-            data-ar="تحليل البيانات"
-            data-en="Data Analysis">تحليل البيانات</h3>
-        <p class="about-card__text"
-           data-ar="تنظيم البيانات وتحليلها باستخدام Excel وPower BI وSQL وPython، مع بناء لوحات معلومات وتقارير تساعد على فهم المؤشرات."
-           data-en="Organizing and analyzing data using Excel, Power BI, SQL, and Python, with dashboards and reports that explain key indicators.">
-          تنظيم البيانات وتحليلها باستخدام Excel وPower BI وSQL وPython، مع بناء لوحات معلومات وتقارير تساعد على فهم المؤشرات.
-        </p>
-      </article>
+    <p class="about-clean__text"
+       data-ar="خريجة علوم حاسب من جامعة طيبة بمرتبة الشرف، مهتمة بتطوير الأنظمة، وتحليل البيانات، وتحسين تجربة المستخدم ضمن بيئات العمل الرقمية.&#10;&#10;اكتسبت خبرة تطبيقية من خلال التدريب المهني، والمشاريع الأكاديمية، والعمل التطوعي في تحليل البيانات، إعداد التقارير، دعم تطوير التطبيقات، واختبار وظائف الأنظمة.&#10;&#10;أجمع بين التفكير التحليلي والمهارات التقنية لفهم احتياجات العمل وتحويلها إلى مخرجات واضحة، مثل لوحات معلومات، تقارير، واجهات استخدام، ووظائف تطبيقية تساعد في تحسين تجربة المستخدم ودعم كفاءة العمل."
+       data-en="A Computer Science graduate from Taibah University with Honors, interested in systems development, data analysis, and improving user experience within digital work environments.&#10;&#10;I gained practical experience through professional training, academic projects, and volunteer work in data analysis, reporting, application development support, and system functionality testing.&#10;&#10;I combine analytical thinking with technical skills to understand business needs and turn them into clear outputs, such as dashboards, reports, user interfaces, and application features that help improve user experience and support work efficiency.">
+      خريجة علوم حاسب من جامعة طيبة بمرتبة الشرف، مهتمة بتطوير الأنظمة، وتحليل البيانات، وتحسين تجربة المستخدم ضمن بيئات العمل الرقمية.
 
-      <article class="about-card reveal reveal--delay-2">
-        <div class="about-card__icon" aria-hidden="true">💻</div>
-        <h3 class="about-card__title"
-            data-ar="تطوير الأنظمة"
-            data-en="Systems Development">تطوير الأنظمة</h3>
-        <p class="about-card__text"
-           data-ar="المساهمة في تطوير تطبيقات وأنظمة ويب مع التركيز على الوظائف الأساسية وتجربة المستخدم."
-           data-en="Contributing to web applications and systems with a focus on core functionality and user experience.">
-          المساهمة في تطوير تطبيقات وأنظمة ويب مع التركيز على الوظائف الأساسية وتجربة المستخدم.
-        </p>
-      </article>
+      اكتسبت خبرة تطبيقية من خلال التدريب المهني، والمشاريع الأكاديمية، والعمل التطوعي في تحليل البيانات، إعداد التقارير، دعم تطوير التطبيقات، واختبار وظائف الأنظمة.
 
-      <article class="about-card reveal reveal--delay-3">
-        <div class="about-card__icon" aria-hidden="true">🔄</div>
-        <h3 class="about-card__title"
-            data-ar="تحليل المتطلبات والعمليات"
-            data-en="Requirements & Process Analysis">تحليل المتطلبات والعمليات</h3>
-        <p class="about-card__text"
-           data-ar="فهم احتياجات العمل وتحويلها إلى متطلبات واضحة، مع توثيق الإجراءات ونمذجة العمليات."
-           data-en="Understanding business needs and translating them into clear requirements, while documenting procedures and processes.">
-          فهم احتياجات العمل وتحويلها إلى متطلبات واضحة، مع توثيق الإجراءات ونمذجة العمليات.
-        </p>
-      </article>
+      أجمع بين التفكير التحليلي والمهارات التقنية لفهم احتياجات العمل وتحويلها إلى مخرجات واضحة، مثل لوحات معلومات، تقارير، واجهات استخدام، ووظائف تطبيقية تساعد في تحسين تجربة المستخدم ودعم كفاءة العمل.
+    </p>
 
-      <article class="about-card reveal reveal--delay-4">
-        <div class="about-card__icon" aria-hidden="true">📱</div>
-        <h3 class="about-card__title"
-            data-ar="تصميم UI/UX واختبار الأنظمة"
-            data-en="UI/UX Design & System Testing">تصميم UI/UX واختبار الأنظمة</h3>
-        <p class="about-card__text"
-           data-ar="تصميم واجهات أولية باستخدام Figma، وتحسين تجربة المستخدم، والمشاركة في اختبار وظائف الأنظمة."
-           data-en="Designing initial interfaces using Figma, improving user experience, and participating in system functionality testing.">
-          تصميم واجهات أولية باستخدام Figma، وتحسين تجربة المستخدم، والمشاركة في اختبار وظائف الأنظمة.
-        </p>
-      </article>
-
+    <div class="about-clean__chips">
+      <span>Data Analysis</span>
+      <span>Systems Development</span>
+      <span>UI/UX</span>
+      <span>Requirements Analysis</span>
     </div>
 
   </div>
+
 </section>
     <!-- ════════════════════════════════════════════
          ACADEMIC
@@ -304,21 +280,21 @@
 
         <article class="academic-card reveal reveal--delay-2">
           <div class="academic-card__glow" aria-hidden="true"></div>
-          <p class="academic-card__label" data-ar="المعدل التراكمي" data-en="GPA">المعدل التراكمي</p>
+          <p class="academic-card__label" data-ar="المعدل التراكمي" data-en="GPA"></p>
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:3px;">
             <!-- ⚠️ This flex wrapper is a one-off layout for the GPA + badge side-by-side.
                  It doesn't warrant a new component class. Kept minimal. -->
             <p class="academic-card__value">4.47</p>
-            <span class="badge--honor">⭐ <span data-ar="مرتبة الشرف الثانية" data-en="Second Honors">مرتبة الشرف الثانية</span></span>
+            <span class="badge--honor">🏅<span data-ar="مرتبة الشرف " data-en="Class Honors"></span></span>
           </div>
-          <p class="academic-card__sub" data-ar="من 5.00" data-en="out of 5.00">من 5.00</p>
+         <p class="academic-card__sub" data-ar="من 5.00" data-en="out of 5.00">من 5.00</p>
         </article>
 
         <article class="academic-card reveal reveal--delay-3">
           <div class="academic-card__glow" aria-hidden="true"></div>
           <p class="academic-card__label" data-ar="سنة التخرج"    data-en="Graduation">سنة التخرج</p>
           <p class="academic-card__value" data-ar="نوفمبر 2022"   data-en="November 2022">نوفمبر 2022</p>
-          <p class="academic-card__sub"   data-ar="23-11-2022" data-en="23-11-2022"></p>
+          <p class="academic-card__sub"   data-ar="18-11-2022" data-en="23-11-2022"></p>
         </article>
 
       </div>

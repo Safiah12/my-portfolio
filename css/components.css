@@ -1566,6 +1566,7 @@
   font-size: 17px;
   line-height: 2.1;
   max-width: 620px;
+    white-space: pre-line;
 }
 
 .about__focus-row {
@@ -1638,6 +1639,7 @@
 /* English Direction */
 body.en .about__intro-text {
   line-height: 1.8;
+    white-space: pre-line;
 }
 
 /* Responsive */
@@ -1663,6 +1665,7 @@ body.en .about__intro-text {
 
   .about__intro-text {
     font-size: 15px;
+      white-space: pre-line;
     line-height: 2;
   }
 
@@ -1746,6 +1749,158 @@ body.en .about__intro-text {
 
   .experience-card--compact {
     padding: 22px;
+  }
+}
+/* ═══════════════════════════════════════════════
+   ABOUT CLEAN SECTION
+   ═══════════════════════════════════════════════ */
+
+.about-clean {
+  padding-block: 95px;
+}
+
+.about-clean__card {
+  max-width: 980px;
+  margin-inline: auto;
+  padding: 48px;
+  border-radius: 34px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 85% 12%, rgba(90, 176, 255, 0.18), transparent 34%),
+    radial-gradient(circle at 10% 90%, rgba(94, 221, 194, 0.10), transparent 34%),
+    linear-gradient(135deg, rgba(15, 30, 58, 0.97), rgba(7, 14, 31, 0.94));
+  border: 1px solid rgba(90, 176, 255, 0.22);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.24);
+}
+
+.about-clean__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 36px 36px;
+  opacity: .35;
+  pointer-events: none;
+}
+
+.about-clean__card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.about-clean__header {
+  margin-bottom: 26px;
+}
+
+.about-clean__statement {
+  position: relative;
+  padding: 22px 26px;
+  margin-bottom: 28px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(90, 176, 255, 0.17);
+}
+
+.about-clean__quote {
+  position: absolute;
+  top: -20px;
+  inset-inline-start: 24px;
+  font-size: 62px;
+  line-height: 1;
+  font-weight: 900;
+  color: rgba(90, 176, 255, 0.24);
+}
+
+.about-clean__statement p {
+  color: #f7faff;
+  font-size: 1.12rem;
+  font-weight: 800;
+  line-height: 2;
+}
+
+.about-clean__text {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  line-height: 2.15;
+  white-space: pre-line;
+  max-width: 850px;
+}
+
+.about-clean__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.about-clean__chips span {
+  padding: 9px 14px;
+  border-radius: var(--radius-full);
+  color: #dcecff;
+  font-size: 0.78rem;
+  font-weight: 900;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(90, 176, 255, 0.20);
+  transition: 0.25s ease;
+}
+
+.about-clean__chips span:hover {
+  transform: translateY(-3px);
+  border-color: rgba(94, 221, 194, 0.42);
+}
+
+/* Light Mode */
+[data-theme=""] .about-clean__card {
+  background:
+    radial-gradient(circle at 85% 12%, rgba(90, 176, 255, 0.16), transparent 34%),
+    linear-gradient(135deg, rgba(255,255,255,.96), rgba(239,245,255,.94));
+}
+
+[data-theme=""] .about-clean__statement,
+[data-theme=""] .about-clean__chips span {
+  background: rgba(255, 255, 255, 0.72);
+}
+
+[data-theme=""] .about-clean__statement p {
+  color: #0D1B3E;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-clean {
+    padding-block: 70px;
+  }
+
+  .about-clean__card {
+    padding: 30px;
+    border-radius: 28px;
+  }
+
+  .about-clean__statement p {
+    font-size: 1rem;
+  }
+
+  .about-clean__text {
+    font-size: 0.92rem;
+    line-height: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-clean__card {
+    padding: 24px;
+  }
+
+  .about-clean__chips {
+    gap: 8px;
+  }
+
+  .about-clean__chips span {
+    font-size: 0.72rem;
+    padding: 8px 11px;
   }
 }
 .cert-modal-card__icon  { font-size: 4.5rem; margin-bottom: 14px; }
