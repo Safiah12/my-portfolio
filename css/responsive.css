@@ -142,6 +142,24 @@ section {
     height: 280px;
     margin: 0;
   }
+  /* English hero layout fix */
+@media (min-width: 920px) {
+  [lang="en"] .hero__layout {
+    grid-template-columns: 1fr auto;
+    direction: ltr;
+  }
+
+  [lang="en"] .hero__text {
+    grid-column: 1;
+    text-align: left;
+    justify-self: start;
+  }
+
+  [lang="en"] .avatar-wrapper {
+    grid-column: 2;
+    justify-self: end;
+  }
+}
 
   /* Two-column layouts */
   .about__layout   { grid-template-columns: 1fr 1fr; }
