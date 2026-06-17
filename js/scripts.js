@@ -38,12 +38,12 @@ const PROJECTS = [
     githubUrl: '#',
     ar: {
       title: 'تطبيق فزعه',
-      desc: 'تطبيق جوال يربط المستخدمين بمزودي الخدمات القريبين لتأجير المنتجات وطلب الخدمات الفورية. صمّمت النماذج الأولية في Figma وطوّرت مكونات Flutter الأساسية.',
+      desc: 'تطبيق جوال يربط المستخدمين بمزودي الخدمات القريبين لتأجير المنتجات وطلب الخدمات الفورية .',
       tags: ['Flutter', 'Dart', 'Firebase', 'Figma'],
     },
     en: {
       title: 'FAZAA Application',
-      desc: 'Mobile app connecting users with nearby service providers to rent products or request on-demand services. Designed Figma prototypes and developed core Flutter components.',
+      desc: 'Mobile app connecting users with nearby service providers to rent products or request on-demand services.',
       tags: ['Flutter', 'Dart', 'Firebase', 'Figma'],
     },
   },
@@ -74,13 +74,13 @@ const PROJECTS = [
     githubUrl: '#',
     ar: {
       title: 'لوحة تحليل أداء المبيعات',
-      desc: 'لوحة معلومات تفاعلية باستخدام Power BI لتحليل مبيعات عام 2019، تعرض مؤشرات رئيسية مثل إجمالي المبيعات، عدد المنتجات، الفئات، متوسط قيمة الطلب، والاتجاه الشهري للمبيعات مع توزيع جغرافي حسب الولاية.',
+      desc: 'لوحة Power BI تفاعلية لتحليل أداء المبيعات، وعرض المؤشرات الرئيسية والاتجاهات الشهرية والتوزيع الجغرافي.',
       tags: ['Power BI', 'DAX', 'Data Visualization', 'Data Modeling'],
     
     },
     en: {
       title: 'Sales Performance Dashboard',
-      desc:'An interactive Power BI dashboard designed to analyze 2019 sales performance, showcasing key metrics such as total sales, product count, categories, average order value, monthly trends, and geographic sales distribution by state.',
+      desc:'An interactive Power BI dashboard for analyzing sales performance, key metrics, monthly trends, and geographic distribution.',
      tags: ['Power BI', 'DAX', 'Data Visualization', 'Data Modeling'],
     },
   },
@@ -92,12 +92,12 @@ const PROJECTS = [
     githubUrl: '#',
     ar: {
       title: 'دعم WordPress والواجهة الأمامية – جمعية رتل الرقمية',
-      desc: 'تجربة تطوعية تقنية ساهمت من خلالها في تحسين موقع جمعية رتل الرقمية باستخدام WordPress وCSS مخصص. ركز عملي على تحسين استجابة الصفحات، وتناسق الواجهة البصرية، وتعزيز تجربة المستخدم عبر الأجهزة المختلفة.',
+      desc: 'تجربة تطوعية تقنية ساهمت من خلالها في تحسين موقع جمعية رتل الرقمية باستخدام WordPress وCSS مخصصة.',
       tags: ['WordPress', 'CSS', 'Responsive', 'UI/UX'],
     },
     en: {
       title: 'WordPress & Front-End Support – Ratel Digital Association',
-      desc: 'A volunteer technical experience where I contributed to improving the Ratel Digital Association website using WordPress and custom CSS. My work focused on enhancing page responsiveness, visual consistency, and user experience across different devices.',
+      desc: 'A volunteer technical experience where I contributed to improving the Ratel Digital Association website using WordPress and custom CSS.',
       tags: ['WordPress', 'CSS', 'Responsive', 'UI/UX'],
     },
   },
@@ -125,12 +125,12 @@ ar: {
     githubUrl: '#',
     ar: {
       title: ' يدوي (Yadwi)',
-      desc: 'يدوي منصة رقمية تهدف إلى دعم الحرفيين والفنانين المستقلين من خلال توفير متاجر إلكترونية لعرض المنتجات اليدوية، بالإضافة إلى نظام لإدارة وحجز ورش العمل الحرفية. شاركت في تصميم تجربة المستخدم والواجهات باستخدام Figma ضمن مشروع تم تطويره خلال برنامج تطوير المواقع باستخدام Laravel',
+      desc: 'يدوي منصة رقمية تهدف إلى دعم الحرفيين والفنانين المستقلين من خلال توفير متاجر إلكترونية لعرض المنتجات اليدوية، بالإضافة إلى نظام لإدارة وحجز ورش العمل الحرفية.',
       tags: ['HTML', 'CSS', 'Responsive', 'UI/UX'],
     },
     en: {
       title: 'Yadwi Website ',
-      desc: 'Yadwi is a digital platform designed to support artisans and independent creators through online stores for handmade products and a craft workshop booking system. I contributed to the UI/UX design process using Figma as part of a team project developed during a Laravel web development program. ',
+      desc: 'Yadwi is a digital platform designed to support artisans and independent creators through online stores for handmade products and a craft workshop booking system.  ',
       tags: ['HTML', 'CSS', 'PHP-LARVEAL', 'UI/UX'],
     },
   },
