@@ -1905,10 +1905,15 @@ body.en .about__intro-text {
 }/* ═══════════════════════════════════════════════
    MY JOURNEY — GRAPHIC PREMIUM
    ═══════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════
+   MY JOURNEY — GRAPHIC PREMIUM
+   Laptop: Horizontal Journey
+   Mobile: Vertical Graphic Journey
+   ═══════════════════════════════════════════════ */
 
 .journey-premium {
   position: relative;
-  padding-block: 95px;
+  padding-block: 90px;
   overflow: hidden;
 }
 
@@ -1929,7 +1934,7 @@ body.en .about__intro-text {
   text-align: center;
   max-width: 850px;
   margin-inline: auto;
-  margin-bottom: 45px;
+  margin-bottom: 42px;
 }
 
 .journey-premium__subtitle {
@@ -1949,7 +1954,7 @@ body.en .about__intro-text {
   overflow-y: hidden;
   padding: 10px 0 20px;
   scrollbar-width: thin;
-  scrollbar-color: rgba(90, 176, 255, 0.45) transparent;
+  scrollbar-color: rgba(90, 176, 255, 0.35) transparent;
 }
 
 .journey-premium__scroller::-webkit-scrollbar {
@@ -1957,22 +1962,23 @@ body.en .about__intro-text {
 }
 
 .journey-premium__scroller::-webkit-scrollbar-thumb {
-  background: rgba(90, 176, 255, 0.35);
+  background: rgba(90, 176, 255, 0.32);
   border-radius: 999px;
 }
 
+/* Board */
 .journey-premium__board {
   position: relative;
-  min-width: 1120px;
-  height: 590px;
-  border-radius: 38px;
+  min-width: 1040px;
+  height: 470px;
+  border-radius: 32px;
   overflow: hidden;
   background:
     radial-gradient(circle at 50% 48%, rgba(90, 176, 255, 0.10), transparent 38%),
     linear-gradient(135deg, rgba(15, 30, 58, 0.96), rgba(7, 14, 31, 0.94));
   border: 1px solid rgba(90, 176, 255, 0.20);
   box-shadow:
-    0 28px 80px rgba(0, 0, 0, 0.28),
+    0 26px 70px rgba(0, 0, 0, 0.26),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
@@ -1981,10 +1987,10 @@ body.en .about__intro-text {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,.032) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.032) 1px, transparent 1px);
   background-size: 34px 34px;
-  opacity: 0.32;
+  opacity: 0.30;
   pointer-events: none;
 }
 
@@ -1994,9 +2000,9 @@ body.en .about__intro-text {
   width: 360px;
   height: 360px;
   border-radius: 50%;
-  top: 120px;
-  left: 380px;
-  background: radial-gradient(circle, rgba(94, 221, 194, 0.13), transparent 68%);
+  top: 70px;
+  left: 360px;
+  background: radial-gradient(circle, rgba(94, 221, 194, 0.12), transparent 68%);
   filter: blur(2px);
   pointer-events: none;
 }
@@ -2020,71 +2026,73 @@ body.en .about__intro-text {
 }
 
 .journey-premium__road-shadow {
-  stroke: rgba(0, 0, 0, 0.28);
-  stroke-width: 44;
-  transform: translateY(12px);
+  stroke: rgba(0, 0, 0, 0.24);
+  stroke-width: 30;
+  transform: translateY(10px);
 }
 
-.journey-premium__road {
-  stroke: url(#journeyRoadGradient);
-  stroke-width: 38;
-}
-
-/* fallback لأن CSS لا يعرف gradient داخل SVG بدون defs */
 .journey-premium__road {
   stroke: #153966;
+  stroke-width: 24;
+  opacity: 0.94;
 }
 
 .journey-premium__road-dash {
-  stroke: rgba(255, 255, 255, 0.70);
-  stroke-width: 4;
-  stroke-dasharray: 24 28;
-  animation: journeyDash 10s linear infinite;
+  stroke: rgba(255, 255, 255, 0.62);
+  stroke-width: 3;
+  stroke-dasharray: 16 22;
+  opacity: 0.72;
+  animation: journeyDash 12s linear infinite;
 }
 
-/* Car */
+/* Hide car completely */
 .journey-premium__car {
-  position: absolute;
-  z-index: 6;
-  width: 52px;
-  height: 52px;
-  border-radius: 18px;
-  display: grid;
-  place-items: center;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(90, 176, 255, 0.35);
-  box-shadow:
-    0 16px 34px rgba(0, 0, 0, 0.25),
-    0 0 22px rgba(90, 176, 255, 0.22);
-  offset-path: path("M 1040 310 C 930 140, 760 150, 685 290 S 505 465, 380 315 S 190 150, 90 285");
-  offset-rotate: auto;
-  animation: journeyCar 13s ease-in-out infinite;
-}
-
-.journey-premium__car span {
-  font-size: 1.45rem;
-  transform: scaleX(-1);
+  display: none !important;
 }
 
 /* Stops */
 .journey-premium__stop {
   position: absolute;
   z-index: 5;
-  width: 225px;
+  width: 178px;
 }
 
-.stop-1 { right: 45px; top: 86px; }
-.stop-2 { right: 250px; bottom: 52px; }
-.stop-3 { right: 450px; top: 55px; }
-.stop-4 { left: 340px; bottom: 48px; }
-.stop-5 { left: 145px; top: 76px; }
-.stop-6 { left: 35px; bottom: 70px; }
+.stop-1 {
+  right: 86px;
+  top: 78px;
+}
 
+.stop-2 {
+  right: 292px;
+  bottom: 58px;
+}
+
+.stop-3 {
+  right: 475px;
+  top: 66px;
+}
+
+.stop-4 {
+  left: 378px;
+  bottom: 58px;
+}
+
+.stop-5 {
+  left: 185px;
+  top: 74px;
+}
+
+.stop-6 {
+  left: 76px;
+  bottom: 64px;
+}
+
+/* Circle */
 .journey-premium__circle {
-  width: 92px;
-  height: 92px;
+  width: 58px;
+  height: 58px;
   margin-inline: auto;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -2092,67 +2100,72 @@ body.en .about__intro-text {
   background:
     radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.22), transparent 28%),
     linear-gradient(135deg, #0A4FBF, #5AB0FF, #5EDDC2);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.20);
   box-shadow:
-    0 18px 38px rgba(0, 0, 0, 0.25),
-    0 0 0 8px rgba(90, 176, 255, 0.08);
+    0 10px 22px rgba(0, 0, 0, 0.18),
+    0 0 0 5px rgba(90, 176, 255, 0.055);
 }
 
 .journey-premium__circle::before {
   content: "";
   position: absolute;
-  inset: -9px;
+  inset: -6px;
   border-radius: 50%;
-  border: 1px dashed rgba(90, 176, 255, 0.35);
+  border: 1px dashed rgba(90, 176, 255, 0.32);
+  opacity: 0.65;
   animation: journeySpin 18s linear infinite;
 }
 
 .journey-premium__number {
   position: absolute;
-  top: -13px;
-  inset-inline-end: -10px;
-  width: 38px;
-  height: 38px;
-  border-radius: 14px;
+  top: -8px;
+  inset-inline-end: -7px;
+  width: 26px;
+  height: 26px;
+  border-radius: 10px;
   display: grid;
   place-items: center;
   background: #071429;
   color: #8ec8ff;
-  font-size: 0.78rem;
+  font-size: 0.6rem;
   font-weight: 900;
   border: 1px solid rgba(90, 176, 255, 0.28);
 }
 
 .journey-premium__icon {
-  font-size: 2rem;
+  font-size: 1.2rem;
 }
 
+/* Cards */
 .journey-premium__card {
   position: relative;
-  min-height: 154px;
-  padding: 18px 16px;
-  border-radius: 24px;
+  min-height: 108px;
+  padding: 11px 10px;
+  border-radius: 17px;
   text-align: center;
   overflow: hidden;
   background:
-    radial-gradient(circle at top, rgba(90, 176, 255, 0.13), transparent 42%),
-    linear-gradient(180deg, rgba(18, 36, 70, 0.98), rgba(10, 23, 47, 0.96));
-  border: 1px solid rgba(90, 176, 255, 0.18);
+    radial-gradient(circle at top, rgba(90, 176, 255, 0.09), transparent 40%),
+    linear-gradient(180deg, rgba(18, 36, 70, 0.94), rgba(10, 23, 47, 0.92));
+  border: 1px solid rgba(90, 176, 255, 0.13);
   box-shadow:
-    0 18px 42px rgba(0, 0, 0, 0.24),
-    9px 9px 0 rgba(30, 115, 232, 0.07);
-  transition: 0.3s ease;
+    0 10px 26px rgba(0, 0, 0, 0.18),
+    5px 5px 0 rgba(30, 115, 232, 0.045);
+  transition:
+    transform 0.28s ease,
+    border-color 0.28s ease,
+    box-shadow 0.28s ease;
 }
 
 .journey-premium__card::before {
   content: "";
   position: absolute;
-  top: 13px;
-  inset-inline-start: 14px;
-  width: 52px;
-  height: 10px;
+  top: 10px;
+  inset-inline-start: 12px;
+  width: 44px;
+  height: 8px;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(255,255,255,0.12), transparent);
+  background: linear-gradient(90deg, rgba(255,255,255,0.10), transparent);
 }
 
 .journey-premium__card::after {
@@ -2160,48 +2173,48 @@ body.en .about__intro-text {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
   background-size: 22px 22px;
-  opacity: 0.45;
+  opacity: 0.38;
   pointer-events: none;
-}
-
-.journey-premium__card:hover {
-  transform: translateY(-8px) rotate(0deg);
-  border-color: rgba(94, 221, 194, 0.42);
-  box-shadow:
-    0 25px 55px rgba(0, 0, 0, 0.32),
-    10px 10px 0 rgba(94, 221, 194, 0.08);
 }
 
 .stop-1 .journey-premium__card,
 .stop-3 .journey-premium__card,
 .stop-5 .journey-premium__card {
-  transform: rotate(-1deg);
+  transform: rotate(-0.6deg);
 }
 
 .stop-2 .journey-premium__card,
 .stop-4 .journey-premium__card,
 .stop-6 .journey-premium__card {
-  transform: rotate(1deg);
+  transform: rotate(0.6deg);
+}
+
+.journey-premium__card:hover {
+  transform: translateY(-5px) rotate(0deg) !important;
+  border-color: rgba(94, 221, 194, 0.34);
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, 0.22),
+    6px 6px 0 rgba(94, 221, 194, 0.055);
 }
 
 .journey-premium__card h3 {
   position: relative;
   z-index: 2;
   color: #F7FAFF;
-  font-size: 1rem;
+  font-size: 0.76rem;
   font-weight: 900;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .journey-premium__card p {
   position: relative;
   z-index: 2;
   color: rgba(220, 230, 255, 0.78);
-  font-size: 0.82rem;
-  line-height: 1.75;
+  font-size: 0.62rem;
+  line-height: 1.5;
 }
 
 .journey-premium__stop--goal .journey-premium__circle {
@@ -2209,45 +2222,9 @@ body.en .about__intro-text {
     radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.26), transparent 28%),
     linear-gradient(135deg, #5EDDC2, #5AB0FF, #0A4FBF);
   box-shadow:
-    0 20px 42px rgba(0, 0, 0, 0.28),
-    0 0 0 9px rgba(94, 221, 194, 0.10),
-    0 0 28px rgba(94, 221, 194, 0.18);
-}
-
-/* Animations */
-@keyframes journeyCar {
-  0% {
-    offset-distance: 0%;
-    transform: scale(1);
-  }
-  18% {
-    transform: scale(1.08);
-  }
-  33% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.08);
-  }
-  70% {
-    transform: scale(1);
-  }
-  100% {
-    offset-distance: 100%;
-    transform: scale(1);
-  }
-}
-
-@keyframes journeyDash {
-  to {
-    stroke-dashoffset: -220;
-  }
-}
-
-@keyframes journeySpin {
-  to {
-    transform: rotate(360deg);
-  }
+    0 12px 26px rgba(0, 0, 0, 0.20),
+    0 0 0 6px rgba(94, 221, 194, 0.08),
+    0 0 22px rgba(94, 221, 194, 0.14);
 }
 
 /* Light Mode */
@@ -2282,19 +2259,19 @@ body.light .journey-premium__road,
 body.light .journey-premium__road-dash,
 [data-theme="light"] .journey-premium__road-dash,
 [data-theme=""] .journey-premium__road-dash {
-  stroke: rgba(30, 115, 232, 0.58);
+  stroke: rgba(30, 115, 232, 0.52);
 }
 
 body.light .journey-premium__card,
 [data-theme="light"] .journey-premium__card,
 [data-theme=""] .journey-premium__card {
   background:
-    radial-gradient(circle at top, rgba(90, 176, 255, 0.08), transparent 42%),
-    linear-gradient(180deg, rgba(255,255,255,0.98), rgba(243,247,255,0.96));
-  border-color: rgba(30, 115, 232, 0.13);
+    radial-gradient(circle at top, rgba(90, 176, 255, 0.065), transparent 40%),
+    linear-gradient(180deg, rgba(255,255,255,0.98), rgba(246,249,255,0.96));
+  border-color: rgba(30, 115, 232, 0.10);
   box-shadow:
-    0 18px 38px rgba(30, 115, 232, 0.10),
-    9px 9px 0 rgba(30, 115, 232, 0.05);
+    0 10px 24px rgba(30, 115, 232, 0.075),
+    5px 5px 0 rgba(30, 115, 232, 0.035);
 }
 
 body.light .journey-premium__card h3,
@@ -2316,508 +2293,27 @@ body.light .journey-premium__number,
   color: #1E73E8;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .journey-premium {
-    padding-block: 70px;
-  }
-
-  .journey-premium__header {
-    text-align: start;
-    margin-bottom: 28px;
-  }
-
-  .journey-premium__subtitle {
-    font-size: 0.9rem;
-    line-height: 1.9;
-  }
-
-  .journey-premium__scroller {
-    width: 100%;
-    padding-inline: 18px;
-  }
-
-  .journey-premium__board {
-    min-width: 1120px;
-    height: 570px;
+/* Animations */
+@keyframes journeyDash {
+  to {
+    stroke-dashoffset: -220;
   }
 }
 
-@media (max-width: 520px) {
-  .journey-premium__card {
-    min-height: 145px;
-  }
-
-  .journey-premium__circle {
-    width: 82px;
-    height: 82px;
-  }
-
-  .journey-premium__icon {
-    font-size: 1.65rem;
-  }
-
-  .journey-premium__card h3 {
-    font-size: 0.95rem;
-  }
-
-  .journey-premium__card p {
-    font-size: 0.78rem;
+@keyframes journeySpin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .journey-premium__car,
-  .journey-premium__road-dash,
-  .journey-premium__circle::before {
-    animation: none;
-  }
-
-}
 /* ═══════════════════════════════════════════════
-   JOURNEY PREMIUM — Size Refinement
-   تصغير الكروت والدوائر وجعلها أكثر تناسبًا
-   ═══════════════════════════════════════════════ */
-
-.journey-premium__board {
-  min-width: 1120px;
-  height: 520px;
-  border-radius: 34px;
-}
-
-/* تصغير عرض كل محطة */
-.journey-premium__stop {
-  width: 190px;
-}
-
-/* تصغير الدوائر */
-.journey-premium__circle {
-  width: 72px;
-  height: 72px;
-  margin-bottom: 10px;
-  box-shadow:
-    0 14px 28px rgba(0, 0, 0, 0.22),
-    0 0 0 6px rgba(90, 176, 255, 0.07);
-}
-
-.journey-premium__circle::before {
-  inset: -7px;
-}
-
-/* تصغير الأرقام */
-.journey-premium__number {
-  width: 32px;
-  height: 32px;
-  border-radius: 12px;
-  top: -10px;
-  inset-inline-end: -8px;
-  font-size: 0.7rem;
-}
-
-/* تصغير الأيقونات داخل الدائرة */
-.journey-premium__icon {
-  font-size: 1.55rem;
-}
-
-/* تصغير الكروت */
-.journey-premium__card {
-  min-height: 128px;
-  padding: 14px 13px;
-  border-radius: 20px;
-  box-shadow:
-    0 14px 32px rgba(0, 0, 0, 0.22),
-    7px 7px 0 rgba(30, 115, 232, 0.06);
-}
-
-.journey-premium__card h3 {
-  font-size: 0.88rem;
-  margin-bottom: 6px;
-}
-
-.journey-premium__card p {
-  font-size: 0.72rem;
-  line-height: 1.65;
-}
-
-/* تصغير عرض الطريق قليلًا حتى لا يغطي الكروت */
-.journey-premium__road-shadow {
-  stroke-width: 36;
-}
-
-.journey-premium__road {
-  stroke-width: 30;
-}
-
-.journey-premium__road-dash {
-  stroke-width: 3.5;
-  stroke-dasharray: 20 24;
-}
-
-/* تصغير السيارة */
-.journey-premium__car {
-  width: 44px;
-  height: 44px;
-  border-radius: 15px;
-}
-
-.journey-premium__car span {
-  font-size: 1.25rem;
-}
-
-/* إعادة توزيع المحطات بعد التصغير */
-.stop-1 {
-  right: 70px;
-  top: 88px;
-}
-
-.stop-2 {
-  right: 285px;
-  bottom: 58px;
-}
-
-.stop-3 {
-  right: 475px;
-  top: 66px;
-}
-
-.stop-4 {
-  left: 370px;
-  bottom: 58px;
-}
-
-.stop-5 {
-  left: 170px;
-  top: 76px;
-}
-
-.stop-6 {
-  left: 58px;
-  bottom: 66px;
-}
-
-/* تقليل ميلان الكروت حتى يكون أهدأ */
-.stop-1 .journey-premium__card,
-.stop-3 .journey-premium__card,
-.stop-5 .journey-premium__card {
-  transform: rotate(-0.6deg);
-}
-
-.stop-2 .journey-premium__card,
-.stop-4 .journey-premium__card,
-.stop-6 .journey-premium__card {
-  transform: rotate(0.6deg);
-}
-
-/* الجوال والآيباد */
-@media (max-width: 768px) {
-  .journey-premium__board {
-    min-width: 1040px;
-    height: 500px;
-  }
-
-  .journey-premium__stop {
-    width: 180px;
-  }
-
-  .journey-premium__circle {
-    width: 68px;
-    height: 68px;
-  }
-
-  .journey-premium__icon {
-    font-size: 1.45rem;
-  }
-
-  .journey-premium__card {
-    min-height: 122px;
-    padding: 13px 12px;
-  }
-
-  .journey-premium__card h3 {
-    font-size: 0.84rem;
-  }
-
-  .journey-premium__card p {
-    font-size: 0.7rem;
-    line-height: 1.6;
-  }
-}
-
-@media (max-width: 520px) {
-  .journey-premium__board {
-    min-width: 980px;
-    height: 490px;
-  }
-
-  .journey-premium__stop {
-    width: 170px;
-  }
-
-  .journey-premium__circle {
-    width: 64px;
-    height: 64px;
-  }
-
-  .journey-premium__number {
-    width: 28px;
-    height: 28px;
-    font-size: 0.65rem;
-  }
-
-  .journey-premium__icon {
-    font-size: 1.35rem;
-  }
-
-  .journey-premium__card {
-    min-height: 118px;
-    padding: 12px 11px;
-    border-radius: 18px;
-  }
-
-  .journey-premium__card h3 {
-    font-size: 0.8rem;
-  }
-
-  .journey-premium__card p {
-    font-size: 0.68rem;
-    line-height: 1.55;
-  }
-}/* ═══════════════════════════════════════════════
-   JOURNEY PREMIUM — Smaller & Softer Refinement
-   ═══════════════════════════════════════════════ */
-
-.journey-premium__board {
-  min-width: 1040px;
-  height: 470px;
-  border-radius: 32px;
-}
-
-/* المحطات */
-.journey-premium__stop {
-  width: 165px;
-}
-
-/* الدوائر */
-.journey-premium__circle {
-  width: 58px;
-  height: 58px;
-  margin-bottom: 8px;
-  box-shadow:
-    0 10px 22px rgba(0, 0, 0, 0.18),
-    0 0 0 5px rgba(90, 176, 255, 0.055);
-}
-
-.journey-premium__circle::before {
-  inset: -6px;
-  opacity: 0.65;
-}
-
-.journey-premium__number {
-  width: 26px;
-  height: 26px;
-  border-radius: 10px;
-  top: -8px;
-  inset-inline-end: -7px;
-  font-size: 0.6rem;
-}
-
-.journey-premium__icon {
-  font-size: 1.2rem;
-}
-
-/* الكروت */
-.journey-premium__card {
-  min-height: 108px;
-  padding: 11px 10px;
-  border-radius: 17px;
-  background:
-    radial-gradient(circle at top, rgba(90, 176, 255, 0.09), transparent 40%),
-    linear-gradient(180deg, rgba(18, 36, 70, 0.94), rgba(10, 23, 47, 0.92));
-  border-color: rgba(90, 176, 255, 0.13);
-  box-shadow:
-    0 10px 26px rgba(0, 0, 0, 0.18),
-    5px 5px 0 rgba(30, 115, 232, 0.045);
-}
-
-.journey-premium__card h3 {
-  font-size: 0.76rem;
-  margin-bottom: 4px;
-}
-
-.journey-premium__card p {
-  font-size: 0.62rem;
-  line-height: 1.5;
-}
-
-/* تخفيف الطريق */
-.journey-premium__road-shadow {
-  stroke-width: 30;
-  opacity: 0.75;
-}
-
-.journey-premium__road {
-  stroke-width: 24;
-  opacity: 0.92;
-}
-
-.journey-premium__road-dash {
-  stroke-width: 3;
-  stroke-dasharray: 16 22;
-  opacity: 0.7;
-}
-
-/* السيارة */
-.journey-premium__car {
-  width: 38px;
-  height: 38px;
-  border-radius: 13px;
-  opacity: 0.92;
-  box-shadow:
-    0 12px 24px rgba(0, 0, 0, 0.20),
-    0 0 18px rgba(90, 176, 255, 0.16);
-}
-
-.journey-premium__car span {
-  font-size: 1.05rem;
-}
-
-/* إعادة توزيع أنعم داخل البورد */
-.stop-1 {
-  right: 86px;
-  top: 78px;
-}
-
-.stop-2 {
-  right: 292px;
-  bottom: 58px;
-}
-
-.stop-3 {
-  right: 475px;
-  top: 66px;
-}
-
-.stop-4 {
-  left: 378px;
-  bottom: 58px;
-}
-
-.stop-5 {
-  left: 185px;
-  top: 74px;
-}
-
-.stop-6 {
-  left: 76px;
-  bottom: 64px;
-}
-
-/* تقليل الحركة البصرية */
-.journey-premium__card:hover {
-  transform: translateY(-5px) rotate(0deg) !important;
-  box-shadow:
-    0 16px 34px rgba(0, 0, 0, 0.22),
-    6px 6px 0 rgba(94, 221, 194, 0.055);
-}
-
-/* لايت مود */
-body.light .journey-premium__card,
-[data-theme="light"] .journey-premium__card,
-[data-theme=""] .journey-premium__card {
-  background:
-    radial-gradient(circle at top, rgba(90, 176, 255, 0.065), transparent 40%),
-    linear-gradient(180deg, rgba(255,255,255,0.98), rgba(246,249,255,0.96));
-  border-color: rgba(30, 115, 232, 0.10);
-  box-shadow:
-    0 10px 24px rgba(30, 115, 232, 0.075),
-    5px 5px 0 rgba(30, 115, 232, 0.035);
-}
-
-/* الجوال والآيباد */
-@media (max-width: 768px) {
-  .journey-premium__board {
-    min-width: 980px;
-    height: 450px;
-  }
-
-  .journey-premium__stop {
-    width: 155px;
-  }
-
-  .journey-premium__circle {
-    width: 54px;
-    height: 54px;
-  }
-
-  .journey-premium__icon {
-    font-size: 1.1rem;
-  }
-
-  .journey-premium__card {
-    min-height: 102px;
-    padding: 10px 9px;
-  }
-
-  .journey-premium__card h3 {
-    font-size: 0.72rem;
-  }
-
-  .journey-premium__card p {
-    font-size: 0.6rem;
-    line-height: 1.45;
-  }
-}
-
-@media (max-width: 520px) {
-  .journey-premium__board {
-    min-width: 920px;
-    height: 440px;
-  }
-
-  .journey-premium__stop {
-    width: 148px;
-  }
-
-  .journey-premium__circle {
-    width: 50px;
-    height: 50px;
-  }
-
-  .journey-premium__number {
-    width: 24px;
-    height: 24px;
-    font-size: 0.56rem;
-  }
-
-  .journey-premium__icon {
-    font-size: 1rem;
-  }
-
-  .journey-premium__card {
-    min-height: 98px;
-    padding: 9px 8px;
-    border-radius: 16px;
-  }
-
-  .journey-premium__card h3 {
-    font-size: 0.68rem;
-  }
-
-  .journey-premium__card p {
-    font-size: 0.56rem;
-    line-height: 1.42;
-  }
-  
-}/* ═══════════════════════════════════════════════
-   JOURNEY PREMIUM — Mobile Vertical Journey
-   الجوال عامودي كأنه رحلة وليس نص عادي
+   MOBILE — Vertical Graphic Version
+   نفس إحساس اللابتوب لكن عامودي
    ═══════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
   .journey-premium {
     padding-block: 70px;
-    overflow: hidden;
   }
 
   .journey-premium__header {
@@ -2829,11 +2325,12 @@ body.light .journey-premium__card,
 
   .journey-premium__subtitle {
     font-size: 0.88rem;
-    line-height: 1.9;
+    line-height: 1.85;
   }
 
   .journey-premium__scroller {
-    width: min(94%, 520px);
+    width: min(94%, 430px);
+    max-width: 430px;
     margin-inline: auto;
     overflow: visible;
     padding: 0;
@@ -2842,568 +2339,235 @@ body.light .journey-premium__card,
   .journey-premium__board {
     width: 100%;
     min-width: 0;
-    height: auto;
-    min-height: 0;
-    padding: 34px 18px 34px;
-    border-radius: 28px;
-    overflow: hidden;
+    height: 920px;
+    border-radius: 30px;
   }
 
-  /* إخفاء الطريق الأفقي في الجوال */
+  /* الطريق نفسه يبقى SVG لكن يتحول عامودي */
   .journey-premium__svg {
-    display: none;
+    display: block;
+    width: 980px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-50%, -50%) rotate(90deg) scale(0.78);
+    transform-origin: center;
+    opacity: 0.95;
   }
 
-  /* خط الرحلة العمودي */
-  .journey-premium__board::after {
-    content: "";
-    position: absolute;
-    top: 64px;
-    bottom: 64px;
-    inset-inline-end: 42px;
-    width: 12px;
-    border-radius: 999px;
-    background:
-      linear-gradient(180deg, #0A4FBF 0%, #5AB0FF 45%, #5EDDC2 100%);
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.20),
-      inset 0 -1px 0 rgba(0,0,0,0.24),
-      0 12px 30px rgba(90,176,255,0.18);
-    opacity: 0.85;
-    pointer-events: none;
-    z-index: 1;
+  .journey-premium__road-shadow {
+    stroke-width: 28;
+    opacity: 0.60;
   }
 
-  /* الخط المتقطع داخل الطريق */
-  .journey-premium__board .journey-road-mobile-dash {
-    display: none;
+  .journey-premium__road {
+    stroke-width: 22;
+    opacity: 0.88;
   }
 
-  .journey-premium__board::before {
-    opacity: 0.22;
-  }
-
-  /* السيارة في الجوال تتحرك عاموديًا */
-  .journey-premium__car {
-    position: absolute;
-    top: 58px;
-    inset-inline-end: 23px;
-    width: 46px;
-    height: 46px;
-    border-radius: 16px;
-    z-index: 7;
-    offset-path: none;
-    animation: mobileJourneyCar 8s ease-in-out infinite;
-  }
-
-  .journey-premium__car span {
-    font-size: 1.25rem;
-    transform: rotate(90deg);
-  }
-
-  /* المحطات تتحول لترتيب عامودي */
-  .journey-premium__stop {
-    position: relative !important;
-    top: auto !important;
-    right: auto !important;
-    left: auto !important;
-    bottom: auto !important;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 76px 1fr;
-    gap: 14px;
-    align-items: center;
-    margin-bottom: 26px;
-    z-index: 3;
-  }
-
-  .journey-premium__stop:last-child {
-    margin-bottom: 0;
-  }
-
-  /* في العربي الدائرة تكون على جهة الطريق يمين */
-  html[dir="rtl"] .journey-premium__stop,
-  body:not(.en) .journey-premium__stop {
-    grid-template-columns: 76px 1fr;
-    direction: rtl;
-  }
-
-  /* في الإنجليزي الدائرة تكون يسار */
-  html[dir="ltr"] .journey-premium__board::after,
-  body.en .journey-premium__board::after {
-    inset-inline-end: auto;
-    inset-inline-start: 42px;
-  }
-
-  html[dir="ltr"] .journey-premium__car,
-  body.en .journey-premium__car {
-    inset-inline-end: auto;
-    inset-inline-start: 23px;
-  }
-
-  html[dir="ltr"] .journey-premium__stop,
-  body.en .journey-premium__stop {
-    direction: ltr;
-    grid-template-columns: 76px 1fr;
-  }
-
-  .journey-premium__circle {
-    width: 58px;
-    height: 58px;
-    margin: 0;
-    z-index: 4;
-    justify-self: center;
-    box-shadow:
-      0 10px 24px rgba(0, 0, 0, 0.22),
-      0 0 0 6px rgba(90, 176, 255, 0.08);
-  }
-
-  .journey-premium__circle::before {
-    inset: -6px;
+  .journey-premium__road-dash {
+    stroke-width: 2.8;
+    stroke-dasharray: 14 20;
     opacity: 0.65;
   }
 
-  .journey-premium__number {
-    width: 26px;
-    height: 26px;
-    border-radius: 10px;
-    top: -8px;
-    inset-inline-end: -7px;
-    font-size: 0.6rem;
-  }
-
-  .journey-premium__icon {
-    font-size: 1.25rem;
-  }
-
-  .journey-premium__card {
-    min-height: auto;
-    padding: 16px 15px;
-    border-radius: 20px;
-    text-align: start;
-    transform: none !important;
-    box-shadow:
-      0 12px 28px rgba(0, 0, 0, 0.20),
-      5px 5px 0 rgba(30, 115, 232, 0.05);
-  }
-
-  .journey-premium__card:hover {
-    transform: translateY(-4px) !important;
-  }
-
-  .journey-premium__card h3 {
-    font-size: 0.95rem;
-    margin-bottom: 6px;
-  }
-
-  .journey-premium__card p {
-    font-size: 0.78rem;
-    line-height: 1.75;
-  }
-
-  /* حركة بسيطة للمحطات */
-  .journey-premium__stop:nth-child(odd) .journey-premium__card {
-    border-color: rgba(90, 176, 255, 0.18);
-  }
-
-  .journey-premium__stop:nth-child(even) .journey-premium__card {
-    border-color: rgba(94, 221, 194, 0.16);
-  }
-}
-
-/* جوال صغير */
-@media (max-width: 480px) {
-  .journey-premium__scroller {
-    width: 94%;
-  }
-
-  .journey-premium__board {
-    padding: 30px 14px;
-    border-radius: 24px;
-  }
-
   .journey-premium__board::after {
-    inset-inline-end: 36px;
-    width: 10px;
-  }
-
-  html[dir="ltr"] .journey-premium__board::after,
-  body.en .journey-premium__board::after {
-    inset-inline-start: 36px;
-  }
-
-  .journey-premium__car {
-    inset-inline-end: 18px;
-    width: 42px;
-    height: 42px;
-  }
-
-  html[dir="ltr"] .journey-premium__car,
-  body.en .journey-premium__car {
-    inset-inline-start: 18px;
+    width: 280px;
+    height: 280px;
+    top: 330px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.65;
   }
 
   .journey-premium__stop {
-    grid-template-columns: 68px 1fr;
-    gap: 12px;
-    margin-bottom: 22px;
+    width: min(168px, 43vw);
+  }
+
+  .stop-1 {
+    right: 26px;
+    top: 50px;
+    left: auto;
+    bottom: auto;
+  }
+
+  .stop-2 {
+    left: 22px;
+    top: 185px;
+    right: auto;
+    bottom: auto;
+  }
+
+  .stop-3 {
+    right: 24px;
+    top: 320px;
+    left: auto;
+    bottom: auto;
+  }
+
+  .stop-4 {
+    left: 22px;
+    top: 458px;
+    right: auto;
+    bottom: auto;
+  }
+
+  .stop-5 {
+    right: 26px;
+    top: 598px;
+    left: auto;
+    bottom: auto;
+  }
+
+  .stop-6 {
+    left: 22px;
+    top: 742px;
+    right: auto;
+    bottom: auto;
   }
 
   .journey-premium__circle {
     width: 52px;
     height: 52px;
-  }
-
-  .journey-premium__icon {
-    font-size: 1.1rem;
-  }
-
-  .journey-premium__card {
-    padding: 14px 13px;
-    border-radius: 18px;
-  }
-
-  .journey-premium__card h3 {
-    font-size: 0.88rem;
-  }
-
-  .journey-premium__card p {
-    font-size: 0.72rem;
-    line-height: 1.65;
-  }
-}
-
-/* حركة السيارة في مسار الجوال */
-@keyframes mobileJourneyCar {
-  0%, 100% {
-    transform: translateY(0) scale(1);
-  }
-
-  18% {
-    transform: translateY(95px) scale(1.04);
-  }
-
-  36% {
-    transform: translateY(190px) scale(1);
-  }
-
-  54% {
-    transform: translateY(285px) scale(1.04);
-  }
-
-  72% {
-    transform: translateY(380px) scale(1);
-  }
-
-  90% {
-    transform: translateY(475px) scale(1.04);
-  }
-}/* ═══════════════════════════════════════════════
-   JOURNEY PREMIUM — FORCE MOBILE VERTICAL JOURNEY
-   ضعيه آخر شيء في components.css
-   ═══════════════════════════════════════════════ */
-
-@media (max-width: 768px) {
-
-  .journey-premium {
-    padding-block: 70px !important;
-    overflow: hidden !important;
-  }
-
-  .journey-premium__header {
-    width: min(92%, 680px) !important;
-    margin-inline: auto !important;
-    margin-bottom: 30px !important;
-    text-align: center !important;
-  }
-
-  .journey-premium__subtitle {
-    font-size: 0.88rem !important;
-    line-height: 1.9 !important;
-  }
-
-  /* إلغاء السحب الأفقي */
-  .journey-premium__scroller {
-    width: min(94%, 520px) !important;
-    max-width: 520px !important;
-    margin-inline: auto !important;
-    overflow: visible !important;
-    padding: 0 !important;
-  }
-
-  /* البورد يصير عامودي وليس عريض */
-  .journey-premium__board {
-    width: 100% !important;
-    min-width: 0 !important;
-    height: auto !important;
-    min-height: 0 !important;
-    padding: 34px 16px !important;
-    border-radius: 28px !important;
-    overflow: hidden !important;
-  }
-
-  /* إخفاء الطريق المتعرج الأفقي */
-  .journey-premium__svg {
-    display: none !important;
-  }
-
-  /* خط الرحلة العامودي */
-  .journey-premium__board::after {
-    content: "";
-    position: absolute;
-    top: 60px;
-    bottom: 60px;
-    inset-inline-end: 38px;
-    width: 10px;
-    border-radius: 999px;
-    background: linear-gradient(
-      180deg,
-      #0A4FBF 0%,
-      #5AB0FF 48%,
-      #5EDDC2 100%
-    );
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.22),
-      inset 0 -1px 0 rgba(0,0,0,0.25),
-      0 12px 28px rgba(90,176,255,0.18);
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  /* السيارة تتحرك عامودي */
-  .journey-premium__car {
-    position: absolute !important;
-    top: 50px !important;
-    inset-inline-end: 20px !important;
-    left: auto !important;
-    right: auto;
-    width: 42px !important;
-    height: 42px !important;
-    border-radius: 14px !important;
-    z-index: 7 !important;
-    offset-path: none !important;
-    animation: journeyMobileCarVertical 9s ease-in-out infinite !important;
-  }
-
-  .journey-premium__car span {
-    font-size: 1.15rem !important;
-    transform: rotate(90deg) !important;
-  }
-
-  /* المحطات عامودية */
-  .journey-premium__stop,
-  .stop-1,
-  .stop-2,
-  .stop-3,
-  .stop-4,
-  .stop-5,
-  .stop-6 {
-    position: relative !important;
-    top: auto !important;
-    right: auto !important;
-    left: auto !important;
-    bottom: auto !important;
-    width: 100% !important;
-    display: grid !important;
-    grid-template-columns: 66px 1fr !important;
-    gap: 14px !important;
-    align-items: center !important;
-    margin-bottom: 24px !important;
-    z-index: 3 !important;
-  }
-
-  .journey-premium__stop:last-child {
-    margin-bottom: 0 !important;
-  }
-
-  /* الدائرة */
-  .journey-premium__circle {
-    width: 54px !important;
-    height: 54px !important;
-    margin: 0 !important;
-    justify-self: center !important;
-    z-index: 4 !important;
-    box-shadow:
-      0 10px 24px rgba(0,0,0,0.22),
-      0 0 0 6px rgba(90,176,255,0.08) !important;
+    margin-bottom: 7px;
   }
 
   .journey-premium__circle::before {
-    inset: -6px !important;
-    opacity: 0.6 !important;
+    inset: -5px;
   }
 
   .journey-premium__number {
-    width: 25px !important;
-    height: 25px !important;
-    border-radius: 9px !important;
-    top: -7px !important;
-    inset-inline-end: -6px !important;
-    font-size: 0.58rem !important;
+    width: 24px;
+    height: 24px;
+    border-radius: 9px;
+    top: -7px;
+    inset-inline-end: -6px;
+    font-size: 0.55rem;
   }
 
   .journey-premium__icon {
-    font-size: 1.15rem !important;
+    font-size: 1.05rem;
   }
 
-  /* الكارد */
   .journey-premium__card {
-    min-height: auto !important;
-    padding: 15px 14px !important;
-    border-radius: 19px !important;
-    text-align: start !important;
-    transform: none !important;
-    box-shadow:
-      0 12px 28px rgba(0,0,0,0.20),
-      5px 5px 0 rgba(30,115,232,0.05) !important;
-  }
-
-  .journey-premium__card:hover {
-    transform: translateY(-4px) !important;
+    min-height: auto;
+    padding: 10px 9px;
+    border-radius: 16px;
+    text-align: center;
   }
 
   .journey-premium__card h3 {
-    font-size: 0.9rem !important;
-    margin-bottom: 6px !important;
+    font-size: 0.7rem;
+    margin-bottom: 4px;
   }
 
   .journey-premium__card p {
-    font-size: 0.72rem !important;
-    line-height: 1.65 !important;
+    font-size: 0.56rem;
+    line-height: 1.48;
   }
 
-  /* العربي: الخط والسيارة يمين */
-  html[dir="rtl"] .journey-premium__board::after,
-  body:not(.en) .journey-premium__board::after {
-    inset-inline-end: 38px !important;
-    inset-inline-start: auto !important;
+  html[dir="ltr"] .stop-1,
+  body.en .stop-1,
+  html[dir="ltr"] .stop-3,
+  body.en .stop-3,
+  html[dir="ltr"] .stop-5,
+  body.en .stop-5 {
+    left: 26px;
+    right: auto;
   }
 
-  html[dir="rtl"] .journey-premium__car,
-  body:not(.en) .journey-premium__car {
-    inset-inline-end: 20px !important;
-    inset-inline-start: auto !important;
-  }
-
-  html[dir="rtl"] .journey-premium__stop,
-  body:not(.en) .journey-premium__stop {
-    direction: rtl !important;
-    grid-template-columns: 66px 1fr !important;
-  }
-
-  /* الإنجليزي: الخط والسيارة يسار */
-  html[dir="ltr"] .journey-premium__board::after,
-  body.en .journey-premium__board::after {
-    inset-inline-start: 38px !important;
-    inset-inline-end: auto !important;
-  }
-
-  html[dir="ltr"] .journey-premium__car,
-  body.en .journey-premium__car {
-    inset-inline-start: 20px !important;
-    inset-inline-end: auto !important;
-  }
-
-  html[dir="ltr"] .journey-premium__stop,
-  body.en .journey-premium__stop {
-    direction: ltr !important;
-    grid-template-columns: 66px 1fr !important;
+  html[dir="ltr"] .stop-2,
+  body.en .stop-2,
+  html[dir="ltr"] .stop-4,
+  body.en .stop-4,
+  html[dir="ltr"] .stop-6,
+  body.en .stop-6 {
+    right: 22px;
+    left: auto;
   }
 }
 
 @media (max-width: 480px) {
   .journey-premium__scroller {
-    width: 94% !important;
+    width: 94%;
+    max-width: 390px;
   }
 
   .journey-premium__board {
-    padding: 30px 13px !important;
-    border-radius: 24px !important;
+    height: 900px;
+    border-radius: 26px;
   }
 
-  .journey-premium__board::after {
-    inset-inline-end: 34px !important;
-    width: 9px !important;
+  .journey-premium__svg {
+    width: 940px;
+    height: 480px;
+    transform: translate(-50%, -50%) rotate(90deg) scale(0.75);
   }
 
-  html[dir="ltr"] .journey-premium__board::after,
-  body.en .journey-premium__board::after {
-    inset-inline-start: 34px !important;
-    inset-inline-end: auto !important;
+  .journey-premium__stop {
+    width: min(154px, 44vw);
   }
 
-  .journey-premium__car {
-    width: 38px !important;
-    height: 38px !important;
-    inset-inline-end: 16px !important;
+  .stop-1 {
+    right: 18px;
+    top: 48px;
   }
 
-  html[dir="ltr"] .journey-premium__car,
-  body.en .journey-premium__car {
-    inset-inline-start: 16px !important;
-    inset-inline-end: auto !important;
+  .stop-2 {
+    left: 18px;
+    top: 180px;
   }
 
-  .journey-premium__stop,
-  .stop-1,
-  .stop-2,
-  .stop-3,
-  .stop-4,
-  .stop-5,
+  .stop-3 {
+    right: 18px;
+    top: 314px;
+  }
+
+  .stop-4 {
+    left: 18px;
+    top: 450px;
+  }
+
+  .stop-5 {
+    right: 18px;
+    top: 588px;
+  }
+
   .stop-6 {
-    grid-template-columns: 60px 1fr !important;
-    gap: 12px !important;
-    margin-bottom: 22px !important;
+    left: 18px;
+    top: 728px;
   }
 
   .journey-premium__circle {
-    width: 50px !important;
-    height: 50px !important;
+    width: 48px;
+    height: 48px;
   }
 
   .journey-premium__icon {
-    font-size: 1.05rem !important;
+    font-size: 0.98rem;
   }
 
   .journey-premium__card {
-    padding: 13px 12px !important;
-    border-radius: 18px !important;
+    padding: 9px 8px;
   }
 
   .journey-premium__card h3 {
-    font-size: 0.84rem !important;
+    font-size: 0.66rem;
   }
 
   .journey-premium__card p {
-    font-size: 0.68rem !important;
-    line-height: 1.6 !important;
+    font-size: 0.52rem;
+    line-height: 1.42;
   }
 }
 
-/* حركة السيارة عموديًا */
-@keyframes journeyMobileCarVertical {
-  0%, 100% {
-    transform: translateY(0) scale(1);
-  }
-
-  16% {
-    transform: translateY(95px) scale(1.04);
-  }
-
-  32% {
-    transform: translateY(190px) scale(1);
-  }
-
-  48% {
-    transform: translateY(285px) scale(1.04);
-  }
-
-  64% {
-    transform: translateY(380px) scale(1);
-  }
-
-  82% {
-    transform: translateY(475px) scale(1.04);
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .journey-premium__road-dash,
+  .journey-premium__circle::before {
+    animation: none;
   }
 }
 .cert-modal-card__icon  { font-size: 4.5rem; margin-bottom: 14px; }
