@@ -51,13 +51,12 @@ const ThemeManager = (() => {
    * Read saved preference from localStorage and apply it.
    * Called once on page load.
    */
-  function init() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+function init() {
+  const saved = localStorage.getItem(STORAGE_KEY);
 
-    // Honour explicit user choice; fall back to OS preference
-    applyTheme(saved ? saved === DARK_VALUE : prefersDark);
-  }
+  // الافتراضي داكن إذا ما كان فيه اختيار محفوظ
+  applyTheme(saved ? saved === DARK_VALUE : true);
+}
 
   /**
    * Flip current theme and save preference.

@@ -28,7 +28,20 @@
  * cat   — filter key (mobile | uiux | data | web)
  * icon  — emoji displayed in thumbnail
  * th    — CSS class for thumbnail gradient colour
- */
+ *//* Start page from Home on normal opening */
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+window.addEventListener('load', () => {
+  if (!window.location.hash) {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'auto'
+    });
+  }
+});
 const PROJECTS = [
   {
     id: 1,

@@ -1530,156 +1530,208 @@
   border-radius: 14px;
   border: 2px solid var(--color-glow);
 }
-/* About Split Layout */
-.about__layout--split {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 28px;
-  align-items: stretch;
+/* ═══════════════════════════════════════════════
+   ABOUT CLEAN SECTION
+   يستخدم مع قسم نبذة عني الحالي: .about-clean
+   أزلنا About Split القديم لأنه غير مستخدم مع HTML الحالي
+   ═══════════════════════════════════════════════ */
+
+.about-clean {
+  padding-block: 88px;
 }
 
-/* في RTL: أول عنصر يظهر يمين، والثاني يسار */
-.about__intro-card {
-  min-height: 100%;
-  padding: 34px;
-  border-radius: 28px;
+.about-clean__card {
+  max-width: 980px;
+  margin-inline: auto;
+  padding: 38px 44px;
+  border-radius: 30px;
+  position: relative;
+  overflow: hidden;
   background:
-    radial-gradient(circle at 85% 15%, rgba(90, 176, 255, 0.18), transparent 34%),
-    linear-gradient(135deg, rgba(15, 30, 58, 0.96), rgba(7, 14, 31, 0.92));
-  border: 1px solid rgba(90, 176, 255, 0.20);
-  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.22);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    radial-gradient(circle at 85% 12%, rgba(90, 176, 255, 0.16), transparent 34%),
+    radial-gradient(circle at 10% 90%, rgba(94, 221, 194, 0.09), transparent 34%),
+    linear-gradient(135deg, rgba(15, 30, 58, 0.97), rgba(7, 14, 31, 0.94));
+  border: 1px solid rgba(90, 176, 255, 0.22);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
 }
 
-.about__intro-card .section__tag {
-  margin-bottom: 10px;
+.about-clean__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size: 36px 36px;
+  opacity: .30;
+  pointer-events: none;
 }
 
-.about__intro-card .section__title {
-  margin-bottom: 18px;
+.about-clean__card > * {
+  position: relative;
+  z-index: 2;
 }
 
-.about__intro-text {
-  color: #c9d8f2;
-  font-size: 17px;
-  line-height: 2.1;
-  max-width: 620px;
-    white-space: pre-line;
+.about-clean__header {
+  margin-bottom: 22px;
 }
 
-.about__focus-row {
+.about-clean__statement {
+  position: relative;
+  padding: 16px 22px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(90, 176, 255, 0.17);
+}
+
+.about-clean__quote {
+  position: absolute;
+  top: -18px;
+  inset-inline-start: 22px;
+  font-size: 56px;
+  line-height: 1;
+  font-weight: 900;
+  color: rgba(90, 176, 255, 0.22);
+}
+
+.about-clean__statement p {
+  color: #f7faff;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.about-clean__text {
+  color: var(--color-text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.75;
+  white-space: pre-line;
+  max-width: 850px;
+  margin: 0;
+}
+
+.about-clean__chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 26px;
+  gap: 9px;
+  margin-top: 22px;
 }
 
-.about__focus-row span {
+.about-clean__chips span {
   padding: 8px 13px;
-  border-radius: 999px;
+  border-radius: var(--radius-full);
   color: #dcecff;
-  font-size: 12px;
-  font-weight: 800;
+  font-size: 0.74rem;
+  font-weight: 900;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(90, 176, 255, 0.20);
-}
-
-/* Cards Side */
-.about__cards-grid--left {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-  height: 100%;
-}
-
-.about__cards-grid--left .about-card {
-  min-height: 190px;
-  padding: 24px;
-  border-radius: 24px;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02)),
-    #0F1E3A;
-  border: 1px solid rgba(90, 176, 255, 0.18);
   transition: 0.25s ease;
 }
 
-.about__cards-grid--left .about-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(90, 176, 255, 0.48);
-  box-shadow: 0 18px 45px rgba(30, 115, 232, 0.16);
+.about-clean__chips span:hover {
+  transform: translateY(-3px);
+  border-color: rgba(94, 221, 194, 0.42);
 }
 
-.about__cards-grid--left .about-card__icon {
-  width: 46px;
-  height: 46px;
-  border-radius: 15px;
-  display: grid;
-  place-items: center;
-  margin-bottom: 16px;
-  background: rgba(90, 176, 255, 0.12);
-  border: 1px solid rgba(90, 176, 255, 0.18);
-  font-size: 22px;
+/* Light mode for About
+   أصلحت هنا قيمة rgba القديمة لأنها كانت مكتوبة بدون 0.96 */
+[data-theme=""] .about-clean__card,
+[data-theme="light"] .about-clean__card,
+body.light .about-clean__card {
+  background:
+    radial-gradient(circle at 85% 12%, rgba(90, 176, 255, 0.16), transparent 34%),
+    linear-gradient(135deg, rgba(255,255,255,.96), rgba(239,245,255,.94));
 }
 
-.about__cards-grid--left .about-card__title {
-  color: #ffffff;
-  font-size: 18px;
-  font-weight: 900;
-  margin-bottom: 10px;
+[data-theme=""] .about-clean__statement,
+[data-theme="light"] .about-clean__statement,
+body.light .about-clean__statement,
+[data-theme=""] .about-clean__chips span,
+[data-theme="light"] .about-clean__chips span,
+body.light .about-clean__chips span {
+  background: rgba(255, 255, 255, 0.72);
 }
 
-.about__cards-grid--left .about-card__text {
-  color: #9fb5d6;
-  font-size: 14px;
-  line-height: 1.8;
+[data-theme=""] .about-clean__statement p,
+[data-theme="light"] .about-clean__statement p,
+body.light .about-clean__statement p {
+  color: #0D1B3E;
 }
 
-/* English Direction */
-body.en .about__intro-text {
-  line-height: 1.8;
-    white-space: pre-line;
-}
-
-/* Responsive */
-@media (max-width: 992px) {
-  .about__layout--split {
-    grid-template-columns: 1fr;
+@media (max-width: 768px) {
+  .about-clean {
+    padding-block: 64px;
   }
 
-  .about__intro-card {
-    min-height: auto;
+  .about-clean__card {
+    padding: 28px 24px;
+    border-radius: 26px;
   }
 
-  .about__cards-grid--left {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 620px) {
-  .about__intro-card {
-    padding: 24px;
-    border-radius: 24px;
+  .about-clean__statement {
+    padding: 14px 16px;
+    margin-bottom: 16px;
   }
 
-  .about__intro-text {
-    font-size: 15px;
-      white-space: pre-line;
-    line-height: 2;
+  .about-clean__statement p {
+    font-size: 0.9rem;
+    line-height: 1.55;
   }
 
-  .about__cards-grid--left {
-    grid-template-columns: 1fr;
-  }
-
-  .about__cards-grid--left .about-card {
-    min-height: auto;
+  .about-clean__text {
+    font-size: 0.84rem;
+    line-height: 1.62;
   }
 }
-/* Compact Experience Card */
+
+@media (max-width: 480px) {
+  .about-clean__card {
+    padding: 24px 20px;
+  }
+
+  .about-clean__chips {
+    gap: 8px;
+  }
+
+  .about-clean__chips span {
+    font-size: 0.7rem;
+    padding: 7px 10px;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════
+   EXPERIENCE CLEAN FIX
+   يوحد تعداد تمهير والجامعة + يضبط مكان التاريخ
+   أزلنا التكرارات القديمة لـ .experience-list و .experience-card__header
+   ═══════════════════════════════════════════════ */
+
 .experience-card--compact {
   padding: 28px;
+}
+
+.experience-card__header--spread,
+.experience-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+  width: 100%;
+}
+
+.experience-card__main {
+  flex: 1;
+  min-width: 0;
+}
+
+.experience-card__period {
+  flex-shrink: 0;
+  margin-top: 2px;
+  margin-inline-start: auto;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .experience-summary-grid {
@@ -1703,29 +1755,46 @@ body.en .about__intro-text {
   margin-bottom: 12px;
 }
 
+/* قائمة موحدة للجامعة وتمهير
+   بدل وجود bullets مختلفة بين القسمين */
+.experience-list,
 .experience-summary-box ul {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 9px;
+  margin: 12px 0 0;
+  padding: 0;
   list-style: none;
 }
 
+/* عنصر القائمة */
+.experience-list li,
 .experience-summary-box li {
-  font-size: 0.82rem;
-  color: var(--color-text-secondary);
-  line-height: 1.75;
   position: relative;
-  padding-inline-start: 16px;
+  color: var(--color-text-secondary);
+  font-size: 0.84rem;
+  line-height: 1.7;
+  padding-inline-start: 20px;
+  list-style: none;
 }
 
+/* دائرة التعداد الموحدة
+   أزلنا content: "•" لأنه كان يخلي تمهير والجامعة بأحجام مختلفة */
+.experience-list li::before,
 .experience-summary-box li::before {
-  content: "•";
+  content: "";
   position: absolute;
   inset-inline-start: 0;
-  color: var(--color-primary-mid);
-  font-weight: 900;
+  top: 0.72em;
+  width: 6px;
+  height: 6px;
+  min-width: 6px;
+  min-height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  box-shadow: 0 0 0 4px rgba(30, 115, 232, 0.12);
 }
 
+/* صندوق إنجاز اختياري إذا احتجتيه لاحقًا */
 .experience-achievement {
   margin-top: 18px;
   padding: 14px 16px;
@@ -1741,7 +1810,6 @@ body.en .about__intro-text {
   margin-inline-end: 5px;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .experience-summary-grid {
     grid-template-columns: 1fr;
@@ -1751,164 +1819,31 @@ body.en .about__intro-text {
     padding: 22px;
   }
 }
-/* ═══════════════════════════════════════════════
-   ABOUT CLEAN SECTION
-   ═══════════════════════════════════════════════ */
 
-.about-clean {
-  padding-block: 95px;
-}
-
-.about-clean__card {
-  max-width: 980px;
-  margin-inline: auto;
-  padding: 48px;
-  border-radius: 34px;
-  position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 85% 12%, rgba(90, 176, 255, 0.18), transparent 34%),
-    radial-gradient(circle at 10% 90%, rgba(94, 221, 194, 0.10), transparent 34%),
-    linear-gradient(135deg, rgba(15, 30, 58, 0.97), rgba(7, 14, 31, 0.94));
-  border: 1px solid rgba(90, 176, 255, 0.22);
-  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.24);
-}
-
-.about-clean__card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-  background-size: 36px 36px;
-  opacity: .35;
-  pointer-events: none;
-}
-
-.about-clean__card > * {
-  position: relative;
-  z-index: 2;
-}
-
-.about-clean__header {
-  margin-bottom: 26px;
-}
-
-.about-clean__statement {
-  position: relative;
-  padding: 22px 26px;
-  margin-bottom: 28px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(90, 176, 255, 0.17);
-}
-
-.about-clean__quote {
-  position: absolute;
-  top: -20px;
-  inset-inline-start: 24px;
-  font-size: 62px;
-  line-height: 1;
-  font-weight: 900;
-  color: rgba(90, 176, 255, 0.24);
-}
-
-.about-clean__statement p {
-  color: #f7faff;
-  font-size: 1.12rem;
-  font-weight: 800;
-  line-height: 2;
-}
-
-.about-clean__text {
-  color: var(--color-text-secondary);
-  font-size: 1rem;
-  line-height: 2.15;
-  white-space: pre-line;
-  max-width: 850px;
-}
-
-.about-clean__chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 30px;
-}
-
-.about-clean__chips span {
-  padding: 9px 14px;
-  border-radius: var(--radius-full);
-  color: #dcecff;
-  font-size: 0.78rem;
-  font-weight: 900;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(90, 176, 255, 0.20);
-  transition: 0.25s ease;
-}
-
-.about-clean__chips span:hover {
-  transform: translateY(-3px);
-  border-color: rgba(94, 221, 194, 0.42);
-}
-
-/* Light Mode */
-[data-theme=""] .about-clean__card {
-  background:
-    radial-gradient(circle at 85% 12%, rgba(90, 176, 255, 0.16), transparent 34%),
-    linear-gradient(135deg, rgba(255,255,255,.96), rgba(239,245,255,.94));
-}
-
-[data-theme=""] .about-clean__statement,
-[data-theme=""] .about-clean__chips span {
-  background: rgba(255, 255, 255, 0.72);
-}
-
-[data-theme=""] .about-clean__statement p {
-  color: #0D1B3E;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .about-clean {
-    padding-block: 70px;
-  }
-
-  .about-clean__card {
-    padding: 30px;
-    border-radius: 28px;
-  }
-
-  .about-clean__statement p {
-    font-size: 1rem;
-  }
-
-  .about-clean__text {
-    font-size: 0.92rem;
-    line-height: 2;
-  }
-}
-
-@media (max-width: 480px) {
-  .about-clean__card {
-    padding: 24px;
-  }
-
-  .about-clean__chips {
+@media (max-width: 640px) {
+  .experience-card__header--spread,
+  .experience-card__header {
+    flex-direction: column;
     gap: 8px;
   }
 
-  .about-clean__chips span {
-    font-size: 0.72rem;
-    padding: 8px 11px;
+  .experience-card__period {
+    margin-inline-start: 0;
+    align-self: flex-start;
   }
-}/* ═══════════════════════════════════════════════
-   MY JOURNEY — GRAPHIC PREMIUM
-   ═══════════════════════════════════════════════ */
+
+  .experience-list li,
+  .experience-summary-box li {
+    font-size: 0.78rem;
+    line-height: 1.65;
+  }
+}
+
+
 /* ═══════════════════════════════════════════════
-   MY JOURNEY — GRAPHIC PREMIUM
-   Laptop: Horizontal Journey
-   Mobile: Vertical Graphic Journey
+   MY JOURNEY — GRAPHIC PREMIUM CLEAN
+   اللابتوب أفقي / الجوال عامودي بنفس الإحساس الجرافيكي
+   أزلنا كل نسخ Journey القديمة: Size Refinement / Force Vertical / Mobile Car
    ═══════════════════════════════════════════════ */
 
 .journey-premium {
@@ -1966,7 +1901,6 @@ body.en .about__intro-text {
   border-radius: 999px;
 }
 
-/* Board */
 .journey-premium__board {
   position: relative;
   min-width: 1040px;
@@ -2007,7 +1941,7 @@ body.en .about__intro-text {
   pointer-events: none;
 }
 
-/* SVG Road */
+/* الطريق المتعرج */
 .journey-premium__svg {
   position: absolute;
   inset: 0;
@@ -2045,49 +1979,25 @@ body.en .about__intro-text {
   animation: journeyDash 12s linear infinite;
 }
 
-/* Hide car completely */
+/* السيارة مخفية لأنك طلبتِ عدم ظهورها */
 .journey-premium__car {
   display: none !important;
 }
 
-/* Stops */
+/* محطات الرحلة */
 .journey-premium__stop {
   position: absolute;
   z-index: 5;
   width: 178px;
 }
 
-.stop-1 {
-  right: 86px;
-  top: 78px;
-}
+.stop-1 { right: 86px; top: 78px; }
+.stop-2 { right: 292px; bottom: 58px; }
+.stop-3 { right: 475px; top: 66px; }
+.stop-4 { left: 378px; bottom: 58px; }
+.stop-5 { left: 185px; top: 74px; }
+.stop-6 { left: 76px; bottom: 64px; }
 
-.stop-2 {
-  right: 292px;
-  bottom: 58px;
-}
-
-.stop-3 {
-  right: 475px;
-  top: 66px;
-}
-
-.stop-4 {
-  left: 378px;
-  bottom: 58px;
-}
-
-.stop-5 {
-  left: 185px;
-  top: 74px;
-}
-
-.stop-6 {
-  left: 76px;
-  bottom: 64px;
-}
-
-/* Circle */
 .journey-premium__circle {
   width: 58px;
   height: 58px;
@@ -2136,7 +2046,6 @@ body.en .about__intro-text {
   font-size: 1.2rem;
 }
 
-/* Cards */
 .journey-premium__card {
   position: relative;
   min-height: 108px;
@@ -2227,7 +2136,7 @@ body.en .about__intro-text {
     0 0 22px rgba(94, 221, 194, 0.14);
 }
 
-/* Light Mode */
+/* Light mode للرحلة */
 body.light .journey-premium__board,
 [data-theme="light"] .journey-premium__board,
 [data-theme=""] .journey-premium__board {
@@ -2293,24 +2202,8 @@ body.light .journey-premium__number,
   color: #1E73E8;
 }
 
-/* Animations */
-@keyframes journeyDash {
-  to {
-    stroke-dashoffset: -220;
-  }
-}
-
-@keyframes journeySpin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* ═══════════════════════════════════════════════
-   MOBILE — Vertical Graphic Version
-   نفس إحساس اللابتوب لكن عامودي
-   ═══════════════════════════════════════════════ */
-
+/* الجوال: نفس الطريق لكن بشكل عامودي
+   أزلنا كود الخط العامودي والسيارة لأنه كان يخرب الشكل الجرافيكي */
 @media (max-width: 768px) {
   .journey-premium {
     padding-block: 70px;
@@ -2343,7 +2236,6 @@ body.light .journey-premium__number,
     border-radius: 30px;
   }
 
-  /* الطريق نفسه يبقى SVG لكن يتحول عامودي */
   .journey-premium__svg {
     display: block;
     width: 980px;
@@ -2386,47 +2278,12 @@ body.light .journey-premium__number,
     width: min(168px, 43vw);
   }
 
-  .stop-1 {
-    right: 26px;
-    top: 50px;
-    left: auto;
-    bottom: auto;
-  }
-
-  .stop-2 {
-    left: 22px;
-    top: 185px;
-    right: auto;
-    bottom: auto;
-  }
-
-  .stop-3 {
-    right: 24px;
-    top: 320px;
-    left: auto;
-    bottom: auto;
-  }
-
-  .stop-4 {
-    left: 22px;
-    top: 458px;
-    right: auto;
-    bottom: auto;
-  }
-
-  .stop-5 {
-    right: 26px;
-    top: 598px;
-    left: auto;
-    bottom: auto;
-  }
-
-  .stop-6 {
-    left: 22px;
-    top: 742px;
-    right: auto;
-    bottom: auto;
-  }
+  .stop-1 { right: 26px; top: 50px; left: auto; bottom: auto; }
+  .stop-2 { left: 22px; top: 185px; right: auto; bottom: auto; }
+  .stop-3 { right: 24px; top: 320px; left: auto; bottom: auto; }
+  .stop-4 { left: 22px; top: 458px; right: auto; bottom: auto; }
+  .stop-5 { right: 26px; top: 598px; left: auto; bottom: auto; }
+  .stop-6 { left: 22px; top: 742px; right: auto; bottom: auto; }
 
   .journey-premium__circle {
     width: 52px;
@@ -2510,35 +2367,12 @@ body.light .journey-premium__number,
     width: min(154px, 44vw);
   }
 
-  .stop-1 {
-    right: 18px;
-    top: 48px;
-  }
-
-  .stop-2 {
-    left: 18px;
-    top: 180px;
-  }
-
-  .stop-3 {
-    right: 18px;
-    top: 314px;
-  }
-
-  .stop-4 {
-    left: 18px;
-    top: 450px;
-  }
-
-  .stop-5 {
-    right: 18px;
-    top: 588px;
-  }
-
-  .stop-6 {
-    left: 18px;
-    top: 728px;
-  }
+  .stop-1 { right: 18px; top: 48px; }
+  .stop-2 { left: 18px; top: 180px; }
+  .stop-3 { right: 18px; top: 314px; }
+  .stop-4 { left: 18px; top: 450px; }
+  .stop-5 { right: 18px; top: 588px; }
+  .stop-6 { left: 18px; top: 728px; }
 
   .journey-premium__circle {
     width: 48px;
@@ -2563,61 +2397,111 @@ body.light .journey-premium__number,
   }
 }
 
-/* Reduced Motion */
+@keyframes journeyDash {
+  to {
+    stroke-dashoffset: -220;
+  }
+}
+
+@keyframes journeySpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ═══════════════════════════════════════════════
+   CERTIFICATES / CONTACT SEPARATION
+   يفصل الشهادات عن التواصل حتى لا يظهران كأنهما قسم واحد
+   ═══════════════════════════════════════════════ */
+
+#certificates {
+  padding-bottom: 110px;
+}
+
+#contact {
+  position: relative;
+  padding-top: 110px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(30, 115, 232, 0.10), transparent 38%),
+    var(--color-bg-alt);
+}
+
+#contact::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  inset-inline: 12%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(90, 176, 255, 0.35),
+    transparent
+  );
+}
+
+#contact .section__header--center {
+  margin-bottom: 36px;
+}
+
+.contact__layout {
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+@media (max-width: 640px) {
+  #certificates {
+    padding-bottom: 80px;
+  }
+
+  #contact {
+    padding-top: 85px;
+  }
+
+  #contact::before {
+    inset-inline: 8%;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════
+   CERTIFICATE MODAL DETAILS
+   هذه كانت ناقصة بعد قص الأكواد القديمة، لذلك أبقيناها لأنها مستخدمة داخل نافذة الشهادة
+   ═══════════════════════════════════════════════ */
+
+.cert-modal-card__icon {
+  font-size: 4.5rem;
+  margin-bottom: 14px;
+}
+
+.cert-modal-card__name {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 7px;
+}
+
+.cert-modal-card__org {
+  color: var(--color-primary-mid);
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.cert-modal-card__year {
+  color: var(--color-text-muted);
+  margin-bottom: 18px;
+}
+
+
+/* ═══════════════════════════════════════════════
+   REDUCED MOTION
+   يوقف الأنيميشن لمن يفضل تقليل الحركة
+   ═══════════════════════════════════════════════ */
+
 @media (prefers-reduced-motion: reduce) {
   .journey-premium__road-dash,
   .journey-premium__circle::before {
     animation: none;
-  }
-}/* تصغير نبذة عني بالطول فقط بدون تغيير العرض */
-.about-clean__card {
-  padding-top: 22px;
-  padding-bottom: 22px;
-}
-
-/* تصغير ارتفاع العبارة العلوية */
-.about-clean__statement {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 14px;
-}
-
-.about-clean__statement p {
-  line-height: 1.55;
-  margin: 0;
-}
-
-/* تصغير طول نص النبذة */
-.about-clean__text {
-  line-height: 1.55;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-/* تقليل المسافات الناتجة من الأسطر الفارغة */
-.about-clean__text br {
-  line-height: 1.2;
-}
-
-/* للجوال */
-@media (max-width: 768px) {
-  .about-clean__card {
-    padding-top: 18px;
-    padding-bottom: 18px;
-  }
-
-  .about-clean__statement {
-    padding-top: 9px;
-    padding-bottom: 9px;
-    margin-bottom: 12px;
-  }
-
-  .about-clean__statement p {
-    line-height: 1.45;
-  }
-
-  .about-clean__text {
-    line-height: 1.5;
   }
 }
 .cert-modal-card__icon  { font-size: 4.5rem; margin-bottom: 14px; }

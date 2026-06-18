@@ -92,10 +92,15 @@ const LangManager = (() => {
    * Read saved language and apply it.
    * Called once after DOM is ready.
    */
-  function init() {
-    const saved = localStorage.getItem(STORAGE_KEY) || DEFAULT_LANG;
-    applyLang(saved);
-  }
+function init() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+
+  // إذا كانت اللغة المحفوظة إنجليزية فعلًا استخدميها،
+  // غير كذا الافتراضي يكون عربي
+  const lang = saved === 'en' ? 'en' : DEFAULT_LANG;
+
+  applyLang(lang);
+}
 
   /**
    * Flip current language.
