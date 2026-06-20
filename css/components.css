@@ -392,8 +392,8 @@
    خط إنجليزي نظيف وواضح بدل الخط السابق */
 [lang="en"] .hero__name {
   font-family: "DM Sans", "Inter", "Segoe UI", sans-serif;
-  font-size: clamp(2.6rem, 5.6vw, 4.8rem);
-  font-weight: 800;
+  font-size: clamp(1.5rem, 4.0vw, 3.0rem);
+  font-weight: 600;
   line-height: 1.05;
   letter-spacing: 1px;
 
