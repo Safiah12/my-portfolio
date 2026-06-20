@@ -224,7 +224,87 @@ section {
   }
 
 }
+@media (min-width: 920px) {
+  [lang="en"] .hero__layout {
+    grid-template-columns: 1fr auto;
+    direction: ltr;
+  }
 
+  [lang="en"] .hero__text {
+    grid-column: 1;
+    text-align: left;
+    justify-self: start;
+  }
+
+  [lang="en"] .avatar-wrapper {
+    grid-column: 2;
+    justify-self: end;
+  }
+}/* Mobile navbar logo position */
+/* ═══════════════════════════════════════════════
+   MOBILE NAVBAR
+   يجعل اللوقو والاسم في المنتصف وتحت الأزرار بالجوال
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 639px) {
+  /* ارتفاع النافبار يصير مناسب لأن اللوقو صار تحت */
+  .navbar {
+    height: auto;
+    min-height: 94px;
+    padding-block: 8px 10px;
+  }
+
+  /* ترتيب عناصر النافبار بشكل عمودي */
+  .navbar__inner {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+  }
+
+  /* صف الأزرار: اللغة + الوضع + القائمة */
+  .navbar__actions {
+    order: 1;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* اللوقو والاسم يكونون تحت وفي المنتصف */
+  .navbar__logo {
+    order: 2;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  /* تصغير دائرة اللوقو في الجوال */
+  .navbar__logo-image {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* تصغير الاسم حتى لا يروح للطرف */
+  .navbar__logo-text {
+    font-size: 0.84rem;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* لأن النافبار صار أطول، نزيد نزول القائمة */
+  .mobile-menu {
+    padding-top: 125px;
+  }
+
+  /* لأن النافبار صار أطول، نزيد بداية الهيرو */
+  .hero {
+    padding-top: 145px;
+  }
+
+} 
   /* Two-column layouts */
   .about__layout   { grid-template-columns: 1fr 1fr; }
   .skills__layout  { grid-template-columns: 1fr 1fr; }
