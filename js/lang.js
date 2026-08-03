@@ -18,7 +18,7 @@ const LangManager = (() => {
 
   // ── Constants ──────────────────────────────────────────
   const STORAGE_KEY  = 'portfolio-lang';
-  const DEFAULT_LANG = 'ar';
+  const DEFAULT_LANG = 'en';
 
   // ── State ──────────────────────────────────────────────
   let current = DEFAULT_LANG;
@@ -92,12 +92,12 @@ const LangManager = (() => {
    * Read saved language and apply it.
    * Called once after DOM is ready.
    */
+
 function init() {
   const saved = localStorage.getItem(STORAGE_KEY);
-
-  // إذا كانت اللغة المحفوظة إنجليزية فعلًا استخدميها،
-  // غير كذا الافتراضي يكون عربي
-  const lang = saved === 'en' ? 'en' : DEFAULT_LANG;
+  const lang = saved === 'en' || saved === 'ar'
+    ? saved
+    : DEFAULT_LANG;
 
   applyLang(lang);
 }
